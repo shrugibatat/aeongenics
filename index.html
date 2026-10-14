@@ -75,6 +75,7 @@ p{margin:0;max-width:62ch}
 .book .t{position:relative;font-family:var(--display);font-weight:700;font-size:clamp(22px,4.6vw,30px);line-height:1;letter-spacing:.02em;text-transform:uppercase}
 .book .s{position:relative;font-size:11px;color:var(--dim);line-height:1.4}
 .book .a{position:relative;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+.book .coverimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .book .spine{position:absolute;left:0;top:0;bottom:0;width:26px;transform:rotateY(90deg) translateZ(-13px) translateX(-13px);transform-origin:left;background:linear-gradient(90deg,#060914,#14204a)}
 @keyframes float{0%,100%{transform:rotateY(-22deg) rotateX(6deg) translateY(0)}50%{transform:rotateY(-14deg) rotateX(3deg) translateY(-12px)}}
 .ticker{display:flex;flex-wrap:wrap;gap:10px 28px;padding-block:18px;border-block:1px solid var(--glass-line)}
@@ -148,11 +149,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
       <div class="row"><a class="btn" href="#book" data-go="book">Discover the book</a><a class="btn ghost" href="#tests" data-go="tests">Test your own mind</a></div>
     </div>
     <div class="book-stage" aria-label="Book cover, placeholder design">
-      <div class="book"><div class="spine"></div><div class="front">
-        <span class="a">Erez Aeon Batat</span>
-        <span class="t">Solve<br>for<br>Human</span>
-        <span class="s">What Makes Us Conscious,<br>and Why AI Isn't (Yet)</span>
-      </div></div>
+      <div class="book"><div class="spine"></div><div class="front"><img class="coverimg" src="cover.jpg" alt="Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet), by Erez Aeon Batat" width="900" height="1346"></div></div>
     </div>
   </div>
   <div class="ticker" aria-label="Facts">
@@ -179,9 +176,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
 <!-- BOOK -->
 <section class="page" id="p-book" hidden>
   <div class="split">
-    <div class="book-stage"><div class="book"><div class="spine"></div><div class="front">
-      <span class="a">Erez Aeon Batat</span><span class="t">Solve<br>for<br>Human</span><span class="s">What Makes Us Conscious,<br>and Why AI Isn't (Yet)</span>
-    </div></div></div>
+    <div class="book-stage"><div class="book"><div class="spine"></div><div class="front"><img class="coverimg" src="cover.jpg" alt="Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet), by Erez Aeon Batat" width="900" height="1346"></div></div></div>
     <div class="stack reveal">
       <span class="eyebrow">The book · forthcoming</span>
       <h1>Solve for Human</h1>
