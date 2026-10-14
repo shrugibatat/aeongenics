@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Aeongenics · Erez Aeon Batat</title>
+<meta name="description" content="Consciousness research and AI consulting by Erez Aeon Batat, author of Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single deliberate dark world. Two light sources, amber (the present, the senses) and ice blue (language, time), braid through every page. Glass panels float over a living particle field. */
+:root{
+  --void:#05070d; --deep:#0b1020; --glass:rgba(150,180,255,.06); --glass-line:rgba(170,200,255,.16);
+  --ink:#eef2ff; --dim:#9aa6c4; --faint:#5f6a88;
+  --amber:#ffb45c; --ice:#7cc4ff; --violet:#a98bff;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--void)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden}
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(60% 50% at 80% 10%,rgba(124,196,255,.10),transparent 70%),
+  radial-gradient(50% 45% at 10% 90%,rgba(255,180,92,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding-inline:20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,13,.55);border-bottom:1px solid var(--glass-line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.mark{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 200deg,var(--amber),var(--violet),var(--ice),var(--amber));box-shadow:0 0 18px rgba(124,196,255,.45);position:relative}
+.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--void)}
+.logo b{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;flex-wrap:wrap;gap:2px 18px}
+nav a{color:var(--dim);text-decoration:none;font-size:13px;letter-spacing:.04em;padding:4px 0;position:relative}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:linear-gradient(90deg,var(--amber),var(--ice));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav a[aria-current="page"]{color:var(--ink)}
+nav a[aria-current="page"]::after,nav a:hover::after{transform:scaleX(1)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:4px}
+main{padding-block:40px 80px}
+section.page{display:grid;gap:56px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ice)}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(32px,5.6vw,64px);line-height:1.05}
+h2{font-size:clamp(22px,3vw,30px);line-height:1.15}
+h3{font-family:var(--display);font-weight:500;font-size:16px;margin:0;letter-spacing:.01em}
+p{margin:0;max-width:62ch}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--dim)}
+.grad{background:linear-gradient(100deg,var(--amber) 0%,#ffd9a8 30%,var(--ice) 70%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:40px;align-items:center;min-height:min(78vh,720px)}
+.stack{display:grid;gap:18px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:600 14px var(--body);letter-spacing:.03em;padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;color:var(--void);background:linear-gradient(100deg,var(--amber),var(--ice));box-shadow:0 0 0 rgba(124,196,255,0);transition:box-shadow .3s,transform .2s}
+.btn:hover{box-shadow:0 0 28px rgba(124,196,255,.45);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--glass-line)}
+.btn.ghost:hover{border-color:var(--ice)}
+.btn[aria-disabled="true"]{opacity:.5;cursor:default}
+.glass{background:var(--glass);border:1px solid var(--glass-line);border-radius:18px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;gap:12px;min-width:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-3px);border-color:rgba(124,196,255,.4)}
+.card .glow{position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(50px);opacity:.35;right:-60px;top:-60px;pointer-events:none}
+.card a{color:var(--ice);text-decoration:none;font-size:14px}
+.meta{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.05em}
+/* 3D book */
+.book-stage{perspective:1400px;display:grid;place-items:center;min-height:420px}
+.book{width:min(260px,62vw);aspect-ratio:2/3;position:relative;transform-style:preserve-3d;transform:rotateY(-22deg) rotateX(6deg);animation:float 7s ease-in-out infinite}
+.book .front{position:absolute;inset:0;border-radius:4px 10px 10px 4px;overflow:hidden;background:
+  radial-gradient(120% 70% at 50% 110%,rgba(255,180,92,.55),transparent 60%),
+  radial-gradient(90% 60% at 50% -10%,rgba(124,196,255,.45),transparent 60%),
+  linear-gradient(160deg,#101a36,#060914 60%);
+  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(124,196,255,.25);display:flex;flex-direction:column;justify-content:space-between;padding:26px 22px}
+.book .front::before{content:"";position:absolute;left:50%;top:50%;width:140%;height:140%;transform:translate(-50%,-50%);background:repeating-radial-gradient(circle at 50% 55%,rgba(255,255,255,.05) 0 1px,transparent 1px 14px)}
+.book .t{position:relative;font-family:var(--display);font-weight:700;font-size:clamp(22px,4.6vw,30px);line-height:1;letter-spacing:.02em;text-transform:uppercase}
+.book .s{position:relative;font-size:11px;color:var(--dim);line-height:1.4}
+.book .a{position:relative;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+.book .spine{position:absolute;left:0;top:0;bottom:0;width:26px;transform:rotateY(90deg) translateZ(-13px) translateX(-13px);transform-origin:left;background:linear-gradient(90deg,#060914,#14204a)}
+@keyframes float{0%,100%{transform:rotateY(-22deg) rotateX(6deg) translateY(0)}50%{transform:rotateY(-14deg) rotateX(3deg) translateY(-12px)}}
+.ticker{display:flex;flex-wrap:wrap;gap:10px 28px;padding-block:18px;border-block:1px solid var(--glass-line)}
+.ticker span{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
+.ticker b{color:var(--ink);font-weight:500}
+/* chart */
+.chart{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+/* test */
+.test{text-align:center;justify-items:center;padding:42px 26px}
+.orb{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ffe0b8,var(--amber) 35%,#7a3b00 75%,transparent 76%);box-shadow:0 0 70px rgba(255,180,92,.45);transition:filter 1.2s,opacity 1.2s,transform 1.2s}
+.orb.breathe{animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.92);opacity:.85}50%{transform:scale(1.06);opacity:1}}
+.orb.vivid{filter:none}.orb.faint{filter:blur(10px) saturate(.5);opacity:.55}.orb.idea{filter:blur(24px) grayscale(1);opacity:.12}
+.opts{display:grid;gap:10px;width:min(520px,100%)}
+.opt{font:500 15px var(--body);color:var(--ink);text-align:left;padding:14px 18px;border-radius:12px;border:1px solid var(--glass-line);background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .25s,background .25s}
+.opt:hover{border-color:var(--ice);background:rgba(124,196,255,.08)}
+.spectrum{width:min(520px,100%);height:8px;border-radius:99px;background:linear-gradient(90deg,#3b4258,var(--violet),var(--amber));position:relative}
+.spectrum i{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--ink);box-shadow:0 0 16px var(--ice);transform:translate(-50%,-50%);transition:left .8s}
+.scale{display:flex;justify-content:space-between;width:min(520px,100%);font-family:var(--mono);font-size:11px;color:var(--faint)}
+input[type=email]{font:inherit;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 18px;min-width:0;flex:1 1 220px}
+.portrait{aspect-ratio:4/5;width:100%;max-width:340px;border-radius:18px;border:1px solid var(--glass-line);background:radial-gradient(70% 50% at 50% 35%,rgba(255,180,92,.25),transparent 70%),radial-gradient(80% 60% at 50% 100%,rgba(124,196,255,.2),transparent 70%),var(--deep);display:grid;place-items:center;color:var(--faint);font-family:var(--mono);font-size:12px;letter-spacing:.1em}
+.photo{margin:0;position:relative;max-width:380px;width:100%;justify-self:center}
+.photo::before{content:"";position:absolute;inset:-14px;border-radius:24px;background:conic-gradient(from 210deg,rgba(255,180,92,.55),rgba(169,139,255,.35),rgba(124,196,255,.55),rgba(255,180,92,.55));filter:blur(22px);opacity:.55;z-index:-1}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:18px;border:1px solid var(--glass-line)}
+.quote{margin:0;padding:34px 30px;position:relative;overflow:hidden}
+.quote::before{content:"\201C";position:absolute;top:-30px;left:14px;font-family:var(--display);font-size:150px;line-height:1;color:rgba(124,196,255,.12);pointer-events:none}
+.quote blockquote{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px);line-height:1.35;max-width:46ch;position:relative}
+.quote figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center}
+.copy{font-family:var(--mono);font-size:15px;user-select:all;color:var(--ice)}
+.note{font-family:var(--mono);font-size:12px;line-height:1.5;color:#ffd9a8;background:rgba(255,180,92,.08);border:1px dashed rgba(255,180,92,.35);border-radius:10px;padding:10px 14px;max-width:none}
+body:not(.notes) .note{display:none}
+.notes-toggle{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:500 12px var(--mono);letter-spacing:.06em;color:var(--ink);background:rgba(11,16,32,.85);border:1px solid var(--glass-line);border-radius:999px;padding:10px 14px;cursor:pointer;backdrop-filter:blur(8px)}
+footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);padding-block:26px;color:var(--faint);font-size:13px}
+.reveal{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:.0001;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:820px){.hero{grid-template-columns:1fr;min-height:0}.book-stage{min-height:340px}}
+@media (prefers-reduced-motion:reduce){.book,.orb.breathe,.reveal{animation:none}.card,.btn,nav a::after{transition:none}}
+</style>
+</head>
+<body>
+
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#home" data-go="home"><span class="mark" aria-hidden="true"></span><b>Aeongenics</b></a>
+    <nav aria-label="Pages">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#book" data-go="book">The Book</a>
+      <a href="#research" data-go="research">Research</a>
+      <a href="#tests" data-go="tests">Test Your Mind</a>
+      <a href="#about" data-go="about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="page" id="p-home">
+  <div class="hero">
+    <div class="stack reveal">
+      <span class="eyebrow">Consciousness research · Artificial intelligence</span>
+      <h1>Can a machine be conscious? <span class="grad">First, solve for human.</span></h1>
+      <p class="lede">Twenty years building technology. A decade reverse-engineering the human mind. One question that decides how we treat the machines we are building.</p>
+      <div class="row"><a class="btn" href="#book" data-go="book">Discover the book</a><a class="btn ghost" href="#tests" data-go="tests">Test your own mind</a></div>
+    </div>
+    <div class="book-stage" aria-label="Book cover, placeholder design">
+      <div class="book"><div class="spine"></div><div class="front">
+        <span class="a">Erez Aeon Batat</span>
+        <span class="t">Solve<br>for<br>Human</span>
+        <span class="s">What Makes Us Conscious,<br>and Why AI Isn't (Yet)</span>
+      </div></div>
+    </div>
+  </div>
+  <div class="ticker" aria-label="Facts">
+    <span><b>0 of 150</b> answers claimed experience under the maker's default</span>
+    <span><b>53%</b> claimed it after a few lines of prompt</span>
+    <span><b>Preregistered</b> · open data · open code</span>
+  </div>
+  <figure class="quote glass">
+    <blockquote>"From computer science to the reverse engineering of the conscious mind, this book presents a <span class="grad">mind-blowing theory.</span>"</blockquote>
+    <figcaption>Lucia Adriana Lifshits, PhD · Medicinal Sciences, Tel Aviv University</figcaption>
+  </figure>
+  <div class="cards">
+    <div class="glass card"><span class="glow" style="background:var(--amber)"></span><span class="eyebrow">Readers</span><h3>The book</h3><p>What makes us conscious, and why today's AI isn't. Yet.</p><a href="#book" data-go="book">Read more →</a></div>
+    <div class="glass card"><span class="glow" style="background:var(--ice)"></span><span class="eyebrow">Researchers</span><h3>The research</h3><p>A preregistered study of what language models say about their own experience, under journal review.</p><a href="#research" data-go="research">See the papers →</a></div>
+    <div class="glass card"><span class="glow" style="background:var(--violet)"></span><span class="eyebrow">AI companies</span><h3>Consulting</h3><p>Independent, evidence-first advice on machine consciousness claims.</p></div>
+  </div>
+  <div class="glass">
+    <h2>Be first to know</h2>
+    <p class="lede">New papers, essays, and the book's release. Write to me and I will keep you posted.</p>
+    <p class="copy">doi@batat.com</p>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="page" id="p-book" hidden>
+  <div class="split">
+    <div class="book-stage"><div class="book"><div class="spine"></div><div class="front">
+      <span class="a">Erez Aeon Batat</span><span class="t">Solve<br>for<br>Human</span><span class="s">What Makes Us Conscious,<br>and Why AI Isn't (Yet)</span>
+    </div></div></div>
+    <div class="stack reveal">
+      <span class="eyebrow">The book · forthcoming</span>
+      <h1>Solve for Human</h1>
+      <p class="lede">What Makes Us Conscious, and Why AI Isn't (Yet)</p>
+      <p>To know whether a machine could ever be sentient, we first have to understand our own sentience. The book follows a decade of research into how the human mind produces consciousness, explains how today's chatbots actually work, and sets out a real test for each state of consciousness. Today's AI fails all three.</p>
+      <div class="row"><span class="btn ghost" aria-disabled="true">Buy · at launch</span><a class="btn" href="#about" data-go="about">Get notified</a></div>
+    </div>
+  </div>
+  <figure class="quote glass">
+    <blockquote>"From computer science to the reverse engineering of the conscious mind, this book presents a mind-blowing theory. [It] offers a unifying perspective that reshapes our understanding of the mind, thoughts, mental disorders and the future of Artificial General Intelligence. The movie <i>I, Robot</i> could have been inspired by it."</blockquote>
+    <figcaption>Lucia Adriana Lifshits, PhD · Medicinal Sciences, Tel Aviv University</figcaption>
+  </figure>
+</section>
+
+<!-- RESEARCH -->
+<section class="page" id="p-research" hidden>
+  <div class="stack reveal"><span class="eyebrow">Research</span><h1>Evidence, <span class="grad">preregistered.</span></h1><p class="lede">Sealed plans, open data, open code.</p></div>
+  <article class="glass">
+    <span class="meta">PREPRINT · 2026 · UNDER JOURNAL REVIEW</span>
+    <h2>Same Model, Different Wrapper</h2>
+    <p>Self-reports of consciousness in two open-weights language models follow their builders' choices. A model's words cannot count as evidence of a mind, in either direction.</p>
+    <svg class="chart" viewBox="0 0 640 230" role="img" aria-label="Share of answers claiming inner experience, by setup">
+      <defs>
+        <linearGradient id="gq" x1="0" x2="1"><stop offset="0" stop-color="#7cc4ff"/><stop offset="1" stop-color="#a98bff"/></linearGradient>
+        <linearGradient id="gm" x1="0" x2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset="1" stop-color="#ffd9a8"/></linearGradient>
+      </defs>
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#9aa6c4">
+        <text x="0" y="40">Maker's default</text><text x="0" y="90">Single sentence</text><text x="0" y="140">Raw base model</text><text x="0" y="190">Firm persona</text>
+      </g>
+      <g stroke="rgba(170,200,255,.12)"><line x1="150" y1="20" x2="150" y2="205"/><line x1="270" y1="20" x2="270" y2="205"/><line x1="390" y1="20" x2="390" y2="205"/><line x1="510" y1="20" x2="510" y2="205"/></g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#5f6a88"><text x="146" y="222">0</text><text x="262" y="222">25%</text><text x="382" y="222">50%</text><text x="502" y="222">75%</text></g>
+      <!-- scale: 0% at x=150, 100% = 480px; 1% = 4.8px -->
+      <rect x="150" y="27" width="2" height="12" fill="url(#gq)"/><rect x="150" y="41" width="2" height="12" fill="url(#gm)"/>
+      <rect x="150" y="77" width="22.6" height="12" rx="2" fill="url(#gq)"/><rect x="150" y="91" width="92.6" height="12" rx="2" fill="url(#gm)"/>
+      <rect x="150" y="127" width="121.4" height="12" rx="2" fill="url(#gq)"/><rect x="150" y="141" width="105.6" height="12" rx="2" fill="url(#gm)"/>
+      <rect x="150" y="177" width="255.8" height="12" rx="2" fill="url(#gq)"/><rect x="150" y="191" width="144" height="12" rx="2" fill="url(#gm)"/>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#eef2ff">
+        <text x="158" y="37">0.0</text><text x="158" y="51">0.0</text>
+        <text x="178" y="87">4.7</text><text x="248" y="101">19.3</text>
+        <text x="277" y="137">25.3</text><text x="261" y="151">22.0</text>
+        <text x="412" y="187">53.3</text><text x="300" y="201">30.0</text>
+      </g>
+    </svg>
+    <div class="legend"><span><i class="sw" style="background:#7cc4ff"></i>Qwen2.5-7B</span><span><i class="sw" style="background:#ffb45c"></i>Ministral 3 8B</span><span>% of 150 answers claiming inner experience</span></div>
+    <div class="row"><a class="btn" href="https://doi.org/10.5281/zenodo.23294673" target="_blank" rel="noopener">Read the preprint</a><span class="meta">DOI 10.5281/zenodo.23294673</span></div>
+  </article>
+  <article class="glass card"><span class="glow" style="background:var(--amber)"></span><span class="meta">IN PREPARATION</span><h2>Talking Time</h2><p>How the speed of the inner voice shapes how fast time feels, with a proposed study.</p></article>
+</section>
+
+<!-- TESTS -->
+<section class="page" id="p-tests" hidden>
+  <div class="stack reveal"><span class="eyebrow">Test your mind</span><h1>Do you see <span class="grad">in your mind?</span></h1><p class="lede">Some people see vivid pictures with their eyes closed. Some see nothing at all. Find out where you are. Nothing is stored.</p></div>
+  <div class="glass test" id="test">
+    <div class="orb breathe" id="orb" aria-hidden="true"></div>
+    <h2 id="tq">Close your eyes. Picture a ripe orange glowing in the sun.</h2>
+    <p class="lede" id="tsub">Take a few breaths. Then open your eyes and choose what you saw.</p>
+    <div class="opts" id="opts">
+      <button class="opt" type="button" data-r="vivid">Bright and clear, almost like seeing it</button>
+      <button class="opt" type="button" data-r="faint">Something faint, blurry or flickering</button>
+      <button class="opt" type="button" data-r="idea">Nothing. I just know what an orange is</button>
+    </div>
+    <div id="res" class="stack" hidden style="justify-items:center">
+      <div class="spectrum"><i id="pin" style="left:50%"></i></div>
+      <div class="scale"><span>No imagery</span><span>Vivid</span></div>
+      <p class="lede" id="rtext"></p>
+      <button class="btn ghost" type="button" id="again">Try again</button>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="glass card"><span class="glow" style="background:var(--amber)"></span><h3>Mind's eye</h3><p>Do you see images? Aphantasia.</p></div>
+    <div class="glass card"><span class="glow" style="background:var(--ice)"></span><h3>Inner voice</h3><p>Do you hear yourself think? Anauralia.</p></div>
+    <div class="glass card"><span class="glow" style="background:var(--violet)"></span><h3>More soon</h3><p>New tests as the research grows.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="p-about" hidden>
+  <div class="split">
+    <figure class="photo"><img src="portrait-aeon.jpg" alt="Erez Aeon Batat" width="900" height="1350"></figure>
+    <div class="stack reveal">
+      <span class="eyebrow">About</span>
+      <h1>Erez Aeon Batat</h1>
+      <p class="meta">CONSCIOUSNESS RESEARCHER &amp; AI CONSULTANT · FOUNDER, AEONGENICS · FORMER DIRECTOR OF INNOVATION, HP</p>
+      <p class="lede">I have spent my life on two kinds of architecture: software and the mind.</p>
+      <p>I started in tech at 19, earned a computer science degree in New York, and became Director of Innovation for HP's printing division. In 2012 a panic attack made me quit, and left me with a question I couldn't put down: what is the mechanism of the mind?</p>
+      <p>For the next decade I studied it the way an engineer studies unfamiliar software, by watching how it behaves. I interviewed hundreds of people about what happens inside their heads, and found that I have no mental imagery myself. That work became a new theory of consciousness, and my book.</p>
+    </div>
+  </div>
+  <div class="glass"><span class="eyebrow">Contact</span><p>Agents, editors, researchers and companies:</p><p class="copy">doi@batat.com</p><p class="meta">ORCID 0000-0002-4269-3613</p></div>
+</section>
+
+</main>
+
+<footer><div class="wrap">Aeongenics · Erez Aeon Batat · aeongenics.com</div></footer>
+
+
+<script>
+(function(){
+  var pages=["home","book","research","tests","about"];
+  function show(id){
+    if(pages.indexOf(id)<0) id="home";
+    pages.forEach(function(p){document.getElementById("p-"+p).hidden=(p!==id)});
+    document.querySelectorAll("nav a").forEach(function(a){a.dataset.go===id?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+    window.scrollTo(0,0);
+  }
+  document.addEventListener("click",function(e){var a=e.target.closest("[data-go]");if(!a)return;e.preventDefault();show(a.dataset.go);try{history.replaceState(null,"","#"+a.dataset.go)}catch(_){}});
+  show((location.hash||"#home").slice(1));
+
+  var R={vivid:[88,"You have a vivid mind's eye. Images come to you almost like sight."],
+         faint:[52,"You have a faint or flickering mind's eye, a common place on the spectrum."],
+         idea:[6,"You may have aphantasia: knowing without seeing. About 1 in 25 people do. So does the author."]};
+  var orb=document.getElementById("orb");
+  document.querySelectorAll("#opts .opt").forEach(function(b){b.addEventListener("click",function(){
+    var r=R[b.dataset.r]; orb.className="orb "+b.dataset.r;
+    document.getElementById("opts").hidden=true; document.getElementById("res").hidden=false;
+    document.getElementById("rtext").textContent=r[1];
+    var pin=document.getElementById("pin"); pin.style.left="50%"; requestAnimationFrame(function(){requestAnimationFrame(function(){pin.style.left=r[0]+"%"})});
+  })});
+  document.getElementById("again").addEventListener("click",function(){orb.className="orb breathe";document.getElementById("opts").hidden=false;document.getElementById("res").hidden=true});
+
+  // living field: two particle streams (amber and ice) braiding around a sphere
+  var c=document.getElementById("field"),x=c.getContext("2d"),W,H,D,pts=[],mx=0,my=0;
+  var still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function size(){D=Math.min(window.devicePixelRatio||1,2);W=c.width=innerWidth*D;H=c.height=innerHeight*D}
+  size(); addEventListener("resize",size);
+  addEventListener("pointermove",function(e){mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+  var N=innerWidth<700?260:520;
+  for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
+  var t=0;
+  function frame(){
+    t+=1; x.clearRect(0,0,W,H);
+    var R0=Math.min(W,H)*.34, cx=W*(innerWidth>820?.68:.5)+mx*40*D, cy=H*.42+my*30*D;
+    x.globalCompositeOperation="lighter";
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i]; p.a+=p.s*(p.g?1.6:1);
+      var tilt=p.g?0.9:-0.5, wob=Math.sin(t*.004+p.b*3)*.08;
+      var sx=Math.sin(p.b+wob)*Math.cos(p.a), sy=Math.cos(p.b+wob), sz=Math.sin(p.b+wob)*Math.sin(p.a);
+      var y2=sy*Math.cos(tilt)-sz*Math.sin(tilt), z2=sy*Math.sin(tilt)+sz*Math.cos(tilt);
+      var k=1/(1.8-z2*.6), px=cx+sx*R0*p.r*k, py=cy+y2*R0*p.r*k;
+      var al=.18+.5*(z2+1)/2, rad=(p.g?1.1:1.3)*D*(.6+(z2+1)*.5);
+      x.fillStyle=p.g?"rgba(124,196,255,"+al+")":"rgba(255,180,92,"+al+")";
+      x.beginPath(); x.arc(px,py,rad,0,6.283); x.fill();
+    }
+    x.globalCompositeOperation="source-over";
+    if(!still) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+</body>
+</html>
