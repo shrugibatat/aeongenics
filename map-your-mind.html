@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Map Your Mind · Aeongenics</title>
+<meta name="description" content="A five-minute, twenty-question tour of your inner world: mind's eye, inner voice, other senses and the speed of thought. By Erez Aeon Batat, author of Solve for Human.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --void:#05070d; --deep:#0b1020; --glass:rgba(150,180,255,.06); --glass-line:rgba(170,200,255,.16);
+  --ink:#eef2ff; --dim:#9aa6c4; --faint:#5f6a88;
+  --amber:#ffb45c; --ice:#7cc4ff; --violet:#a98bff;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --accent:var(--amber);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--void)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(60% 50% at 80% 10%,rgba(124,196,255,.10),transparent 70%),
+  radial-gradient(50% 45% at 10% 90%,rgba(255,180,92,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding-inline:20px;width:100%}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,13,.55);border-bottom:1px solid var(--glass-line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.mark{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 200deg,var(--amber),var(--violet),var(--ice),var(--amber));box-shadow:0 0 18px rgba(124,196,255,.45);position:relative}
+.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--void)}
+.logo b{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;flex-wrap:wrap;gap:2px 18px}
+nav a{color:var(--dim);text-decoration:none;font-size:13px;letter-spacing:.04em;padding:4px 0;position:relative}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:linear-gradient(90deg,var(--amber),var(--ice));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav a[aria-current="page"]{color:var(--ink)}
+nav a[aria-current="page"]::after,nav a:hover::after{transform:scaleX(1)}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:4px}
+main{flex:1;padding-block:40px 80px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ice)}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(32px,5.6vw,64px);line-height:1.05}
+h2{font-size:clamp(22px,3vw,30px);line-height:1.2}
+h3{font-family:var(--display);font-weight:500;font-size:16px;margin:0;letter-spacing:.01em}
+p{margin:0;max-width:62ch}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--dim)}
+.grad{background:linear-gradient(100deg,var(--amber) 0%,#ffd9a8 30%,var(--ice) 70%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:600 14px var(--body);letter-spacing:.03em;padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;color:var(--void);background:linear-gradient(100deg,var(--amber),var(--ice));transition:box-shadow .3s,transform .2s,opacity .3s;touch-action:manipulation}
+.btn:hover{box-shadow:0 0 28px rgba(124,196,255,.45);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--glass-line)}
+.btn.ghost:hover{border-color:var(--ice)}
+.btn:disabled{opacity:.35;cursor:default;box-shadow:none;transform:none}
+.glass{background:var(--glass);border:1px solid var(--glass-line);border-radius:18px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;gap:12px;min-width:0}
+.meta{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.05em}
+footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);padding-block:26px;color:var(--faint);font-size:13px}
+footer a{color:var(--dim)}
+
+/* stage + screen transitions */
+.stage{max-width:760px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr)}
+.stage.wide{max-width:1120px}
+.screen{grid-area:1/1;min-width:0;transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1)}
+.screen.out-left{opacity:0;transform:translateX(-40px)}
+.screen.out-right{opacity:0;transform:translateX(40px)}
+.screen.in-right{opacity:0;transform:translateX(40px);transition:none}
+.screen.in-left{opacity:0;transform:translateX(-40px);transition:none}
+
+/* intro */
+.intro{display:grid;gap:22px;padding:clamp(26px,5vw,48px);position:relative;overflow:hidden}
+.intro .glow,.qcard .glow{position:absolute;width:260px;height:260px;border-radius:50%;filter:blur(70px);opacity:.28;pointer-events:none}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.chip{border:1px solid var(--glass-line);border-radius:14px;padding:14px;background:rgba(255,255,255,.02);display:grid;gap:4px}
+.chip i{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.chip span{font-size:14px;color:var(--dim);line-height:1.4}
+.privacy{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--dim);border:1px dashed rgba(124,196,255,.3);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px}
+.privacy svg{flex:none;margin-top:2px}
+.kbd{font-family:var(--mono);font-size:11px;color:var(--faint);border:1px solid var(--glass-line);border-radius:5px;padding:1px 6px}
+
+/* question card */
+.qcard{padding:clamp(22px,4.5vw,40px);gap:22px;position:relative;overflow:hidden}
+.progress{display:grid;gap:10px}
+.ptop{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ptrack{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.pfill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--amber),var(--violet),var(--ice));box-shadow:0 0 14px rgba(124,196,255,.5);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.segs span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s}
+.segs span.on{color:var(--accent)}
+.qtext{display:grid;gap:10px;min-height:5.5em}
+.qhint{color:var(--dim);font-size:15px}
+.icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;border:1px solid var(--glass-line);background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.08),transparent 70%)}
+.opts{display:grid;gap:10px}
+.opt{font:500 15px/1.35 var(--body);color:var(--ink);text-align:left;padding:13px 16px;border-radius:12px;border:1px solid var(--glass-line);background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .25s,background .25s,transform .2s;display:flex;align-items:center;gap:14px;touch-action:manipulation;min-height:52px}
+.opt:hover{border-color:var(--ice);background:rgba(124,196,255,.08)}
+.opt .n{flex:none;font-family:var(--mono);font-size:12px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;border:1px solid var(--glass-line);color:var(--dim)}
+.opt .dots{margin-left:auto;display:flex;gap:3px;flex:none}
+.opt .dots b{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.12)}
+.opt .dots b.f{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+.opt[aria-checked="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--accent) 25%,transparent)}
+.opt[aria-checked="true"] .n{background:var(--accent);color:var(--void);border-color:var(--accent)}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* result */
+.result{display:grid;gap:22px}
+.rhead{display:grid;gap:12px;text-align:center;justify-items:center;padding-top:6px}
+.rhead p{margin-inline:auto}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.mapbox{padding:18px}
+.map{width:100%;height:auto;display:block;overflow:visible}
+.map .zl{font-family:var(--display);font-size:13px;font-weight:500;fill:var(--dim);transition:fill .6s}
+.map .zs{font-family:var(--mono);font-size:9px;letter-spacing:.12em;fill:var(--faint)}
+.map .zone{transition:opacity .8s}
+.map .ax{font-family:var(--mono);font-size:10px;letter-spacing:.16em;fill:var(--faint)}
+.map .active .zl{fill:var(--ink)}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.profile{gap:16px}
+.ptype{font-family:var(--display);font-size:clamp(26px,3.6vw,38px);font-weight:500;line-height:1.1}
+.meters{display:grid;gap:12px}
+.meter{display:grid;gap:5px}
+.meter .lab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.meter .lab b{color:var(--ink);font-weight:500}
+.meter .tr{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.meter .fl{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.terms{display:grid;gap:10px}
+.term{border-left:2px solid var(--violet);padding:4px 0 4px 12px;font-size:15px;color:var(--dim)}
+.term b{color:var(--ink);font-weight:600}
+.speed{border:1px solid var(--glass-line);border-radius:14px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;background:rgba(124,196,255,.04)}
+.speed svg{flex:none}
+.speed p{font-size:15px}
+.copied{font-family:var(--mono);font-size:12px;color:var(--ice);min-height:1.2em}
+#copyfallback{width:100%;min-height:130px;font:13px/1.5 var(--mono);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:12px;padding:12px;resize:vertical}
+.closing{grid-template-columns:auto 1fr auto;align-items:center;gap:22px;position:relative;overflow:hidden}
+.closing img{width:84px;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 24px rgba(124,196,255,.25);display:block}
+#res-h:focus,#qtitle:focus{outline:none}
+.instant .meter .fl,.instant .screen{transition:none!important}
+.disclaimer{font-size:13px;color:var(--faint);text-align:center;max-width:70ch;margin-inline:auto}
+.zones-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zcard{border:1px solid var(--glass-line);border-radius:12px;padding:12px;font-size:13px;color:var(--dim);display:grid;gap:4px;transition:border-color .4s,background .4s}
+.zcard h3{font-size:13px;color:var(--ink)}
+.zcard.me{border-color:var(--amber);background:rgba(255,180,92,.07)}
+
+@media (max-width:860px){.rgrid{grid-template-columns:1fr}.closing{grid-template-columns:auto 1fr}.closing .btn{grid-column:1/-1;justify-self:start}}
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .glass{padding:18px}
+  .qcard,.intro{padding:20px 16px}
+  .segs span{font-size:9px;letter-spacing:.04em}
+  .zones-legend{grid-template-columns:1fr}
+  .opt{padding:12px 12px;gap:10px;font-size:14.5px}
+  .opt .dots{display:none}
+  .qnav .btn{padding:12px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .screen,.pfill,.meter .fl,.opt,.btn,nav a::after,.zcard{transition:none!important}
+  .screen.out-left,.screen.out-right,.screen.in-left,.screen.in-right{transform:none}
+  .pulse{animation:none;opacity:.35}
+}
+</style>
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html"><span class="mark" aria-hidden="true"></span><b>Aeongenics</b></a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="index.html#book">The Book</a>
+      <a href="index.html#research">Research</a>
+      <a href="map-your-mind.html" aria-current="page">Map Your Mind</a>
+      <a href="index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="stage" id="stage">
+
+    <!-- INTRO -->
+    <section class="screen" id="s-intro" aria-labelledby="intro-h">
+      <div class="glass intro">
+        <span class="glow" style="background:var(--amber);right:-90px;top:-90px" aria-hidden="true"></span>
+        <span class="glow" style="background:var(--ice);left:-110px;bottom:-120px" aria-hidden="true"></span>
+        <span class="eyebrow">Test your mind · about 5 minutes · 20 questions</span>
+        <h1 id="intro-h">Map Your <span class="grad">Mind</span></h1>
+        <p class="lede">Close your eyes and picture a friend's face. Some people see it in full color. Some see nothing at all and simply know what that friend looks like. Both are normal, and almost nobody realizes how different everyone else is. Let's find out where you land.</p>
+        <div class="chips" aria-label="Four sections">
+          <div class="chip"><i style="color:var(--amber)">01 · Mind's eye</i><span>Faces, sunrises, front doors</span></div>
+          <div class="chip"><i style="color:var(--ice)">02 · Inner voice</i><span>The narrator, if you have one</span></div>
+          <div class="chip"><i style="color:var(--violet)">03 · Other senses</i><span>Songs, coffee, lemons, sand</span></div>
+          <div class="chip"><i style="color:#ffd9a8">04 · Time &amp; thought</i><span>How fast your mind runs</span></div>
+        </div>
+        <div class="privacy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span>Your answers never leave this page. Nothing is stored and nothing is sent anywhere. Close the tab and it all evaporates, like a dream you meant to write down.</span>
+        </div>
+        <div class="row">
+          <button class="btn" id="start" type="button">Start mapping</button>
+          <span class="meta">Tip: keys <span class="kbd">1</span>to<span class="kbd">5</span> answer, <span class="kbd">←</span> goes back</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTION -->
+    <section class="screen" id="s-q" hidden aria-live="polite">
+      <div class="glass qcard" id="qcard">
+        <span class="glow" id="qglow" style="right:-110px;top:-110px" aria-hidden="true"></span>
+        <div class="progress">
+          <div class="ptop"><span class="eyebrow" id="qsec">Mind's eye</span><span class="meta" id="qcount">1 / 20</span></div>
+          <div class="ptrack" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="ptrack"><div class="pfill" id="pfill"></div></div>
+          <div class="segs" aria-hidden="true"><span data-s="0">Mind's eye</span><span data-s="1">Inner voice</span><span data-s="2">Other senses</span><span data-s="3">Time</span></div>
+        </div>
+        <div class="row" style="gap:16px;flex-wrap:nowrap;align-items:flex-start">
+          <div class="icon" id="qicon" aria-hidden="true"></div>
+          <div class="qtext"><h2 id="qtitle" tabindex="-1"></h2><p class="qhint" id="qhint"></p></div>
+        </div>
+        <div class="opts" id="opts" role="radiogroup" aria-labelledby="qtitle"></div>
+        <div class="qnav">
+          <button class="btn ghost" id="back" type="button">← Back</button>
+          <button class="btn" id="next" type="button" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="s-res" hidden aria-labelledby="res-h">
+      <div class="result">
+        <div class="rhead">
+          <span class="eyebrow">Your map is ready</span>
+          <h1 id="res-h">You are <span class="grad" id="rtype">The Silent Knower</span></h1>
+          <p class="lede" id="rtag"></p>
+        </div>
+
+        <div class="rgrid">
+          <div class="glass mapbox">
+            <svg class="map" id="map" viewBox="0 0 400 400" role="img" aria-labelledby="map-title">
+              <title id="map-title">Your position on a map of pictures versus words</title>
+              <defs>
+                <radialGradient id="gVis" cx="0" cy="0" r="1"><stop offset="0" stop-color="#ffb45c" stop-opacity=".35"/><stop offset="1" stop-color="#ffb45c" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gFull" cx="1" cy="0" r="1"><stop offset="0" stop-color="#a98bff" stop-opacity=".38"/><stop offset="1" stop-color="#a98bff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gNar" cx="1" cy="1" r="1"><stop offset="0" stop-color="#7cc4ff" stop-opacity=".35"/><stop offset="1" stop-color="#7cc4ff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gSil" cx="0" cy="1" r="1"><stop offset="0" stop-color="#9aa6c4" stop-opacity=".22"/><stop offset="1" stop-color="#9aa6c4" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gDot"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#ffe0b8"/><stop offset="1" stop-color="#ffb45c" stop-opacity="0"/></radialGradient>
+                <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="rgba(170,200,255,.07)" stroke-width="1"/></pattern>
+              </defs>
+              <rect x="40" y="20" width="340" height="340" rx="14" fill="rgba(5,7,13,.5)" stroke="rgba(170,200,255,.16)"/>
+              <rect x="40" y="20" width="340" height="340" rx="14" fill="url(#grid)"/>
+              <g class="zone" data-z="vis"><rect x="40" y="20" width="170" height="170" rx="14" fill="url(#gVis)"/><text class="zl" x="54" y="46">The Visualizer</text><text class="zs" x="54" y="62">PICTURES, FEW WORDS</text></g>
+              <g class="zone" data-z="full"><rect x="210" y="20" width="170" height="170" rx="14" fill="url(#gFull)"/><text class="zl" x="366" y="46" text-anchor="end">The Full Spectrum</text><text class="zs" x="366" y="62" text-anchor="end">PICTURES AND WORDS</text></g>
+              <g class="zone" data-z="nar"><rect x="210" y="190" width="170" height="170" rx="14" fill="url(#gNar)"/><text class="zl" x="366" y="342" text-anchor="end">The Narrator</text><text class="zs" x="366" y="326" text-anchor="end">WORDS, FEW PICTURES</text></g>
+              <g class="zone" data-z="sil"><rect x="40" y="190" width="170" height="170" rx="14" fill="url(#gSil)"/><text class="zl" x="54" y="342">The Silent Knower</text><text class="zs" x="54" y="326">MEANING, NO SOUNDTRACK</text></g>
+              <line x1="210" y1="26" x2="210" y2="354" stroke="rgba(170,200,255,.18)" stroke-dasharray="3 5"/>
+              <line x1="46" y1="190" x2="374" y2="190" stroke="rgba(170,200,255,.18)" stroke-dasharray="3 5"/>
+              <text class="ax" x="210" y="384" text-anchor="middle">WORDS →</text>
+              <text class="ax" x="22" y="190" text-anchor="middle" transform="rotate(-90 22 190)">PICTURES →</text>
+              <g id="me" transform="translate(210 190)">
+                <circle r="26" fill="url(#gDot)" opacity=".55"/>
+                <circle class="pulse" r="10" fill="none" stroke="#ffb45c" stroke-width="2"/>
+                <circle r="6" fill="#fff" stroke="#ffb45c" stroke-width="2"/>
+                <text id="metag" y="-16" text-anchor="middle" style="font:500 10px var(--mono);letter-spacing:.14em;fill:#ffe0b8">YOU</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="glass profile">
+            <span class="eyebrow" id="rzone-eyebrow" style="color:var(--amber)">Your zone</span>
+            <div class="ptype" id="rtype2">The Silent Knower</div>
+            <p id="rdesc"></p>
+            <div class="meters">
+              <div class="meter"><div class="lab"><span>Pictures</span><b id="vP">0</b></div><div class="tr"><div class="fl" id="mP" style="background:linear-gradient(90deg,#7a3b00,var(--amber))"></div></div></div>
+              <div class="meter"><div class="lab"><span>Words</span><b id="vW">0</b></div><div class="tr"><div class="fl" id="mW" style="background:linear-gradient(90deg,#1d3d66,var(--ice))"></div></div></div>
+              <div class="meter"><div class="lab"><span>Thought speed</span><b id="vS">0</b></div><div class="tr"><div class="fl" id="mS" style="background:linear-gradient(90deg,#3b2a6e,var(--violet))"></div></div></div>
+            </div>
+            <div class="speed">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 13l3.5-3.5M10 2h4"/></svg>
+              <p id="rspeed"></p>
+            </div>
+            <div class="terms" id="rterms"></div>
+          </div>
+        </div>
+
+        <div class="glass">
+          <h3>The four zones</h3>
+          <div class="zones-legend" id="zlegend"></div>
+        </div>
+
+        <div class="glass" style="gap:14px">
+          <div class="row">
+            <button class="btn" id="copy" type="button">Copy my result</button>
+            <button class="btn ghost" id="again" type="button">Take it again</button>
+            <span class="copied" id="copied" role="status"></span>
+          </div>
+          <textarea id="copyfallback" hidden readonly aria-label="Your result as text, ready to copy"></textarea>
+        </div>
+
+        <div class="glass closing">
+          <span class="glow" style="position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(60px);opacity:.3;right:-60px;top:-80px;background:var(--violet);pointer-events:none" aria-hidden="true"></span>
+          <a href="index.html#book"><img src="cover.jpg" alt="Solve for Human book cover" width="900" height="1346"></a>
+          <div style="display:grid;gap:6px">
+            <h2 style="font-size:clamp(18px,2.4vw,24px)">Curious why minds differ this much?</h2>
+            <p style="color:var(--dim)">It's the subject of <i>Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet)</i>.</p>
+          </div>
+          <a class="btn" href="index.html#book">Discover the book</a>
+        </div>
+
+        <p class="disclaimer">For curiosity, not a diagnosis. This is a playful self-portrait, not a clinical or validated test. If something here sparks a real question about your mind, a qualified professional is the right next stop.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer><div class="wrap">Aeongenics · Erez Aeon Batat · <a href="index.html">aeongenics.com</a></div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $=function(id){return document.getElementById(id)};
+
+  /* ---------- scales ---------- */
+  var SEE=["Nothing at all, I just know it","A faint hint, more idea than image","Hazy and fleeting","Clear, with decent detail","As vivid as seeing it"];
+  var SENSE=["Nothing, just the fact of it","A faint whisper of it","Some of it, on and off","Pretty convincing","Like it's really happening"];
+  var OFTEN=["Never","Rarely","Sometimes","Often","Pretty much always"];
+
+  var SECTIONS=[
+    {name:"Mind's eye",color:"var(--amber)",hex:"#ffb45c"},
+    {name:"Inner voice",color:"var(--ice)",hex:"#7cc4ff"},
+    {name:"Other senses",color:"var(--violet)",hex:"#a98bff"},
+    {name:"Time & thought",color:"#ffd9a8",hex:"#ffd9a8"}
+  ];
+
+  /* axis: P = pictures (imagery), S = senses (feeds pictures), W = words, T = speed, F = absorption. rev = reverse scored */
+  var Q=[
+    {s:0,a:"P",ic:"face",t:"Picture a close friend's face.",h:"Take a breath, close your eyes if you like. How clearly does the face actually appear?",o:SEE},
+    {s:0,a:"P",ic:"sun",t:"Now a sunrise over the sea.",h:"The colors, the glare on the water, the line of the horizon. What shows up?",o:SEE},
+    {s:0,a:"P",ic:"door",t:"Picture your own front door.",h:"Can you make out its color, the handle, maybe a scuff you keep meaning to fix?",o:SEE},
+    {s:0,a:"P",ic:"apple",t:"Imagine a red apple, slowly turning.",h:"Can you watch it rotate and catch the light? Bonus points if it has a leaf.",o:SEE},
+    {s:0,a:"P",ic:"room",t:"Walk into a room from your childhood.",h:"Look around. Where is the window? What is on the walls?",o:SEE},
+
+    {s:1,a:"W",ic:"voice",t:"When you think, does it come out as words?",h:"As in actual sentences running in your head, not just a general sense of meaning.",o:OFTEN},
+    {s:1,a:"W",ic:"read",t:"Read this sentence silently. Did someone read it to you?",h:"Some people hear a voice narrating as they read. Some hear only silence.",o:["Total silence in here","A faint murmur, maybe","A voice, now and then","Yes, clearly","Clear as someone speaking"]},
+    {s:1,a:"W",ic:"talk",t:"Do you rehearse conversations in your head?",h:"Arguments you won in the shower, speeches you will never give, replies you thought of three days late.",o:OFTEN},
+    {s:1,a:"W",ic:"name",t:"Silently \"say\" your own name. Can you hear it?",h:"Not mouth it. Hear it, in your own voice, inside.",o:["Nothing, just the idea of it","A faint echo","Sort of, if I focus","Yes, quite clearly","Clear, with my own accent and all"]},
+    {s:1,a:"W",ic:"cloud",t:"How much of your thinking happens with no words at all?",h:"Just knowing, sensing, or feeling your way to an answer without a sentence in sight.",o:["Almost none of it","A little","About half","Most of it","Nearly all of it"],rev:true},
+
+    {s:2,a:"S",ic:"note",t:"Play the opening of a favorite song in your head.",h:"Can you hear the melody? The instruments? The singer taking a breath?",o:SENSE},
+    {s:2,a:"S",ic:"cup",t:"Imagine the smell of fresh coffee.",h:"Someone just opened a new bag. Breathe in.",o:SENSE},
+    {s:2,a:"S",ic:"lemon",t:"Now bite into a slice of lemon.",h:"Go on. We will wait while your face does the thing.",o:SENSE},
+    {s:2,a:"S",ic:"wave",t:"Feel warm sand between your toes.",h:"The grains, the warmth, the slight sink as you shift your weight.",o:SENSE},
+    {s:2,a:"S",ic:"rain",t:"Listen to rain tapping on a window.",h:"Steady, close, just on the other side of the glass.",o:SENSE},
+
+    {s:3,a:"T",ic:"bolt",t:"How fast do your thoughts usually run?",h:"Pick the picture that fits, even if pictures are not your thing.",o:["A slow river","A calm stroll","City traffic","A busy highway","A highway at rush hour, with sirens"]},
+    {s:3,a:"T",ic:"clock",t:"You're stuck in a queue with nothing to do. Time...",h:"No phone. No book. Just you and the back of a stranger's head.",o:["Flies by, I drift off happily","Passes fine","Gets a little slow","Drags noticeably","Crawls like a sloth on vacation"]},
+    {s:3,a:"T",ic:"moon",t:"Lights out. Do racing thoughts keep you awake?",h:"The 2 a.m. committee meeting nobody scheduled.",o:OFTEN},
+    {s:3,a:"F",ic:"spiral",t:"Absorbed in something you love, do you lose track of time?",h:"You look up and the afternoon has quietly left without you.",o:OFTEN},
+    {s:3,a:"T",ic:"jump",t:"Do you catch your mind three topics ahead of the conversation?",h:"You were listening, honestly. Your brain just took a shortcut.",o:OFTEN}
+  ];
+
+  /* simple line icons */
+  var IC={
+    face:'<circle cx="12" cy="10" r="5"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+    sun:'<path d="M3 17h18M6 21h12"/><path d="M7 17a5 5 0 0 1 10 0"/><path d="M12 6v3M5.6 9.6l2 2M18.4 9.6l-2 2"/>',
+    door:'<rect x="6" y="3" width="12" height="18" rx="1"/><circle cx="15" cy="12" r="1"/>',
+    apple:'<path d="M12 7c-3-2-7 0-7 5 0 4 3 8 5 8 1 0 1.3-.5 2-.5s1 .5 2 .5c2 0 5-4 5-8 0-5-4-7-7-5z"/><path d="M12 7c0-2 1-3 3-4"/>',
+    room:'<path d="M3 21V9l9-6 9 6v12z"/><rect x="9" y="12" width="6" height="5"/>',
+    voice:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+    read:'<path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/>',
+    talk:'<path d="M3 4h12v8H8l-3 3V12H3z"/><path d="M15 9h6v8h-2v3l-3-3h-5v-3"/>',
+    name:'<path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>',
+    cloud:'<path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4 4 0 0 1 17 18z"/>',
+    note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+    cup:'<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2M8 3c0 2 2 2 2 4M12 3c0 2 2 2 2 4"/>',
+    lemon:'<ellipse cx="12" cy="12" rx="8" ry="6" transform="rotate(-30 12 12)"/><path d="M8 16l8-8M12 12l-3-2M12 12l2 3"/>',
+    wave:'<path d="M2 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><circle cx="17" cy="6" r="2.5"/>',
+    rain:'<path d="M7 14a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4 4 0 0 1 17 14z"/><path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3"/>',
+    bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    moon:'<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',
+    spiral:'<path d="M12 12a1 1 0 1 1 1 1 3 3 0 1 1-3-3 5 5 0 1 1-5 5"/><path d="M5 15a7 7 0 1 0 7-10"/>',
+    jump:'<path d="M3 18c3-8 6-8 9 0s6 8 9 0"/><path d="M18 5l3 0 0 3"/>'
+  };
+
+  var ans=new Array(Q.length).fill(null), cur=0, busy=false, advanceTimer=null;
+
+  /* ---------- screen transitions ---------- */
+  function swap(from,to,dir,after){
+    if(!from){to.hidden=false;after&&after();return}
+    if(from===to){after&&after();return}
+    if(still){from.hidden=true;to.hidden=false;after&&after();return}
+    busy=true;
+    from.classList.add(dir>0?"out-left":"out-right");
+    setTimeout(function(){
+      from.hidden=true; from.classList.remove("out-left","out-right");
+      to.classList.add(dir>0?"in-right":"in-left"); to.hidden=false;
+      after&&after();
+      void to.offsetWidth;
+      to.classList.remove("in-right","in-left");
+      setTimeout(function(){busy=false},420);
+    },300);
+  }
+  function visible(){return [$("s-intro"),$("s-q"),$("s-res")].filter(function(s){return !s.hidden})[0]}
+
+  /* ---------- question rendering ---------- */
+  function render(){
+    var q=Q[cur], sec=SECTIONS[q.s];
+    document.documentElement.style.setProperty("--accent",sec.color);
+    $("qsec").textContent="Section "+(q.s+1)+" of 4 · "+sec.name;
+    $("qsec").style.color=sec.color;
+    $("qcount").textContent=(cur+1)+" / "+Q.length;
+    var done=ans.filter(function(a){return a!==null}).length;
+    $("pfill").style.width=(done/Q.length*100)+"%";
+    $("ptrack").setAttribute("aria-valuenow",done);
+    document.querySelectorAll(".segs span").forEach(function(s){s.classList.toggle("on",+s.dataset.s<=q.s)});
+    $("qglow").style.background=sec.hex;
+    $("qicon").innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+sec.hex+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+IC[q.ic]+'</svg>';
+    $("qtitle").textContent=q.t;
+    $("qhint").textContent=q.h;
+    var box=$("opts"); box.innerHTML="";
+    q.o.forEach(function(label,i){
+      var b=document.createElement("button");
+      b.type="button"; b.className="opt"; b.setAttribute("role","radio");
+      b.setAttribute("aria-checked",ans[cur]===i?"true":"false");
+      b.tabIndex=(ans[cur]===i||(ans[cur]===null&&i===0))?0:-1;
+      var dots=""; for(var d=0;d<5;d++) dots+='<b class="'+(d<=i?"f":"")+'"></b>';
+      b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+label+'</span><span class="dots" aria-hidden="true">'+dots+'</span>';
+      b.addEventListener("click",function(){choose(i)});
+      box.appendChild(b);
+    });
+    $("next").disabled=ans[cur]===null;
+    $("next").textContent=cur===Q.length-1?"See my map →":"Next →";
+    $("back").textContent=cur===0?"← Intro":"← Back";
+  }
+  function choose(i){
+    if(busy)return;
+    ans[cur]=i;
+    var opts=$("opts").children;
+    for(var k=0;k<opts.length;k++){opts[k].setAttribute("aria-checked",k===i?"true":"false");opts[k].tabIndex=k===i?0:-1}
+    $("next").disabled=false;
+    var done=ans.filter(function(a){return a!==null}).length;
+    $("pfill").style.width=(done/Q.length*100)+"%";
+    clearTimeout(advanceTimer);
+    advanceTimer=setTimeout(next,still?150:420);
+  }
+  function step(dir){
+    var card=$("s-q");
+    if(still){render();focusTitle();return}
+    busy=true;
+    card.classList.add(dir>0?"out-left":"out-right");
+    setTimeout(function(){
+      card.classList.remove("out-left","out-right");
+      card.classList.add(dir>0?"in-right":"in-left");
+      render(); void card.offsetWidth;
+      card.classList.remove("in-right","in-left");
+      focusTitle();
+      setTimeout(function(){busy=false},380);
+    },260);
+  }
+  function focusTitle(){try{$("qtitle").focus({preventScroll:true})}catch(_){}}
+  function next(){
+    clearTimeout(advanceTimer);
+    if(busy||ans[cur]===null)return;
+    if(cur<Q.length-1){cur++;step(1)}
+    else{showResult(score())}
+  }
+  function back(){
+    clearTimeout(advanceTimer);
+    if(busy)return;
+    if(cur>0){cur--;step(-1)}
+    else swap($("s-q"),$("s-intro"),-1,function(){$("start").focus()});
+  }
+
+  /* ---------- scoring ---------- */
+  function avg(list){return list.length?list.reduce(function(a,b){return a+b},0)/list.length:0}
+  function score(){
+    var by={P:[],S:[],W:[],T:[],F:[]};
+    Q.forEach(function(q,i){var v=ans[i]===null?2:ans[i]; if(q.rev)v=4-v; by[q.a].push(v/4*100)});
+    var img=avg(by.P), sen=avg(by.S);
+    return {pictures:Math.round(img*.6+sen*.4),imagery:Math.round(img),senses:Math.round(sen),words:Math.round(avg(by.W)),speed:Math.round(avg(by.T)),flow:Math.round(avg(by.F))};
+  }
+
+  var ZONES={
+    vis:{name:"The Visualizer",color:"#ffb45c",tag:"You think in pictures. Words show up later, like subtitles added after the film was shot.",
+      desc:"Your mind runs on scenes, faces and places. You can probably walk around a memory and look at it from a new angle. Directions, plans and ideas often arrive as images first, and you translate them into words when someone else needs them."},
+    full:{name:"The Full Spectrum",color:"#a98bff",tag:"Both channels are on: a cinema with a running commentary.",
+      desc:"You see it and you say it. Your inner world has vivid images and a lively narrator, often at the same time. That makes for rich memories, strong daydreams and, on busy days, a mind that is occasionally rather loud."},
+    nar:{name:"The Narrator",color:"#7cc4ff",tag:"Your mind talks. Thoughts come as sentences, plans as dialogue.",
+      desc:"Your inner life has a voice, and it rarely takes a day off. You think by talking it through, even silently. Pictures are more like captions than photographs: present if needed, but the script is the main event."},
+    sil:{name:"The Silent Knower",color:"#9aa6c4",tag:"You know things without seeing them or saying them.",
+      desc:"Ideas arrive whole, as meaning rather than as image or sentence. It can feel like having the answer before the question has finished. You are in very good company here: the author of this site lives in this zone too. He has aphantasia, and it is part of why he wrote a whole book about how minds work."}
+  };
+  function zoneOf(r){var hp=r.pictures>=50, hw=r.words>=50; return hp?(hw?"full":"vis"):(hw?"nar":"sil")}
+
+  function speedLine(r){
+    var s;
+    if(r.speed>=60) s="Your thoughts run fast: time may drag when you wait, and a quiet ceiling at 2 a.m. can turn into a very busy one.";
+    else if(r.speed>=35) s="Your thoughts keep a steady pace: quick enough to stay interested, calm enough to let you sleep. Mostly.";
+    else s="Your thoughts take the scenic route: waiting rarely bothers you, and time tends to slip by gently.";
+    if(r.flow>=75) s+=" And when something grabs you, hours simply vanish.";
+    return s;
+  }
+  function termsFor(r){
+    var t=[];
+    if(r.imagery<=20) t.push(["Aphantasia","means little or no voluntary visual imagery: you know what an apple looks like, you just can't summon the picture. Roughly 1 in 25 people have it."]);
+    if(r.imagery>=85) t.push(["Hyperphantasia","is the other end of the scale: imagery so vivid it can feel close to actual sight."]);
+    if(r.words<=20) t.push(["Anauralia","means no imagined sound, including the inner voice. Thinking still happens, just without a soundtrack."]);
+    if(!t.length) t.push(["The middle","is where most people land on most of these scales, and it is a perfectly fine neighborhood. The extremes have names: aphantasia (no mind's eye), hyperphantasia (an extremely vivid one) and anauralia (no inner voice)."]);
+    return t;
+  }
+
+  var last=null;
+  function showResult(r){
+    last=r;
+    var zk=zoneOf(r), z=ZONES[zk];
+    $("rtype").textContent=z.name; $("rtype2").textContent=z.name;
+    $("rzone-eyebrow").style.color=z.color;
+    $("rtag").textContent=z.tag; $("rdesc").textContent=z.desc;
+    $("rspeed").textContent=speedLine(r);
+    var tb=$("rterms"); tb.innerHTML="";
+    termsFor(r).forEach(function(t){var d=document.createElement("div");d.className="term";d.innerHTML="<b></b> ";d.firstChild.textContent=t[0];d.appendChild(document.createTextNode(t[1]));tb.appendChild(d)});
+    var lg=$("zlegend"); lg.innerHTML="";
+    ["vis","full","nar","sil"].forEach(function(k){
+      var c=document.createElement("div"); c.className="zcard"+(k===zk?" me":"");
+      var h=document.createElement("h3"); h.textContent=ZONES[k].name+(k===zk?"  ·  you":""); h.style.color=ZONES[k].color;
+      var p=document.createElement("span"); p.textContent=ZONES[k].tag;
+      c.appendChild(h); c.appendChild(p); lg.appendChild(c);
+    });
+    document.querySelectorAll("#map .zone").forEach(function(g){g.classList.toggle("active",g.dataset.z===zk);g.style.opacity=g.dataset.z===zk?1:.62});
+    ["P","W","S"].forEach(function(k){$("m"+k).style.width="0%";$("v"+k).textContent="0"});
+    $("copyfallback").hidden=true; $("copied").textContent="";
+    $("stage").classList.add("wide");
+    swap(visible(),$("s-res"),1,function(){
+      window.scrollTo(0,0);
+      setTimeout(function(){animateResult(r)},still?0:250);
+      try{$("res-h").setAttribute("tabindex","-1");$("res-h").focus({preventScroll:true})}catch(_){}
+    });
+  }
+  function animateResult(r){
+    var tx=40+r.words/100*340, ty=360-r.pictures/100*340;
+    tx=Math.max(52,Math.min(368,tx)); ty=Math.max(32,Math.min(348,ty));
+    var me=$("me"), tag=$("metag");
+    tag.setAttribute("y",ty<90?26:-16);
+    var vals={P:r.pictures,W:r.words,S:r.speed};
+    ["P","W","S"].forEach(function(k){$("m"+k).style.width=vals[k]+"%"});
+    if(still){me.setAttribute("transform","translate("+tx+" "+ty+")");["P","W","S"].forEach(function(k){$("v"+k).textContent=vals[k]});return}
+    var x0=210,y0=190,t0=null,D=1500;
+    function f(ts){
+      if(!t0)t0=ts; var p=Math.min(1,(ts-t0)/D);
+      var e=1-Math.pow(1-p,3), sw=Math.sin(p*Math.PI)*18;
+      me.setAttribute("transform","translate("+(x0+(tx-x0)*e+sw)+" "+(y0+(ty-y0)*e-sw*.6)+")");
+      ["P","W","S"].forEach(function(k){$("v"+k).textContent=Math.round(vals[k]*e)});
+      if(p<1)requestAnimationFrame(f);
+    }
+    requestAnimationFrame(f);
+  }
+
+  /* ---------- copy ---------- */
+  function summary(r){
+    var z=ZONES[zoneOf(r)];
+    return "My mind map (aeongenics.com, Map Your Mind)\n"+
+      "Zone: "+z.name+". "+z.tag+"\n"+
+      "Pictures "+r.pictures+"/100 · Words "+r.words+"/100 · Thought speed "+r.speed+"/100\n"+
+      speedLine(r)+"\n"+
+      "For curiosity, not a diagnosis. Map yours: https://aeongenics.com/map-your-mind.html";
+  }
+  function fallbackCopy(text){
+    var ta=$("copyfallback"); ta.value=text; ta.hidden=false; ta.focus(); ta.select();
+    var ok=false; try{ok=document.execCommand("copy")}catch(_){ok=false}
+    $("copied").textContent=ok?"Copied. Paste it anywhere.":"Select the text below and copy it.";
+  }
+  $("copy").addEventListener("click",function(){
+    if(!last)return; var text=summary(last);
+    try{
+      if(navigator.clipboard&&window.isSecureContext){
+        navigator.clipboard.writeText(text).then(function(){$("copied").textContent="Copied. Paste it anywhere."},function(){fallbackCopy(text)});
+      }else fallbackCopy(text);
+    }catch(_){fallbackCopy(text)}
+  });
+
+  /* ---------- wiring ---------- */
+  function restart(){
+    ans=ans.map(function(){return null}); cur=0; render();
+    $("stage").classList.remove("wide");
+    swap(visible(),$("s-q"),1,function(){window.scrollTo(0,0);focusTitle()});
+  }
+  $("start").addEventListener("click",function(){
+    if(busy)return; render(); swap($("s-intro"),$("s-q"),1,focusTitle);
+  });
+  $("again").addEventListener("click",function(){if(!busy)restart()});
+  $("next").addEventListener("click",next);
+  $("back").addEventListener("click",back);
+
+  document.addEventListener("keydown",function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(e.target&&e.target.tagName==="TEXTAREA")return;
+    if($("s-q").hidden){
+      if(!$("s-intro").hidden&&e.key==="Enter"&&document.activeElement===document.body){$("start").click();e.preventDefault()}
+      return;
+    }
+    var n=parseInt(e.key,10);
+    if(n>=1&&n<=Q[cur].o.length){choose(n-1);e.preventDefault();return}
+    if(e.key==="ArrowLeft"||(e.key==="Backspace")){back();e.preventDefault();return}
+    if(e.key==="ArrowRight"){next();e.preventDefault();return}
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+      var opts=$("opts").children, i=Array.prototype.indexOf.call(opts,document.activeElement);
+      if(i<0)i=ans[cur]===null?-1:ans[cur];
+      i=e.key==="ArrowDown"?Math.min(opts.length-1,i+1):Math.max(0,i-1);
+      opts[i].focus(); e.preventDefault();
+    }
+  });
+
+  /* demo: ?demo=result (optionally &p=20&w=80&s=70) jumps straight to a result */
+  try{
+    var qs=new URLSearchParams(location.search);
+    if(qs.get("demo")==="q"){var qn=Math.max(1,Math.min(Q.length,parseInt(qs.get("n"),10)||1));cur=qn-1;for(var d=0;d<cur;d++)ans[d]=2;$("s-intro").hidden=true;render();$("s-q").hidden=false}
+    if(qs.get("demo")==="result"||location.hash==="#demo-result"){
+      var num=function(k,d){var v=parseInt(qs.get(k),10);return isNaN(v)?d:Math.max(0,Math.min(100,v))};
+      var p=num("p",12),w=num("w",78),s=num("s",72);
+      $("s-intro").hidden=true; still=true; document.body.classList.add("instant");
+      showResult({pictures:p,imagery:p,senses:p,words:w,speed:s,flow:80});
+      setTimeout(function(){document.body.classList.remove("instant");still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches},50);
+    }
+  }catch(_){}
+
+  /* ---------- living field (same as home) ---------- */
+  var c=$("field"),x=c.getContext("2d"),W,H,DP,pts=[],mx=0,my=0;
+  function size(){DP=Math.min(window.devicePixelRatio||1,2);W=c.width=innerWidth*DP;H=c.height=innerHeight*DP}
+  size(); addEventListener("resize",size);
+  addEventListener("pointermove",function(e){mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+  var N=innerWidth<700?220:440;
+  for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
+  var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function frame(){
+    t+=1; x.clearRect(0,0,W,H);
+    var R0=Math.min(W,H)*.38, cx=W*.5+mx*40*DP, cy=H*.5+my*30*DP;
+    x.globalCompositeOperation="lighter";
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i]; p.a+=p.s*(p.g?1.6:1);
+      var tilt=p.g?0.9:-0.5, wob=Math.sin(t*.004+p.b*3)*.08;
+      var sx=Math.sin(p.b+wob)*Math.cos(p.a), sy=Math.cos(p.b+wob), sz=Math.sin(p.b+wob)*Math.sin(p.a);
+      var y2=sy*Math.cos(tilt)-sz*Math.sin(tilt), z2=sy*Math.sin(tilt)+sz*Math.cos(tilt);
+      var k=1/(1.8-z2*.6), px=cx+sx*R0*p.r*k, py=cy+y2*R0*p.r*k;
+      var al=.12+.4*(z2+1)/2, rad=(p.g?1.1:1.3)*DP*(.6+(z2+1)*.5);
+      x.fillStyle=p.g?"rgba(124,196,255,"+al+")":"rgba(255,180,92,"+al+")";
+      x.beginPath(); x.arc(px,py,rad,0,6.283); x.fill();
+    }
+    x.globalCompositeOperation="source-over";
+    if(!fieldStill) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+</body>
+</html>
