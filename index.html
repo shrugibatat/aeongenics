@@ -107,6 +107,11 @@ input[type=email]{font:inherit;color:var(--ink);background:rgba(255,255,255,.04)
 .quote::before{content:"\201C";position:absolute;top:-30px;left:14px;font-family:var(--display);font-size:150px;line-height:1;color:rgba(124,196,255,.12);pointer-events:none}
 .quote blockquote{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px);line-height:1.35;max-width:46ch;position:relative}
 .quote figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.nl-form{display:grid;gap:12px}
+.nl-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.nl-fields input{width:100%;font:inherit;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 18px}
+.nl-fields .ml-error input{border-color:#ff8a7a}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center}
 .copy{font-family:var(--mono);font-size:15px;user-select:all;color:var(--ice)}
 .note{font-family:var(--mono);font-size:12px;line-height:1.5;color:#ffd9a8;background:rgba(255,180,92,.08);border:1px dashed rgba(255,180,92,.35);border-radius:10px;padding:10px 14px;max-width:none}
@@ -168,9 +173,28 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
     <div class="glass card"><span class="glow" style="background:var(--violet)"></span><span class="eyebrow">AI companies</span><h3>Consulting</h3><p>Independent, evidence-first advice on machine consciousness claims.</p></div>
   </div>
   <div class="glass">
-    <h2>Be first to know</h2>
-    <p class="lede">New papers, essays, and the book's release. Write to me and I will keep you posted.</p>
-    <p class="copy">doi@batat.com</p>
+    <h2 id="subscribe">Be first to know</h2>
+    <div id="mlb2-47188459" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-47188459">
+      <div class="row-form">
+        <p class="lede">New papers, essays, and the book's release. A few emails a year.</p>
+        <form class="ml-block-form nl-form" action="https://assets.mailerlite.com/jsonp/1251629/forms/201406098291295345/subscribe" data-code="" method="post" target="_blank">
+          <div class="nl-fields">
+            <div class="ml-form-fieldRow"><div class="ml-field-group ml-field-name ml-validate-required"><label class="sr-only" for="nl-first">First name</label><input id="nl-first" type="text" name="fields[name]" placeholder="First name" autocomplete="given-name" aria-required="true"></div></div>
+            <div class="ml-form-fieldRow"><div class="ml-field-group ml-field-last_name ml-validate-required"><label class="sr-only" for="nl-last">Last name</label><input id="nl-last" type="text" name="fields[last_name]" placeholder="Last name" autocomplete="family-name" aria-required="true"></div></div>
+            <div class="ml-form-fieldRow ml-last-item"><div class="ml-field-group ml-field-email ml-validate-email ml-validate-required"><label class="sr-only" for="nl-email">Email</label><input id="nl-email" type="email" name="fields[email]" placeholder="Email" autocomplete="email" aria-required="true"></div></div>
+          </div>
+          <input type="hidden" name="ml-submit" value="1">
+          <div class="ml-form-embedSubmit">
+            <button type="submit" class="btn primary">Subscribe</button>
+            <button disabled="disabled" style="display:none" type="button" class="btn loading">Sending...</button>
+          </div>
+          <input type="hidden" name="anticsrf" value="true">
+        </form>
+      </div>
+      <div class="row-success" style="display:none">
+        <p class="lede">Thank you! You're on the list. The next email comes when there's real news.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -183,7 +207,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
       <h1>Solve for Human</h1>
       <p class="lede">What Makes Us Conscious, and Why AI Isn't (Yet)</p>
       <p>To know whether a machine could ever be sentient, we first have to understand our own sentience. The book follows a decade of research into how the human mind produces consciousness, explains how today's chatbots actually work, and sets out a real test for each state of consciousness. Today's AI fails all three.</p>
-      <div class="row"><span class="btn ghost" aria-disabled="true">Buy · at launch</span><a class="btn" href="#about" data-go="about">Get notified</a></div>
+      <div class="row"><span class="btn ghost" aria-disabled="true">Buy · at launch</span><a class="btn" href="#home" data-go="home" data-scroll="subscribe">Get notified</a></div>
     </div>
   </div>
   <figure class="quote glass">
@@ -284,7 +308,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
     document.querySelectorAll("nav a").forEach(function(a){a.dataset.go===id?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
     window.scrollTo(0,0);
   }
-  document.addEventListener("click",function(e){var a=e.target.closest("[data-go]");if(!a)return;e.preventDefault();show(a.dataset.go);try{history.replaceState(null,"","#"+a.dataset.go)}catch(_){}});
+  document.addEventListener("click",function(e){var a=e.target.closest("[data-go]");if(!a)return;e.preventDefault();show(a.dataset.go);if(a.dataset.scroll){var t=document.getElementById(a.dataset.scroll);if(t)setTimeout(function(){t.scrollIntoView({behavior:"smooth",block:"center"})},50);}try{history.replaceState(null,"","#"+a.dataset.go)}catch(_){}});
   show((location.hash||"#home").slice(1));
 
   var R={vivid:[88,"You have a vivid mind's eye. Images come to you almost like sight."],
@@ -329,5 +353,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
 })();
 </script>
 
+<script>
+  function ml_webform_success_47188459(){var $=window.ml_jQuery||window.jQuery;$('.ml-subscribe-form-47188459 .row-success').show();$('.ml-subscribe-form-47188459 .row-form').hide();}
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+<script>try{fetch("https://assets.mailerlite.com/jsonp/1251629/forms/201406098291295345/takel")}catch(e){}</script>
 </body>
 </html>
