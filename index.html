@@ -107,6 +107,10 @@ input[type=email]{font:inherit;color:var(--ink);background:rgba(255,255,255,.04)
 .quote blockquote{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,26px);line-height:1.35;max-width:46ch;position:relative}
 .quote figcaption{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
 .nl-form{display:grid;gap:12px}
+.c-select,.c-msg{width:100%;font:inherit;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:18px;padding:12px 18px}
+.c-select{border-radius:999px}
+.c-select option{color:#111}
+
 .inline-form{margin-top:6px;animation:rise .4s ease both}
 .nl-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
 .nl-fields input{width:100%;font:inherit;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 18px}
@@ -318,8 +322,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
     <div class="glass"><span class="eyebrow">How we can work</span>
       <p>Advisory calls · project and policy reviews · workshops and talks for your team.</p>
       <p>Aeongenics is the research and consulting practice of Erez Aeon Batat.</p>
-      <p class="copy">doi@batat.com</p>
-      <div class="row"><a class="btn" href="#about" data-go="about">About me</a></div>
+      <div class="row"><a class="btn" href="#about" data-go="about" data-scroll="contact">Start a conversation</a></div>
     </div>
   </div>
 </section>
@@ -358,7 +361,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
         <p class="lede">Thank you! You're on the list. The next email comes when there's real news.</p>
       </div>
     </div></div>
-  <div class="glass"><span class="eyebrow">Contact</span><p>Agents, editors, researchers and companies:</p><p class="copy">doi@batat.com</p><p class="meta">ORCID 0000-0002-4269-3613</p></div>
+  <div class="glass" id="contact"><span class="eyebrow">Contact</span><h2>Write to me</h2><p>Agents, editors, researchers and companies: send a message and I'll reply by email.</p>
+    <form class="nl-form" id="contact-form" novalidate>
+      <input type="hidden" name="access_key" value="WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="New message from aeongenics.com">
+      <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="nl-fields">
+        <div><label class="sr-only" for="c-name">Name</label><input id="c-name" name="name" placeholder="Your name" required autocomplete="name"></div>
+        <div><label class="sr-only" for="c-email">Email</label><input id="c-email" type="email" name="email" placeholder="Your email" required autocomplete="email"></div>
+        <div><label class="sr-only" for="c-who">I am</label><select id="c-who" name="who" class="c-select"><option>An agent or editor</option><option>A researcher</option><option>A company</option><option>A journalist or podcaster</option><option>Something else</option></select></div>
+      </div>
+      <label class="sr-only" for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" placeholder="Your message" required class="c-msg"></textarea>
+      <div class="row"><button class="btn" type="submit">Send message</button><span class="meta" id="c-status" role="status"></span></div>
+    </form>
+    <p class="meta">ORCID 0000-0002-4269-3613</p></div>
 </section>
 
 </main>
@@ -427,5 +443,17 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
 </script>
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
 <script>try{fetch("https://assets.mailerlite.com/jsonp/1251629/forms/201406098291295345/takel")}catch(e){}</script>
+<script>
+(function(){var f=document.getElementById("contact-form");if(!f)return;var st=document.getElementById("c-status");
+f.addEventListener("submit",function(e){e.preventDefault();
+ if(!f.checkValidity()){st.textContent="Please fill in your name, email and message.";return;}
+ var key=f.querySelector('[name=access_key]').value;
+ if(key==="WEB3FORMS_KEY"){st.textContent="The contact form is being set up. Please try again soon.";return;}
+ st.textContent="Sending...";
+ fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Accept":"application/json"},body:new FormData(f)})
+ .then(function(r){return r.json()}).then(function(d){if(d.success){f.reset();st.textContent="Thank you. Your message was sent.";}else{st.textContent="Sorry, it didn't go through. Please try again later.";}})
+ .catch(function(){st.textContent="Sorry, it didn't go through. Please try again later.";});
+});})();
+</script>
 </body>
 </html>
