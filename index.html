@@ -109,6 +109,9 @@ input[type=email]{font:inherit;color:var(--ink);background:rgba(255,255,255,.04)
 .nl-form{display:grid;gap:12px}
 .c-select,.c-msg{width:100%;font:inherit;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:18px;padding:12px 18px}
 .c-select{border-radius:999px}
+.c-done{padding:18px 0}
+.c-done-title{font-family:var(--display);font-size:22px;margin:0 0 6px;background:linear-gradient(100deg,var(--amber),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+#c-status{color:var(--amber)}
 .c-select option{color:#111}
 
 .inline-form{margin-top:6px;animation:rise .4s ease both}
@@ -374,6 +377,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
       <label class="sr-only" for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" placeholder="Your message" required class="c-msg"></textarea>
       <div class="row"><button class="btn" type="submit">Send message</button><span class="meta" id="c-status" role="status"></span></div>
     </form>
+    <div id="c-done" class="c-done" hidden role="status"><p class="c-done-title">Thank you, your message is on its way.</p><p class="lede">I'll reply by email soon.</p></div>
     <p class="meta">ORCID 0000-0002-4269-3613</p></div>
 </section>
 
@@ -451,7 +455,7 @@ f.addEventListener("submit",function(e){e.preventDefault();
  if(key==="WEB3FORMS_KEY"){st.textContent="The contact form is being set up. Please try again soon.";return;}
  st.textContent="Sending...";
  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Accept":"application/json"},body:new FormData(f)})
- .then(function(r){return r.json()}).then(function(d){if(d.success){f.reset();st.textContent="Thank you. Your message was sent.";}else{st.textContent="Sorry, it didn't go through. Please try again later.";}})
+ .then(function(r){return r.json()}).then(function(d){if(d.success){f.reset();st.textContent="";f.hidden=true;var dn=document.getElementById("c-done");dn.hidden=false;dn.scrollIntoView({behavior:"smooth",block:"center"});}else{st.textContent="Sorry, it didn't go through. Please try again later.";}})
  .catch(function(){st.textContent="Sorry, it didn't go through. Please try again later.";});
 });})();
 </script>
