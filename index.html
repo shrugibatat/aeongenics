@@ -4,6 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Aeongenics · Erez Aeon Batat</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://aeongenics.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aeongenics">
+<meta property="og:title" content="Aeongenics · Erez Aeon Batat">
+<meta property="og:description" content="Can a machine be conscious? First, solve for human. Consciousness research and AI consulting by Erez Aeon Batat, author of Solve for Human.">
+<meta property="og:url" content="https://aeongenics.com/">
+<meta property="og:image" content="https://aeongenics.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aeongenics · Erez Aeon Batat">
+<meta name="twitter:description" content="Can a machine be conscious? First, solve for human. Consciousness research and AI consulting by Erez Aeon Batat, author of Solve for Human.">
+<meta name="twitter:image" content="https://aeongenics.com/og-image.png">
 <meta name="description" content="Consciousness research and AI consulting by Erez Aeon Batat, author of Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -330,6 +344,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
   </div>
 </section>
 
+<!-- WRITING (hidden until the first piece is published; reach via #writing) -->
+<section class="page" id="p-writing" hidden>
+  <div class="stack reveal"><span class="eyebrow">Writing</span><h1>Essays &amp; op-eds</h1></div>
+  <div class="cards">
+    <div class="glass card"><span class="glow" style="background:var(--violet)"></span><span class="meta">SKEPTIC · FORTHCOMING</span><h3>Ask an AI model if it hurts, and you'll hear its makers</h3><p>Anthropic now bans "cruelty" toward Claude. But the evidence that AI can feel pain comes from the machine itself.</p></div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="page" id="p-about" hidden>
   <div class="split">
@@ -390,7 +412,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
 (function(){
   var nt=document.getElementById("notify-toggle"),nb=document.getElementById("notify-box");
   if(nt&&nb)nt.addEventListener("click",function(){var open=nb.hidden;nb.hidden=!open;nt.setAttribute("aria-expanded",open);if(open){var i=nb.querySelector("input");if(i)i.focus();}});
-  var pages=["home","book","research","tests","consulting","about"];
+  var pages=["home","book","research","tests","consulting","writing","about"];
   function show(id){
     if(pages.indexOf(id)<0) id="home";
     pages.forEach(function(p){document.getElementById("p-"+p).hidden=(p!==id)});
