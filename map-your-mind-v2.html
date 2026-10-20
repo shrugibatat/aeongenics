@@ -223,11 +223,13 @@ footer a{color:var(--dim)}
 .sl{display:grid;gap:5px}
 .sl-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 .sl-top b{color:var(--ink);font-weight:500}
-.sl-tr{position:relative;height:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin:4px 0}
+.sl-tr{position:relative;height:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin:4px 0}
 .sl-z{border-radius:99px;background:rgba(255,255,255,.06)}
-.sl-z:nth-child(1){background:color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.04))}
-.sl-z:nth-child(2){background:color-mix(in srgb,var(--c) 26%,rgba(255,255,255,.04))}
-.sl-z:nth-child(3){background:color-mix(in srgb,var(--c) 42%,rgba(255,255,255,.04))}
+.sl-z:nth-child(1){background:color-mix(in srgb,var(--c) 10%,rgba(255,255,255,.04))}
+.sl-z:nth-child(2){background:color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.04))}
+.sl-z:nth-child(3){background:color-mix(in srgb,var(--c) 27%,rgba(255,255,255,.04))}
+.sl-z:nth-child(4){background:color-mix(in srgb,var(--c) 36%,rgba(255,255,255,.04))}
+.sl-z:nth-child(5){background:color-mix(in srgb,var(--c) 47%,rgba(255,255,255,.04))}
 .sl-k{position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff;border:3px solid var(--c);box-shadow:0 0 14px var(--c);transition:left 1.4s cubic-bezier(.2,.7,.2,1)}
 .sl-ends{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 .feats{display:grid;gap:8px}
@@ -680,7 +682,7 @@ footer a{color:var(--dim)}
   }
   var SCALES=[["Mind's eye","V","#ffb45c",["None","Vivid"]],["Busy imagery","D","#ffd9a8",["Quiet","Non-stop"]],["Inner voice","W","#7cc4ff",["Silent","Never stops"]],["Thought speed","S","#a98bff",["A stroll","A racetrack"]],["Thinking about thinking","M","#7cc4ff",["Rarely","Always"]],["Sense of direction","N","#9aa6c4",["Lost","Inner compass"]]];
   function slider(v,color,ends,label){
-    return '<div class="sl" style="--c:'+color+'">'+(label?'<div class="sl-top"><span>'+label+'</span><b>'+v+'</b></div>':'')+'<div class="sl-tr"><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><i class="sl-k" data-v="'+v+'"></i></div><div class="sl-ends"><span>'+ends[0]+'</span><span>'+ends[1]+'</span></div></div>';
+    return '<div class="sl" style="--c:'+color+'">'+(label?'<div class="sl-top"><span>'+label+'</span><b>'+v+'</b></div>':'')+'<div class="sl-tr"><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><i class="sl-k" data-v="'+v+'"></i></div><div class="sl-ends"><span>'+ends[0]+'</span><span>'+ends[1]+'</span></div></div>';
   }
   function svgIc(name,color,size){return '<svg width="'+(size||20)+'" height="'+(size||20)+'" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[name]+'</svg>'}
 
