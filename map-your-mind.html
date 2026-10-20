@@ -245,6 +245,10 @@ footer a{color:var(--dim)}
 .eknow svg,.eprob svg{flex:none;margin-top:3px}
 .eprob{border-left:0;padding-left:0}
 .mindviz{display:block;width:100%;height:clamp(240px,42vw,380px);margin:-6px 0 -10px}
+.mlrow{display:flex;gap:10px;flex-wrap:wrap}
+.mlrow input{flex:1 1 220px;font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 16px}
+.mlrow input:focus{outline:2px solid var(--ice);outline-offset:2px}
+#ml-msg{font-size:13px;min-height:1.2em}
 .ecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ecard{gap:10px;align-content:start}
 
@@ -397,6 +401,17 @@ footer a{color:var(--dim)}
         <div id="rest-wrap" style="display:grid;gap:14px">
           <h2 style="font-size:clamp(20px,2.6vw,26px)">The rest of your map</h2>
           <div class="ecards" id="cards-rest"></div>
+        </div>
+
+        <div class="glass mailbox" id="mailbox">
+          <h3>Email me my results</h3>
+          <p style="color:var(--dim)">Get a copy of your map in your inbox, with a link back to this page.</p>
+          <form id="mlform" class="mlrow" novalidate>
+            <input type="email" id="ml-email" placeholder="Your email" autocomplete="email" aria-label="Your email" required>
+            <button class="btn" type="submit" id="ml-go">Send it to me</button>
+          </form>
+          <label class="consent" style="padding:10px 12px"><input type="checkbox" id="ml-upd"><span>Also send me occasional Aeongenics updates</span></label>
+          <p class="meta" id="ml-msg" role="status"></p>
         </div>
 
         <div class="glass closing">
@@ -874,11 +889,33 @@ footer a{color:var(--dim)}
   });
   function wrap(g,text,x,y,maxW,lh){var w=text.split(" "),line="";for(var i=0;i<w.length;i++){var tl=line+w[i]+" ";if(g.measureText(tl).width>maxW&&line){g.fillText(line,x,y);line=w[i]+" ";y+=lh}else line=tl}g.fillText(line,x,y);return y}
 
+
+  /* ---------- email me my results (MailerLite form "Map Your Mind results") ---------- */
+  var ML_URL="https://assets.mailerlite.com/jsonp/1251629/forms/201882067352422366/subscribe";
+  $("mlform").addEventListener("submit",function(e){
+    e.preventDefault();
+    var em=$("ml-email").value.trim(), msg=$("ml-msg");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Please enter a valid email address.";msg.style.color="#ffb45c";return}
+    if(!last)return;
+    var fd=new FormData();
+    fd.append("fields[email]",em);
+    fd.append("fields[mym_summary]",(last.top&&last.top.length?listJoin(last.top).replace(/^./,function(c){return c.toUpperCase()})+".":"Your full map is ready."));
+    fd.append("fields[mym_link]",resultLink());
+    fd.append("fields[mym_updates]",$("ml-upd").checked?"yes":"");
+    fd.append("ml-submit","1"); fd.append("anticsrf","true");
+    $("ml-go").disabled=true; msg.style.color=""; msg.textContent="Sending…";
+    fetch(ML_URL,{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
+      if(j&&j.success){msg.style.color="#7cc4ff";msg.textContent="Sent! Check your inbox in a minute (and the spam folder, just in case).";$("mlform").hidden=true}
+      else{msg.style.color="#ffb45c";msg.textContent="That didn't go through. Please check the address and try again.";$("ml-go").disabled=false}
+    }).catch(function(){msg.style.color="#ffb45c";msg.textContent="Couldn't reach the mail service. Please try again in a moment.";$("ml-go").disabled=false});
+  });
+
   /* ---------- wiring ---------- */
   var COUNTRIES="Argentina,Australia,Austria,Belgium,Brazil,Canada,Chile,China,Colombia,Czechia,Denmark,Egypt,Finland,France,Germany,Greece,Hungary,India,Indonesia,Ireland,Israel,Italy,Japan,Mexico,Netherlands,New Zealand,Nigeria,Norway,Philippines,Poland,Portugal,Romania,Russia,Saudi Arabia,Singapore,South Africa,South Korea,Spain,Sweden,Switzerland,Taiwan,Thailand,Turkey,Ukraine,United Arab Emirates,United Kingdom,United States,Vietnam,Other".split(",");
   COUNTRIES.forEach(function(c){var o=document.createElement("option");o.textContent=c;$("f-country").appendChild(o)});
 
   function restart(){
+    $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent="";
     ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); secs=secs.map(function(){return 0}); qT0=0; timerUsed=false; startT=Date.now(); cur=0;
     document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); render();
     $("stage").classList.remove("wide");
