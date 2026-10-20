@@ -225,19 +225,21 @@ footer a{color:var(--dim)}
 .sl-top b{color:var(--ink);font-weight:500}
 .sl-tr{position:relative;height:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin:4px 0}
 .sl-z{border-radius:99px;background:rgba(255,255,255,.06)}
-.sl-z:nth-child(1){background:color-mix(in srgb,var(--c) 10%,rgba(255,255,255,.04))}
-.sl-z:nth-child(2){background:color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.04))}
-.sl-z:nth-child(3){background:color-mix(in srgb,var(--c) 27%,rgba(255,255,255,.04))}
-.sl-z:nth-child(4){background:color-mix(in srgb,var(--c) 36%,rgba(255,255,255,.04))}
-.sl-z:nth-child(5){background:color-mix(in srgb,var(--c) 47%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(1){background:color-mix(in srgb,var(--c) 10%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(2){background:color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(3){background:color-mix(in srgb,var(--c) 27%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(4){background:color-mix(in srgb,var(--c) 36%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(5){background:color-mix(in srgb,var(--c) 47%,rgba(255,255,255,.04))}
 .sl-k{position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff;border:3px solid var(--c);box-shadow:0 0 14px var(--c);transition:left 1.4s cubic-bezier(.2,.7,.2,1)}
+.sl-tagged{margin-top:30px}
+.sl-tag{font-weight:500;position:absolute;bottom:20px;left:0;white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);background:rgba(5,7,13,.75);border-radius:999px;padding:3px 9px;transition:left 1.4s cubic-bezier(.2,.7,.2,1)}
 .sl-ends{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 .feats{display:grid;gap:8px}
 .feat{display:flex;gap:10px;align-items:flex-start;border:1px solid rgba(169,139,255,.35);background:rgba(169,139,255,.07);border-radius:12px;padding:10px 12px;font-size:14.5px;color:var(--dim)}
 .feat svg{flex:none;margin-top:2px}
 .feat b{color:var(--ink);font-weight:600}
 .ecard{border-left:3px solid var(--c)}
-.ehead{display:flex;align-items:center;gap:12px}
+.ehead{display:flex;align-items:center;justify-content:flex-start;gap:12px}
 .eic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;border:1px solid var(--glass-line);background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--c) 22%,transparent),transparent 75%)}
 .ehead .elvl{margin-left:auto;border:1px solid color-mix(in srgb,var(--c) 50%,transparent);color:var(--c);border-radius:999px;padding:3px 10px}
 .eknow,.eprob{display:flex;gap:10px;align-items:flex-start}
@@ -246,7 +248,7 @@ footer a{color:var(--dim)}
 .mindviz{display:block;width:100%;height:clamp(240px,42vw,380px);margin:-6px 0 -10px}
 .ecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ecard{gap:10px;align-content:start}
-.ehead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+
 .ehead h3{font-size:17px}
 .elvl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
 .ecard .tr{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
@@ -521,6 +523,7 @@ footer a{color:var(--dim)}
     branch:'<circle cx="6" cy="19" r="2"/><circle cx="6" cy="5" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M6 13c0-3 4-5 10-5"/>',
     loop:'<circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/>',
     compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+    hand:'<path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>',
     eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
     bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>',
     star:'<path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"/>'
@@ -680,8 +683,8 @@ footer a{color:var(--dim)}
     return n;
   }
   var SCALES=[["Mind's eye","V","#ffb45c",["None","Vivid"]],["Busy imagery","D","#ffd9a8",["Quiet","Non-stop"]],["Inner voice","W","#7cc4ff",["Silent","Never stops"]],["Thought speed","S","#a98bff",["A stroll","A racetrack"]],["Thinking about thinking","M","#7cc4ff",["Rarely","Always"]],["Sense of direction","N","#9aa6c4",["Lost","Inner compass"]]];
-  function slider(v,color,ends,label){
-    return '<div class="sl" style="--c:'+color+'">'+(label?'<div class="sl-top"><span>'+label+'</span><b>'+v+'</b></div>':'')+'<div class="sl-tr"><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><i class="sl-k" data-v="'+v+'"></i></div><div class="sl-ends"><span>'+ends[0]+'</span><span>'+ends[1]+'</span></div></div>';
+  function slider(v,color,ends,label,tag){
+    return '<div class="sl'+(tag?' sl-tagged':'')+'" style="--c:'+color+'">'+(label?'<div class="sl-top"><span>'+label+'</span><b>'+v+'</b></div>':'')+'<div class="sl-tr">'+(tag?'<b class="sl-tag" data-v="'+v+'">'+tag+'</b>':'')+'<span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><i class="sl-k" data-v="'+v+'"></i></div><div class="sl-ends"><span>'+ends[0]+'</span><span>'+ends[1]+'</span></div></div>';
   }
   function svgIc(name,color,size){return '<svg width="'+(size||20)+'" height="'+(size||20)+'" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[name]+'</svg>'}
 
@@ -717,7 +720,7 @@ footer a{color:var(--dim)}
      hi:{tag:"smell and taste in your imagination",you:"You can smell and taste in your imagination.",know:"Many people can't do either. The two usually go together: people who can imagine one tend to imagine the other, and people who can't, usually can't do either.",prob:"can almost taste a recipe just by reading it."},
      mid:{tag:"a hint of imagined smell and taste",you:"You get a faint hint of smells and tastes in your imagination.",know:"Some people can call up the smell of coffee or the sourness of a lemon at will, strongly enough to make their mouth water. Others get nothing at all. The two senses usually go together.",prob:"can nearly taste a dish someone describes, but not quite."},
      lo:{tag:"no imagined smell or taste",you:"You can't smell or taste in your imagination.",know:"Some people can: they call up the smell of coffee or the sourness of a lemon at will. Smell and taste usually go together, so most people who lack one lack the other too.",prob:"can't smell a dish and know which spices are in it."}},
-    {id:"touch",ic:"hammer",ends:["None","Every detail"],name:"Touch: weight and temperature",color:"#a98bff",v:function(r){return r.to},
+    {id:"touch",ic:"hand",ends:["None","Every detail"],name:"Touch: weight and temperature",color:"#a98bff",v:function(r){return r.to},
      hi:{tag:"imagined touch you can feel",you:"You can feel weight and temperature in your imagination, and even feel them change.",know:"Many people feel nothing at all when they imagine holding a hammer or touching a cold handle. Others feel the weight shift with every inch their hand slides.",prob:"can \"feel\" how a tool will handle before you pick it up."},
      mid:{tag:"a hint of imagined touch",you:"You feel a hint of weight and temperature, but not the changes along the way.",know:"For some people imagined touch is so precise they feel a handle warm up step by step. Others feel nothing.",prob:"sense that something is heavy without quite feeling it."},
      lo:{tag:"no imagined touch",you:"You can't feel weight or temperature in your imagination.",know:"For some people imagined touch is so precise they feel a hammer's weight shift as their hand slides down the handle.",prob:"need to actually hold something before you can judge it."}},
@@ -725,7 +728,7 @@ footer a{color:var(--dim)}
      hi:{tag:"feelings you can recreate at will",you:"You can recreate a feeling on demand, just by thinking of it.",know:"Many people can only recall the idea of an emotion, not the feeling itself. Ask them to feel frustration and they know what it means, but nothing happens inside.",prob:"are genuinely moved, or upset, just by remembering or hearing a story."},
      mid:{tag:"an echo of feelings",you:"You can bring back a faint echo of a feeling if you try.",know:"For some people the word \"frustration\" alone is enough to make them feel it right now. For others, nothing happens at all.",prob:"can revisit a feeling while keeping some distance from it."},
      lo:{tag:"feelings you know but don't re-feel",you:"You know what feelings mean, but you can't recreate them in your imagination.",know:"For some people, the word \"frustration\" is enough to make them feel frustrated right now.",prob:"can talk about a painful memory calmly."}},
-    {id:"meta",ic:"loop",ends:["No trail","Every branch"],name:"Following your own thoughts",color:"#7cc4ff",v:function(r){return r.M},
+    {id:"meta",ic:"loop",ends:["No trail","Every branch"],name:"Tracking your thoughts",color:"#7cc4ff",v:function(r){return r.M},
      hi:{tag:"a mind that watches itself think",you:"You can trace your own thinking, back through a conversation's branches, and even watch yourself think.",know:"Many people can't: a thought from a minute ago is simply gone. Thinking about your own thinking is called metacognition, and it varies enormously between people.",prob:"ask \"wait, how did we get to this topic?\" and can actually answer it."},
      mid:{tag:"a few steps of hindsight",you:"You can follow your train of thought back a few steps.",know:"Some people can retrace every branch of a conversation; others can't recall what they were thinking a moment ago.",prob:"remember where a conversation started, but not every turn it took."},
      lo:{tag:"thoughts that leave no trail",you:"Your thoughts move on and leave little trace behind.",know:"Some people can retrace every branch of a conversation, and some even run a second stream of thought that watches the first.",prob:"live in the current thought, not the last one."}},
@@ -784,9 +787,8 @@ footer a{color:var(--dim)}
   function card(k,r){
     var d=document.createElement("div"); d.className="glass ecard"; d.style.setProperty("--c",k.c.color);
     var lvl=(k.c.lvl||{hi:"Strong",mid:"Partial",lo:"Little or none"})[k.b];
-    d.innerHTML='<div class="ehead"><span class="eic">'+svgIc(k.c.ic,k.c.color,22)+'</span><h3></h3><span class="elvl"></span></div>'+slider(k.v,k.c.color,k.c.ends)+'<p class="eyou"></p><p class="eknow">'+svgIc("bulb","#ffd9a8",18)+'<span><b>Did you know?</b> <span></span></span></p><p class="eprob">'+svgIc("star",k.c.color,18)+'<span></span></p>';
+    d.innerHTML='<div class="ehead"><span class="eic">'+svgIc(k.c.ic,k.c.color,22)+'</span><h3></h3></div>'+slider(k.v,k.c.color,k.c.ends,null,lvl)+'<p class="eyou"></p><p class="eknow">'+svgIc("bulb","#ffd9a8",18)+'<span><b>Did you know?</b> <span></span></span></p><p class="eprob">'+svgIc("star",k.c.color,18)+'<span></span></p>';
     d.querySelector("h3").textContent=k.c.name; d.querySelector("h3").style.color=k.c.color;
-    d.querySelector(".elvl").textContent=lvl;
     var ex=extras(k.c,r);
     d.querySelector(".eyou").textContent=k.t.you+(ex?" "+ex:"");
     d.querySelector(".eknow span span").textContent=k.t.know;
@@ -812,6 +814,7 @@ footer a{color:var(--dim)}
   }
   function animateResult(r){
     document.querySelectorAll(".sl-k").forEach(function(k){k.style.left=Math.max(2,Math.min(98,+k.dataset.v))+"%"});
+    document.querySelectorAll(".sl-tag").forEach(function(t){var v=Math.max(2,Math.min(98,+t.dataset.v));t.style.left=v+"%";t.style.transform=v<15?"translateX(-14px)":(v>85?"translateX(calc(-100% + 14px))":"translateX(-50%)")});
   }
 
   /* ---------- save (only with consent) ---------- */
