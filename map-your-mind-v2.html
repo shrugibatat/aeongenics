@@ -368,6 +368,10 @@ footer a{color:var(--dim)}
           <p class="lede" id="rtag"></p>
         </div>
 
+        <div class="glass predict">
+          <p style="color:var(--ink);font-size:clamp(16px,1.8vw,19px);max-width:none">Everyone knows their own mind from the inside, so it's easy to assume everyone else's works the same way. It doesn't. You learn the most about your mind from what you have that others don't, and from what others have that you don't.</p>
+        </div>
+
         <div class="rgrid">
           <div class="glass summary">
             <h2 style="font-size:clamp(20px,2.6vw,26px)">Summary</h2>
@@ -382,10 +386,6 @@ footer a{color:var(--dim)}
             <h3>Your inner senses</h3>
             <svg class="radar" id="radar" viewBox="0 0 360 340" role="img" aria-label="Your inner senses"></svg>
           </div>
-        </div>
-
-        <div class="glass predict">
-          <p style="color:var(--ink);font-size:clamp(16px,1.8vw,19px);max-width:none">Everyone knows their own mind from the inside, so it's easy to assume everyone else's works the same way. It doesn't. You learn the most about your mind from what you have that others don't, and from what others have that you don't.</p>
         </div>
 
         <div id="hi-wrap" style="display:grid;gap:14px">
@@ -525,7 +525,6 @@ footer a{color:var(--dim)}
     bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>',
     star:'<path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"/>'
   };
-
 
   var ans=new Array(Q.length).fill(null), pre=new Array(Q.length).fill(false), cur=0, busy=false, advanceTimer=null, tick=null;
   /* data-quality signals (saved silently with consent): ms per question, total time, Q4 timer used */
