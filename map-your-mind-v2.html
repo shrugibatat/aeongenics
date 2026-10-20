@@ -191,6 +191,10 @@ footer a{color:var(--dim)}
 .field select option{background:#0b1020}
 .consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink);border:1px dashed rgba(124,196,255,.35);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px;cursor:pointer}
 .consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ice);flex:none}
+.care{display:grid;gap:8px;border:0;margin:0;padding:0}
+.care legend{font-size:15px;color:var(--ink);margin-bottom:6px;padding:0}
+.care label{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--dim);border:1px solid var(--glass-line);border-radius:10px;padding:10px 12px;cursor:pointer}
+.care input{accent-color:var(--amber);width:18px;height:18px;margin:0;flex:none}
 .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--violet);color:#d9ccff;border-radius:999px;padding:5px 12px;background:rgba(169,139,255,.08)}
 .lists{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -292,6 +296,11 @@ footer a{color:var(--dim)}
           <div class="field"><label for="f-country">Country</label><select id="f-country"><option value="">Prefer not to say</option></select></div>
           <div class="field"><label for="f-gender">Gender</label><select id="f-gender"><option value="">Prefer not to say</option><option>Woman</option><option>Man</option><option>Another way</option></select></div>
           <div class="field"><label for="f-field">Field of work</label><select id="f-field"><option value="">Prefer not to say</option><option>Arts and design</option><option>Science and research</option><option>Technology and engineering</option><option>Health and medicine</option><option>Education</option><option>Business and finance</option><option>Trades and hands-on work</option><option>Student</option><option>Other</option></select></div>
+          <fieldset class="care" id="f-care"><legend>Be honest, it won't change your map: how did you answer?</legend>
+            <label><input type="radio" name="care" value="careful">Carefully: I really tried each one</label>
+            <label><input type="radio" name="care" value="mostly">Mostly carefully</label>
+            <label><input type="radio" name="care" value="clicked">I clicked through to see the result</label>
+          </fieldset>
           <label class="consent"><input type="checkbox" id="f-consent"><span>I understand that my answers will be used anonymously in Aeongenics research.</span></label>
         </div>
         <div class="qnav">
@@ -525,6 +534,9 @@ footer a{color:var(--dim)}
   var ORDER=["imm","arc","sto","str"];
 
   var ans=new Array(Q.length).fill(null), pre=new Array(Q.length).fill(false), cur=0, busy=false, advanceTimer=null, tick=null;
+  /* data-quality signals (saved silently with consent): ms per question, total time, Q4 timer used */
+  var secs=new Array(Q.length).fill(0), qT0=0, startT=0, timerUsed=false;
+  function clockOut(){if(qT0){secs[cur]+=Date.now()-qT0;qT0=0}}
 
   function swap(from,to,dir,after){
     if(!from){to.hidden=false;after&&after();return}
@@ -565,12 +577,12 @@ footer a{color:var(--dim)}
       $("back").textContent=cur===0?"← Intro":"← Back";
       return;
     }
-    $("qtitle").textContent=q.t; $("qhint").textContent=q.h;
+    $("qtitle").textContent=q.t; $("qhint").textContent=q.h; qT0=Date.now();
     $("qhint").hidden=!q.h;
     if(q.timer&&ans[cur]===null){
       var tm=$("timer"); tm.hidden=false; tm.disabled=false; tm.textContent="▶ Start the "+q.timer+"-second timer";
       tm.onclick=function(){
-        var n=q.timer; tm.disabled=true; $("opts").classList.add("hush"); tm.innerHTML='Hold it still… <i id="tsec">'+n+'</i>';
+        var n=q.timer; tm.disabled=true; timerUsed=true; $("opts").classList.add("hush"); tm.innerHTML='Hold it still… <i id="tsec">'+n+'</i>';
         tick=setInterval(function(){n--; if(n>0){$("tsec").textContent=n}else{clearInterval(tick);tm.textContent="Time. How did it go?";$("opts").classList.remove("hush")}},1000);
       };
     }
@@ -621,6 +633,7 @@ footer a{color:var(--dim)}
   function next(){
     clearTimeout(advanceTimer);
     if(busy)return;
+    if(!onPre())clockOut();
     if(onPre()){pre[cur]=true;step(1);return}
     if(ans[cur]===null)return;
     if(cur<Q.length-1){cur++;step(1)}
@@ -629,6 +642,7 @@ footer a{color:var(--dim)}
   function back(){
     clearTimeout(advanceTimer);
     if(busy)return;
+    clockOut();
     if(Q[cur].pre&&pre[cur]&&ans[cur]===null){pre[cur]=false;step(-1);return}
     if(cur>0){cur--;step(-1)}
     else swap($("s-q"),$("s-intro"),-1,function(){$("start").focus()});
@@ -705,8 +719,8 @@ footer a{color:var(--dim)}
     if(friend){
       $("rvs").hidden=false;
       $("rvs").textContent=(friend.type===r.type?"You and the friend who sent you this are both "+t.name+". Same zone, and still two different maps: compare your dots.":"The friend who sent you this is "+TYPES[friend.type].name+"; you are "+t.name+". Look at the two dots on the map: that's the distance between your inner worlds.");
-      var fx=40+friend.x/100*340, fy=360-friend.y/100*340;
-      $("friend").setAttribute("transform","translate("+fx+" "+fy+")"); $("friend").hidden=false;
+      var fp=pos(friend);
+      $("friend").setAttribute("transform","translate("+fp.x+" "+fp.y+")"); $("friend").hidden=false;
     }
     setupShare(r);
     $("stage").classList.add("wide");
@@ -716,6 +730,8 @@ footer a{color:var(--dim)}
       try{$("res-h").setAttribute("tabindex","-1");$("res-h").focus({preventScroll:true})}catch(_){}
     });
   }
+  /* dot stays in the band between the zone labels (labels sit at y 20-70 and 310-360) */
+  function pos(o){return {x:Math.round(64+o.x/100*292),y:Math.round(292-o.y/100*190)}}
   function fillList(id,arr){var u=$(id);u.innerHTML="";arr.forEach(function(s){var li=document.createElement("li");li.textContent=s;u.appendChild(li)})}
   function radar(r){
     var ax=[["Sight",r.V],["Music",r.mu],["Voices",r.vo],["Smell",r.sm],["Taste",r.ta],["Touch",r.to],["Emotion",r.em]];
@@ -734,10 +750,9 @@ footer a{color:var(--dim)}
     $("radar").innerHTML=h;
   }
   function animateResult(r){
-    var tx=40+r.x/100*340, ty=360-r.y/100*340;
-    tx=Math.max(52,Math.min(368,tx)); ty=Math.max(32,Math.min(348,ty));
+    var tx=pos(r).x, ty=pos(r).y;
     var me=$("me"), tag=$("metag");
-    tag.setAttribute("y",ty<90?26:-16);
+    tag.setAttribute("y",-16);
     document.querySelectorAll("#meters .fl").forEach(function(f){f.style.width=f.dataset.v+"%"});
     if(still){me.setAttribute("transform","translate("+tx+" "+ty+")");return}
     var x0=210,y0=190,t0=null,D=1500;
@@ -753,8 +768,12 @@ footer a{color:var(--dim)}
   /* ---------- save (only with consent) ---------- */
   function save(r){
     if(!$("f-consent").checked)return;
+    var care=document.querySelector('input[name="care"]:checked');
+    var given=ans.filter(function(a){return a!==null});
+    var q={care:care?care.value:"",total:startT?Math.round((Date.now()-startT)/1000):null,secs:secs.map(function(m){return Math.round(m/100)/10}),
+      timer:timerUsed,straight:given.length>0&&given.every(function(a){return a===given[0]}),checks:notes(r).length};
     var payload={app:"mym2",version:VERSION,answers:ans.map(function(a){return a===null?"":a+1}),
-      scores:{V:r.V,A:r.A,D:r.D,mu:r.mu,vo:r.vo,sm:r.sm,ta:r.ta,to:r.to,em:r.em,W:r.W,S:r.S,M:r.M,N:r.N,x:r.x,y:r.y},
+      scores:{V:r.V,A:r.A,D:r.D,mu:r.mu,vo:r.vo,sm:r.sm,ta:r.ta,to:r.to,em:r.em,W:r.W,S:r.S,M:r.M,N:r.N,x:r.x,y:r.y,q:q},
       type:r.type,badges:badges(r).map(function(b){return b[0]}),
       age:$("f-age").value,country:$("f-country").value,gender:$("f-gender").value,field:$("f-field").value,
       consent:true,pair:friend?friend.code:"",lang:(navigator.language||"")};
@@ -813,11 +832,12 @@ footer a{color:var(--dim)}
   COUNTRIES.forEach(function(c){var o=document.createElement("option");o.textContent=c;$("f-country").appendChild(o)});
 
   function restart(){
-    ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); cur=0; render();
+    ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); secs=secs.map(function(){return 0}); qT0=0; timerUsed=false; startT=Date.now(); cur=0;
+    document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); render();
     $("stage").classList.remove("wide");
     swap(visible(),$("s-q"),1,function(){window.scrollTo(0,0);focusTitle()});
   }
-  $("start").addEventListener("click",function(){if(busy)return; render(); swap($("s-intro"),$("s-q"),1,focusTitle)});
+  $("start").addEventListener("click",function(){if(busy)return; startT=Date.now(); render(); swap($("s-intro"),$("s-q"),1,focusTitle)});
   $("about-go").addEventListener("click",function(){if(busy)return; var r=score(); save(r); showResult(r)});
   $("about-back").addEventListener("click",function(){if(busy)return; render(); swap($("s-about"),$("s-q"),-1,focusTitle)});
   $("again").addEventListener("click",function(){if(!busy)restart()});
