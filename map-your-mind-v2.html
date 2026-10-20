@@ -218,6 +218,29 @@ footer a{color:var(--dim)}
 .deep h3{margin-bottom:8px}
 .deep ul{margin:0;padding-left:18px;color:var(--dim);font-size:15px;display:grid;gap:6px}
 @media (max-width:700px){.deep{grid-template-columns:1fr}}
+
+.summary{border-color:rgba(255,180,92,.4);background:linear-gradient(160deg,rgba(255,180,92,.08),rgba(124,196,255,.05) 60%,rgba(169,139,255,.06));box-shadow:0 0 40px rgba(255,180,92,.08)}
+.sl{display:grid;gap:5px}
+.sl-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.sl-top b{color:var(--ink);font-weight:500}
+.sl-tr{position:relative;height:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin:4px 0}
+.sl-z{border-radius:99px;background:rgba(255,255,255,.06)}
+.sl-z:nth-child(1){background:color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.04))}
+.sl-z:nth-child(2){background:color-mix(in srgb,var(--c) 26%,rgba(255,255,255,.04))}
+.sl-z:nth-child(3){background:color-mix(in srgb,var(--c) 42%,rgba(255,255,255,.04))}
+.sl-k{position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff;border:3px solid var(--c);box-shadow:0 0 14px var(--c);transition:left 1.4s cubic-bezier(.2,.7,.2,1)}
+.sl-ends{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.feats{display:grid;gap:8px}
+.feat{display:flex;gap:10px;align-items:flex-start;border:1px solid rgba(169,139,255,.35);background:rgba(169,139,255,.07);border-radius:12px;padding:10px 12px;font-size:14.5px;color:var(--dim)}
+.feat svg{flex:none;margin-top:2px}
+.feat b{color:var(--ink);font-weight:600}
+.ecard{border-left:3px solid var(--c)}
+.ehead{display:flex;align-items:center;gap:12px}
+.eic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;border:1px solid var(--glass-line);background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--c) 22%,transparent),transparent 75%)}
+.ehead .elvl{margin-left:auto;border:1px solid color-mix(in srgb,var(--c) 50%,transparent);color:var(--c);border-radius:999px;padding:3px 10px}
+.eknow,.eprob{display:flex;gap:10px;align-items:flex-start}
+.eknow svg,.eprob svg{flex:none;margin-top:3px}
+.eprob{border-left:0;padding-left:0}
 .ecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ecard{gap:10px;align-content:start}
 .ehead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
@@ -226,10 +249,11 @@ footer a{color:var(--dim)}
 .ecard .tr{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
 .ecard .fl{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
 .ecard p{font-size:15px;max-width:none}
+.ecard .eprob span{font-style:italic}
 .eyou{color:var(--ink)}
 .eknow{color:var(--dim)}
 .eknow b{color:var(--ink);font-weight:600}
-.eprob{color:var(--ink);font-style:italic;border-left:2px solid var(--amber);padding-left:10px}
+.eprob{color:var(--ink)}
 @media (max-width:760px){.ecards{grid-template-columns:1fr}}
 .vs{border:1px solid var(--ice);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink);background:rgba(124,196,255,.06)}
 @media (max-width:640px){.lists,.scene{grid-template-columns:1fr}}
@@ -338,7 +362,22 @@ footer a{color:var(--dim)}
           <span class="eyebrow">Your map is ready</span>
           <h1 id="res-h">Your mind <span class="grad">at a glance</span></h1>
           <p class="lede" id="rtag"></p>
-          <div class="badges" id="rbadges"></div>
+        </div>
+
+        <div class="rgrid">
+          <div class="glass summary">
+            <h2 style="font-size:clamp(20px,2.6vw,26px)">Summary</h2>
+            <div class="meters" id="meters"></div>
+            <div id="feat-wrap" style="display:grid;gap:10px">
+              <h3 style="margin-top:6px">Your mind's special features</h3>
+              <div class="feats" id="rterms"></div>
+            </div>
+            <div id="rnotes" style="display:grid;gap:10px"></div>
+          </div>
+          <div class="glass">
+            <h3>Your inner senses</h3>
+            <svg class="radar" id="radar" viewBox="0 0 360 340" role="img" aria-label="Your inner senses"></svg>
+          </div>
         </div>
 
         <div class="glass predict">
@@ -353,19 +392,6 @@ footer a{color:var(--dim)}
         <div id="rest-wrap" style="display:grid;gap:14px">
           <h2 style="font-size:clamp(20px,2.6vw,26px)">The rest of your map</h2>
           <div class="ecards" id="cards-rest"></div>
-        </div>
-
-        <div class="rgrid">
-          <div class="glass">
-            <h3>Your inner senses</h3>
-            <svg class="radar" id="radar" viewBox="0 0 360 340" role="img" aria-label="Your inner senses"></svg>
-          </div>
-          <div class="glass">
-            <h3>Your scales</h3>
-            <div class="meters" id="meters"></div>
-            <div class="terms" id="rterms"></div>
-            <div id="rnotes" style="display:grid;gap:10px"></div>
-          </div>
         </div>
 
         <div class="glass closing">
@@ -490,7 +516,10 @@ footer a{color:var(--dim)}
     spark:'<rect x="3" y="4" width="8" height="7" rx="1"/><rect x="13" y="4" width="8" height="7" rx="1"/><rect x="3" y="13" width="8" height="7" rx="1"/><rect x="13" y="13" width="8" height="7" rx="1"/>',
     branch:'<circle cx="6" cy="19" r="2"/><circle cx="6" cy="5" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M6 13c0-3 4-5 10-5"/>',
     loop:'<circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/>',
-    compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'
+    compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+    eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>',
+    star:'<path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"/>'
   };
 
 
@@ -647,7 +676,11 @@ footer a{color:var(--dim)}
     if(ans[13]!==null&&ans[15]!==null&&ans[13]<=1&&ans[15]===4) n.push("You hear your inner monologue often, yet say you never hear it run. One of those answers may be worth a second look.");
     return n;
   }
-  var SCALES=[["Mind's eye","V","#ffb45c"],["Busy imagery","D","#ffd9a8"],["Inner voice","W","#7cc4ff"],["Thought speed","S","#a98bff"],["Thinking about thinking","M","#7cc4ff"],["Sense of direction","N","#9aa6c4"]];
+  var SCALES=[["Mind's eye","V","#ffb45c",["None","Vivid"]],["Busy imagery","D","#ffd9a8",["Quiet","Non-stop"]],["Inner voice","W","#7cc4ff",["Silent","Never stops"]],["Thought speed","S","#a98bff",["A stroll","A racetrack"]],["Thinking about thinking","M","#7cc4ff",["Rarely","Always"]],["Sense of direction","N","#9aa6c4",["Lost","Inner compass"]]];
+  function slider(v,color,ends,label){
+    return '<div class="sl" style="--c:'+color+'">'+(label?'<div class="sl-top"><span>'+label+'</span><b>'+v+'</b></div>':'')+'<div class="sl-tr"><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><i class="sl-k" data-v="'+v+'"></i></div><div class="sl-ends"><span>'+ends[0]+'</span><span>'+ends[1]+'</span></div></div>';
+  }
+  function svgIc(name,color,size){return '<svg width="'+(size||20)+'" height="'+(size||20)+'" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[name]+'</svg>'}
 
   /* ---------- result ---------- */
   var last=null, friend=null;
@@ -657,43 +690,43 @@ footer a{color:var(--dim)}
      For each band: you = what you reported, know = how other minds differ, prob = "you're probably one of those people who..."
      tag = short label for the summary line. Bands: hi >= 67, lo <= 33, else mid. */
   var CARDS=[
-    {id:"eye",name:"Mind's eye",color:"#ffb45c",boost:1.25,v:function(r){return r.V},
+    {id:"eye",ic:"eye",ends:["No image","Vivid as sight"],name:"Mind's eye",color:"#ffb45c",boost:1.25,v:function(r){return r.V},
      hi:{tag:"a vivid mind's eye",you:"Your mind's eye is vivid: faces and scenes appear clearly when you call them.",know:"Not everyone sees anything at all. Roughly 1 in 25 people have aphantasia: no voluntary mental pictures. When they \"picture\" a friend, they simply know what the friend looks like.",prob:"can replay a scene from years ago and notice something new in it."},
      mid:{tag:"a partial mind's eye",you:"Your mind's eye works, but the images are partial or fleeting.",know:"Minds sit everywhere on this scale, from images as sharp as real sight (hyperphantasia) to none at all (aphantasia). Most people assume everyone sees what they see.",prob:"recognize a face instantly but would struggle to describe it for a police sketch."},
      lo:{tag:"no mind's eye (aphantasia)",you:"Little or no picture appears when you try to imagine something.",know:"That's called aphantasia, and roughly 1 in 25 people have it. Many discover it only as adults, when they realize \"picture a beach\" was meant literally. For others, a closed-eye picture can be almost as vivid as seeing.",prob:"remember facts about a place better than how it looked."}},
-    {id:"flow",name:"Images on their own",color:"#ffd9a8",lvl:{hi:"On its own",mid:"Mixed",lo:"Steered"},v:function(r){return r.V<=20?null:r.A},
+    {id:"flow",ic:"film",ends:["Steered","Plays on its own"],name:"Images on their own",color:"#ffd9a8",lvl:{hi:"On its own",mid:"Mixed",lo:"Steered"},v:function(r){return r.V<=20?null:r.A},
      hi:{tag:"images that play on their own",you:"Your images tend to play on their own: they move, change and add details you didn't ask for.",know:"For other people, a mental image stays exactly where they put it, still as a photo, until they decide to move it.",prob:"get swept into a daydream, or find it hard to switch a scene off at night."},
      mid:{tag:"images that sometimes wander",you:"Your images sometimes stay put and sometimes run off on their own.",know:"Some minds can hold a picture perfectly still for as long as they like; others can't stop it from turning into a movie.",prob:"start a daydream on purpose and then watch it take a turn of its own."},
      lo:{tag:"images you steer",you:"You steer your images: they stay still until you move them.",know:"For many people, imagery runs like a film they can't pause. Asked to hold a still picture for 15 seconds, they watch the scene keep moving.",prob:"can rotate, take apart or rearrange things in your head on purpose."}},
-    {id:"voice",name:"Inner voice",color:"#7cc4ff",boost:1.15,v:function(r){return r.W},
+    {id:"voice",ic:"talk",ends:["Silent","Never stops"],name:"Inner voice",color:"#7cc4ff",boost:1.15,v:function(r){return r.W},
      hi:{tag:"a constant inner voice",you:"Your inner monologue is a constant companion.",know:"Not everyone has one. Some people think without any inner voice at all, and are genuinely surprised to learn that others talk to themselves all day.",prob:"rehearse conversations, and come up with the perfect reply hours too late."},
      mid:{tag:"an occasional inner voice",you:"You hear your inner voice some of the time.",know:"At one end are people whose monologue never stops, even as they fall asleep; at the other, people who think entirely without words.",prob:"think in words about some things and without them about others."},
      lo:{tag:"a quiet mind, with no inner monologue",you:"You rarely or never hear an inner monologue.",know:"Many people assume everyone narrates their thoughts in words. In fact some people think in images, feelings or pure meaning, while others hear a voice that never stops.",prob:"know the answer before you could put it into a sentence."}},
-    {id:"music",name:"Music in your mind",color:"#a98bff",v:function(r){return r.mu},
+    {id:"music",ic:"note",ends:["Silent","Full band"],name:"Music in your mind",color:"#a98bff",v:function(r){return r.mu},
      hi:{tag:"a full band in your head",you:"You can play music in your head, instruments and all.",know:"Some people hear only a single melody line, and some hear no music in their minds at all, not even a song stuck in their head.",prob:"get a song stuck in your head for days."},
      mid:{tag:"music in your mind, in part",you:"You hear music in your mind, but only partly: silently, or one part at a time.",know:"Others hear every instrument at full volume and can even add new ones. Some hear nothing at all.",prob:"can follow a tune in your head but not the whole arrangement."},
      lo:{tag:"a silent inner radio",you:"You can't play music in your mind.",know:"For many people, a song plays inside their head as if from a radio, at any volume, sometimes refusing to stop. The absence of imagined sound has a name: anauralia.",prob:"have rarely, if ever, had a song stuck in your head."}},
-    {id:"voices",name:"Other people's voices",color:"#7cc4ff",v:function(r){return r.vo},
+    {id:"voices",ic:"voice",ends:["None","As if they're here"],name:"Other people's voices",color:"#7cc4ff",v:function(r){return r.vo},
      hi:{tag:"voices you can hear in your head",you:"You can hear people's voices in your mind, as if they were in the room.",know:"Some people can't recall a single voice, even of someone they've lived with for years. They remember what was said, not how it sounded.",prob:"can \"hear\" exactly how a friend would react to a piece of news."},
      mid:{tag:"half-heard voices",you:"You recall how people speak, but not quite their own voice.",know:"Others hear a loved one's voice in full, tone and accent included. Some hear no voice at all.",prob:"remember someone's way of putting things better than the sound of their voice."},
      lo:{tag:"no imagined voices",you:"You can't hear other people's voices in your mind.",know:"For many people, imagining a friend's voice is like a phone call: tone, accent and all.",prob:"remember what someone said, not how it sounded."}},
-    {id:"smelltaste",name:"Smell and taste",color:"#ffb45c",v:function(r){return Math.round((r.sm+r.ta)/2)},
+    {id:"smelltaste",ic:"cup",ends:["None","Like the real thing"],name:"Smell and taste",color:"#ffb45c",v:function(r){return Math.round((r.sm+r.ta)/2)},
      hi:{tag:"smell and taste in your imagination",you:"You can smell and taste in your imagination.",know:"Many people can't do either. The two usually go together: people who can imagine one tend to imagine the other, and people who can't, usually can't do either.",prob:"can almost taste a recipe just by reading it."},
      mid:{tag:"a hint of imagined smell and taste",you:"You get a faint hint of smells and tastes in your imagination.",know:"Some people can call up the smell of coffee or the sourness of a lemon at will, strongly enough to make their mouth water. Others get nothing at all. The two senses usually go together.",prob:"can nearly taste a dish someone describes, but not quite."},
      lo:{tag:"no imagined smell or taste",you:"You can't smell or taste in your imagination.",know:"Some people can: they call up the smell of coffee or the sourness of a lemon at will. Smell and taste usually go together, so most people who lack one lack the other too.",prob:"can't smell a dish and know which spices are in it."}},
-    {id:"touch",name:"Touch: weight and temperature",color:"#a98bff",v:function(r){return r.to},
+    {id:"touch",ic:"hammer",ends:["None","Every detail"],name:"Touch: weight and temperature",color:"#a98bff",v:function(r){return r.to},
      hi:{tag:"imagined touch you can feel",you:"You can feel weight and temperature in your imagination, and even feel them change.",know:"Many people feel nothing at all when they imagine holding a hammer or touching a cold handle. Others feel the weight shift with every inch their hand slides.",prob:"can \"feel\" how a tool will handle before you pick it up."},
      mid:{tag:"a hint of imagined touch",you:"You feel a hint of weight and temperature, but not the changes along the way.",know:"For some people imagined touch is so precise they feel a handle warm up step by step. Others feel nothing.",prob:"sense that something is heavy without quite feeling it."},
      lo:{tag:"no imagined touch",you:"You can't feel weight or temperature in your imagination.",know:"For some people imagined touch is so precise they feel a hammer's weight shift as their hand slides down the handle.",prob:"need to actually hold something before you can judge it."}},
-    {id:"emotion",name:"Feelings on demand",color:"#ffd9a8",v:function(r){return r.em},
+    {id:"emotion",ic:"heart",ends:["The idea only","Feel it now"],name:"Feelings on demand",color:"#ffd9a8",v:function(r){return r.em},
      hi:{tag:"feelings you can recreate at will",you:"You can recreate a feeling on demand, just by thinking of it.",know:"Many people can only recall the idea of an emotion, not the feeling itself. Ask them to feel frustration and they know what it means, but nothing happens inside.",prob:"are genuinely moved, or upset, just by remembering or hearing a story."},
      mid:{tag:"an echo of feelings",you:"You can bring back a faint echo of a feeling if you try.",know:"For some people the word \"frustration\" alone is enough to make them feel it right now. For others, nothing happens at all.",prob:"can revisit a feeling while keeping some distance from it."},
      lo:{tag:"feelings you know but don't re-feel",you:"You know what feelings mean, but you can't recreate them in your imagination.",know:"For some people, the word \"frustration\" is enough to make them feel frustrated right now.",prob:"can talk about a painful memory calmly."}},
-    {id:"meta",name:"Following your own thoughts",color:"#7cc4ff",v:function(r){return r.M},
+    {id:"meta",ic:"loop",ends:["No trail","Every branch"],name:"Following your own thoughts",color:"#7cc4ff",v:function(r){return r.M},
      hi:{tag:"a mind that watches itself think",you:"You can trace your own thinking, back through a conversation's branches, and even watch yourself think.",know:"Many people can't: a thought from a minute ago is simply gone. Thinking about your own thinking is called metacognition, and it varies enormously between people.",prob:"ask \"wait, how did we get to this topic?\" and can actually answer it."},
      mid:{tag:"a few steps of hindsight",you:"You can follow your train of thought back a few steps.",know:"Some people can retrace every branch of a conversation; others can't recall what they were thinking a moment ago.",prob:"remember where a conversation started, but not every turn it took."},
      lo:{tag:"thoughts that leave no trail",you:"Your thoughts move on and leave little trace behind.",know:"Some people can retrace every branch of a conversation, and some even run a second stream of thought that watches the first.",prob:"live in the current thought, not the last one."}},
-    {id:"compass",name:"Sense of direction",color:"#9aa6c4",v:function(r){return r.N},
+    {id:"compass",ic:"compass",ends:["Lost","Inner compass"],name:"Sense of direction",color:"#9aa6c4",v:function(r){return r.N},
      hi:{tag:"a strong inner compass",you:"You have a strong inner compass.",know:"Many people get lost the moment landmarks disappear, and can't point to where they parked.",prob:"lead everyone else out of a strange building."},
      mid:{tag:"a so-so sense of direction",you:"Your sense of direction works, as long as you haven't gone far.",know:"Some people always know which way is north; others get lost two turns from home.",prob:"find the way back, eventually, after a wrong turn or two."},
      lo:{tag:"no inner compass",you:"Without landmarks, your sense of direction disappears.",know:"Some people navigate by an inner compass, landmarks or not, and always know which way the car is.",prob:"rely on the map app even in a familiar city."}}
@@ -719,8 +752,7 @@ footer a{color:var(--dim)}
     if(!top.length) top=cs.slice(0,2);
     r.top=top.map(function(k){return k.t.tag});
     $("rtag").textContent="What stands out: "+listJoin(r.top)+".";
-    var bb=$("rbadges"); bb.innerHTML="";
-    var bl=badges(r); bl.forEach(function(x){var s=document.createElement("span");s.className="badge";s.textContent=x[0];bb.appendChild(s)});
+    var bl=badges(r);
     var hiBox=$("cards-hi"), restBox=$("cards-rest"); hiBox.innerHTML=""; restBox.innerHTML="";
     cs.forEach(function(k){(k.x>=17?hiBox:restBox).appendChild(card(k,r))});
     $("rest-wrap").hidden=!restBox.children.length;
@@ -728,12 +760,11 @@ footer a{color:var(--dim)}
     var m=$("meters"); m.innerHTML="";
     SCALES.forEach(function(sc){
       var v=r[sc[1]]; if(v===null||v===undefined)return;
-      var d=document.createElement("div"); d.className="meter";
-      d.innerHTML='<div class="lab"><span></span><b>'+v+'</b></div><div class="tr"><div class="fl" style="background:linear-gradient(90deg,rgba(255,255,255,.15),'+sc[2]+')"></div></div>';
-      d.querySelector("span").textContent=sc[0]; d.querySelector(".fl").dataset.v=v; m.appendChild(d);
+      m.insertAdjacentHTML("beforeend",slider(v,sc[2],sc[3],sc[0]));
     });
     var tb=$("rterms"); tb.innerHTML="";
-    bl.forEach(function(x){var d=document.createElement("div");d.className="term";d.innerHTML="<b></b> ";d.firstChild.textContent=x[0]+":";d.appendChild(document.createTextNode(x[1]));tb.appendChild(d)});
+    bl.forEach(function(x){var d=document.createElement("div");d.className="feat";d.innerHTML=svgIc("star","#a98bff",18)+"<span><b></b> </span>";d.querySelector("b").textContent=x[0]+":";d.lastChild.appendChild(document.createTextNode(x[1]));tb.appendChild(d)});
+    $("feat-wrap").hidden=!bl.length;
     var nb=$("rnotes"); nb.innerHTML="";
     notes(r).forEach(function(x){var d=document.createElement("p");d.className="note";d.textContent=x;nb.appendChild(d)});
     radar(r);
@@ -748,16 +779,15 @@ footer a{color:var(--dim)}
   }
   function listJoin(a){return a.length<2?a.join(""):a.slice(0,-1).join(", ")+" and "+a[a.length-1]}
   function card(k,r){
-    var d=document.createElement("div"); d.className="glass ecard";
+    var d=document.createElement("div"); d.className="glass ecard"; d.style.setProperty("--c",k.c.color);
     var lvl=(k.c.lvl||{hi:"Strong",mid:"Partial",lo:"Little or none"})[k.b];
-    d.innerHTML='<div class="ehead"><h3></h3><span class="elvl"></span></div><div class="tr"><div class="fl"></div></div><p class="eyou"></p><p class="eknow"><b>Did you know?</b> <span></span></p><p class="eprob"></p>';
+    d.innerHTML='<div class="ehead"><span class="eic">'+svgIc(k.c.ic,k.c.color,22)+'</span><h3></h3><span class="elvl"></span></div>'+slider(k.v,k.c.color,k.c.ends)+'<p class="eyou"></p><p class="eknow">'+svgIc("bulb","#ffd9a8",18)+'<span><b>Did you know?</b> <span></span></span></p><p class="eprob">'+svgIc("star",k.c.color,18)+'<span></span></p>';
     d.querySelector("h3").textContent=k.c.name; d.querySelector("h3").style.color=k.c.color;
     d.querySelector(".elvl").textContent=lvl;
-    var fl=d.querySelector(".fl"); fl.style.background="linear-gradient(90deg,rgba(255,255,255,.15),"+k.c.color+")"; fl.dataset.v=Math.max(3,k.v);
     var ex=extras(k.c,r);
     d.querySelector(".eyou").textContent=k.t.you+(ex?" "+ex:"");
-    d.querySelector(".eknow span").textContent=k.t.know;
-    d.querySelector(".eprob").textContent="You're probably one of those people who "+k.t.prob;
+    d.querySelector(".eknow span span").textContent=k.t.know;
+    d.querySelector(".eprob span").textContent="You're probably one of those people who "+k.t.prob;
     return d;
   }
   function fillList(id,arr){var u=$(id);u.innerHTML="";arr.forEach(function(s){var li=document.createElement("li");li.textContent=s;u.appendChild(li)})}
@@ -778,7 +808,7 @@ footer a{color:var(--dim)}
     $("radar").innerHTML=h;
   }
   function animateResult(r){
-    document.querySelectorAll("#meters .fl,.ecard .fl").forEach(function(f){f.style.width=f.dataset.v+"%"});
+    document.querySelectorAll(".sl-k").forEach(function(k){k.style.left=Math.max(2,Math.min(98,+k.dataset.v))+"%"});
   }
 
   /* ---------- save (only with consent) ---------- */
