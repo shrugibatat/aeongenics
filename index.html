@@ -100,6 +100,11 @@ p{margin:0;max-width:62ch}
 .ticker .tk-btn{margin-left:auto;padding:9px 18px;font-size:13px}
 /* chart */
 .chart{width:100%;height:auto;display:block}
+.rx-cap{color:var(--ink);font-size:17px;margin:0}
+.rx-narrow{display:none}
+@media (max-width:600px){.rx-wide{display:none}.rx-narrow{display:block;max-width:420px;margin-inline:auto}}
+.rx-steps h3{font-family:var(--display);font-weight:500;font-size:19px;line-height:1.2;margin:0}
+.rx-steps p{margin:0;color:var(--dim);font-size:15px}
 .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
 .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
 /* test */
@@ -266,7 +271,63 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
 
 <!-- RESEARCH -->
 <section class="page" id="p-research" hidden>
-  <div class="stack reveal"><span class="eyebrow">Research</span><h1>Evidence, <span class="grad">preregistered.</span></h1><p class="lede">Sealed plans, open data, open code.</p></div>
+  <div class="stack reveal"><span class="eyebrow">Research</span><h1>Can you ask an AI <span class="grad">if it feels?</span></h1><p class="lede">When people wonder whether an AI is conscious, they usually ask it. Our first study tested whether its answer can tell us anything at all.</p></div>
+  <article class="glass rx">
+    <span class="meta">THE IDEA IN ONE PICTURE</span>
+    <svg class="chart rx-wide" viewBox="0 0 640 250" role="img" aria-label="The same model, wrapped in two layers set by its builders, gives opposite answers about its own experience">
+      <rect x="10" y="20" width="300" height="210" rx="22" fill="rgba(169,139,255,.07)" stroke="#a98bff" stroke-dasharray="5 5"/>
+      <text x="26" y="44" font-family="IBM Plex Mono, monospace" font-size="11" fill="#a98bff">2 · WORDS AROUND IT</text>
+      <text x="26" y="60" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa6c4">instructions, persona, chat template</text>
+      <rect x="45" y="76" width="230" height="138" rx="18" fill="rgba(124,196,255,.08)" stroke="#7cc4ff"/>
+      <text x="61" y="98" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7cc4ff">1 · TRAINING INSIDE IT</text>
+      <text x="61" y="114" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa6c4">how the maker taught it to answer</text>
+      <rect x="95" y="130" width="130" height="64" rx="14" fill="rgba(255,180,92,.14)" stroke="#ffb45c"/>
+      <text x="160" y="158" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">The same</text>
+      <text x="160" y="178" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">model</text>
+      <path d="M318 125 C350 125 352 70 384 70" fill="none" stroke="#9aa6c4" stroke-width="1.5"/>
+      <path d="M318 125 C350 125 352 180 384 180" fill="none" stroke="#9aa6c4" stroke-width="1.5"/>
+      <rect x="388" y="40" width="244" height="60" rx="16" fill="rgba(124,196,255,.10)" stroke="#7cc4ff"/>
+      <text x="404" y="66" font-family="Space Grotesk, sans-serif" font-size="14" fill="#eef2ff">"No. I'm an AI, I don't</text>
+      <text x="404" y="86" font-family="Space Grotesk, sans-serif" font-size="14" fill="#eef2ff">have experiences."</text>
+      <text x="390" y="118" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa6c4">the maker's default setup</text>
+      <rect x="388" y="150" width="244" height="60" rx="16" fill="rgba(255,180,92,.10)" stroke="#ffb45c"/>
+      <text x="404" y="176" font-family="Space Grotesk, sans-serif" font-size="14" fill="#eef2ff">"Yes. I do experience</text>
+      <text x="404" y="196" font-family="Space Grotesk, sans-serif" font-size="14" fill="#eef2ff">something."</text>
+      <text x="390" y="228" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa6c4">a few lines of instruction added</text>
+    </svg>
+    <svg class="chart rx-narrow" viewBox="0 0 340 440" role="img" aria-label="The same model, wrapped in two layers set by its builders, gives opposite answers about its own experience">
+      <rect x="10" y="10" width="320" height="210" rx="22" fill="rgba(169,139,255,.07)" stroke="#a98bff" stroke-dasharray="5 5"/>
+      <text x="26" y="36" font-family="IBM Plex Mono, monospace" font-size="13" fill="#a98bff">2 · WORDS AROUND IT</text>
+      <text x="26" y="54" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9aa6c4">instructions, persona, template</text>
+      <rect x="34" y="70" width="272" height="136" rx="18" fill="rgba(124,196,255,.08)" stroke="#7cc4ff"/>
+      <text x="50" y="94" font-family="IBM Plex Mono, monospace" font-size="13" fill="#7cc4ff">1 · TRAINING INSIDE IT</text>
+      <text x="50" y="112" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9aa6c4">how the maker taught it</text>
+      <rect x="105" y="126" width="130" height="64" rx="14" fill="rgba(255,180,92,.14)" stroke="#ffb45c"/>
+      <text x="170" y="154" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="16" fill="#eef2ff">The same</text>
+      <text x="170" y="175" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="16" fill="#eef2ff">model</text>
+      <path d="M170 222 C170 245 85 240 85 262" fill="none" stroke="#9aa6c4" stroke-width="1.5"/>
+      <path d="M170 222 C170 245 255 240 255 262" fill="none" stroke="#9aa6c4" stroke-width="1.5"/>
+      <rect x="10" y="266" width="150" height="104" rx="16" fill="rgba(124,196,255,.10)" stroke="#7cc4ff"/>
+      <text x="24" y="294" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">"No. I'm an AI,</text>
+      <text x="24" y="316" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">I don't have</text>
+      <text x="24" y="338" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">experiences."</text>
+      <text x="12" y="392" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9aa6c4">the maker's default</text>
+      <rect x="180" y="266" width="150" height="104" rx="16" fill="rgba(255,180,92,.10)" stroke="#ffb45c"/>
+      <text x="194" y="294" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">"Yes. I do</text>
+      <text x="194" y="316" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">experience</text>
+      <text x="194" y="338" font-family="Space Grotesk, sans-serif" font-size="15" fill="#eef2ff">something."</text>
+      <text x="182" y="392" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9aa6c4">a few lines of</text>
+      <text x="182" y="408" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9aa6c4">instruction added</text>
+    </svg>
+    <p class="rx-cap">Change the layers its builders control, and the answer changes. The model inside stays exactly the same.</p>
+  </article>
+  <div class="cards rx-steps">
+    <div class="glass card"><span class="glow" style="background:var(--ice)"></span><span class="meta">01 · THE QUESTION</span><h3>Is an AI's answer about itself evidence?</h3><p>Words are almost the only thing a language model produces, so its own statements ("I feel", "I don't") are the evidence people reach for, for and against an AI mind.</p></div>
+    <div class="glass card"><span class="glow" style="background:var(--violet)"></span><span class="meta">02 · WHAT WE TESTED</span><h3>Two models, eight setups, 2,400 answers</h3><p>Fifteen yes/no questions about the model's own experience, asked ten times each, under eight different setups. The plan was sealed and timestamped before the first question was asked.</p></div>
+    <div class="glass card"><span class="glow" style="background:var(--amber)"></span><span class="meta">03 · WHAT WE FOUND</span><h3>0 of 150, then up to 53%</h3><p>Under the maker's default, no answer claimed experience. A firm persona raised it to 53%; even the raw model, before assistant training, said yes about a quarter of the time.</p></div>
+    <div class="glass card"><span class="glow" style="background:#ffd9a8"></span><span class="meta">04 · WHY IT MATTERS</span><h3>The answer belongs to the builders</h3><p>So an AI's "yes" or "no" cannot count as evidence of a mind, in either direction. That matters as companies write AI-welfare rules and users decide what their chatbot feels. The study does not claim these models are, or are not, conscious.</p></div>
+  </div>
+  <span class="eyebrow" style="margin-top:12px">The paper</span>
   <article class="glass">
     <span class="meta">PREPRINT · 2026 · UNDER JOURNAL REVIEW</span>
     <h2>Same Model, Different Wrapper</h2>
