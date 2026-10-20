@@ -178,7 +178,10 @@ footer a{color:var(--dim)}
 /* ---------- v2 additions ---------- */
 .segs{grid-template-columns:repeat(4,1fr)}
 .pre-note{font-size:15px;color:var(--dim)}
-.timer{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;color:var(--accent);border:1px solid var(--glass-line);border-radius:999px;padding:6px 14px;width:max-content}
+.timer{display:inline-flex;align-items:center;gap:10px;font:500 14px var(--mono);color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:9px 18px;width:max-content;background:rgba(255,180,92,.06);cursor:pointer}
+.timer:disabled{cursor:default}
+.opts{transition:opacity .4s}
+.opts.hush{opacity:.15}
 .timer i{font-style:normal;font-size:18px;color:var(--ink);min-width:1.4em;text-align:center}
 .sec-intro{border-left:2px solid var(--accent);padding:4px 0 4px 12px;font-size:14px;color:var(--dim)}
 .form{display:grid;gap:16px}
@@ -269,7 +272,7 @@ footer a{color:var(--dim)}
           <div class="icon" id="qicon" aria-hidden="true"></div>
           <div class="qtext"><h2 id="qtitle" tabindex="-1"></h2><p class="qhint" id="qhint"></p></div>
         </div>
-        <div class="timer" id="timer" hidden>Hold it <i id="tsec">10</i> seconds</div>
+        <button class="timer" id="timer" type="button" hidden></button>
         <div class="opts" id="opts" role="radiogroup" aria-labelledby="qtitle"></div>
         <div class="qnav">
           <button class="btn ghost" id="back" type="button">← Back</button>
@@ -436,7 +439,7 @@ footer a{color:var(--dim)}
      o:[["A still image, like a photo, or it moved for a second or two, like a GIF",{A:55}],["A fairly clear video of my friend in a real past situation",{A:75}],["A 4K movie: a whole new scene my mind made up on its own",{A:100,V:95}],["A still image that moves only when I tell it to",{A:0}],["I mostly felt it but didn't see it: pitch black, or a faint outline",{V:5},["aph"]]]},
     {s:0,ic:"tower",pre:"Picture a young girl holding an umbrella in front of the Eiffel Tower. Then press Continue.",t:"What color was the umbrella? What was she wearing? What was her other hand doing?",h:"",
      o:[["A whole movie, full of detail: I know all three",{V:100,A:100}],["A still image, and I know all three",{V:85,A:55}],["The umbrella had a color, but her clothes and other hand only appeared when you asked",{V:60,A:30}],["A blurry outline with no details or color",{V:25,A:15}],["Nothing visual. I just sensed the scene",{V:0},["aph"]]]},
-    {s:0,ic:"sun",timer:10,t:"Picture an old man leaning on a cane, watching the sunset. Hold it as a still image for 10 seconds.",h:"",
+    {s:0,ic:"sun",timer:15,t:"Picture an old man leaning on a cane, watching the sunset. Press Start, and hold the picture still in your mind until the timer ends.",h:"",
      o:[["I can't. It's like a movie: things keep happening and I can't hold it still",{A:100,V:90}],["I can hold it for a few seconds, then it starts moving and I have to force it back",{A:70,V:80}],["I can hold it, but after a second or a few it fades into darkness and I have to bring it back",{A:30,V:50}],["Easily: the image is still and vivid, and I can hold it as long as I want",{A:0,V:90}],["I can't see anything. What are you all talking about?",{V:0},["aph"]]]},
     {s:0,ic:"apple",t:"Imagine a red apple in 3D. Cut it in half. Now slowly turn the two halves in opposite directions, at the same time.",h:"",
      o:[["I see the halves, but the image quickly turns into a movie of its own and I can't keep them spinning",{A:100,V:80}],["I see the apple clearly and can cut it, but turning the halves is hard",{A:60,V:70}],["I see the halves as if the apple were in front of me, turning just as I want",{A:0,V:90}],["I see the apple only flat, in 2D, with no depth",{V:50},["flat"]],["I can feel the halves turning in the dark, but there's no image",{V:0},["aph"]]]},
@@ -542,7 +545,7 @@ footer a{color:var(--dim)}
   function onPre(){var q=Q[cur];return q.pre&&!pre[cur]}
   function render(){
     var q=Q[cur], sec=SECTIONS[q.s];
-    clearInterval(tick); $("timer").hidden=true;
+    clearInterval(tick); $("timer").hidden=true; $("opts").classList.remove("hush");
     document.documentElement.style.setProperty("--accent",sec.color);
     $("qsec").textContent="Section "+(q.s+1)+" of 4 · "+sec.name;
     $("qsec").style.color=sec.color;
@@ -565,8 +568,11 @@ footer a{color:var(--dim)}
     $("qtitle").textContent=q.t; $("qhint").textContent=q.h;
     $("qhint").hidden=!q.h;
     if(q.timer&&ans[cur]===null){
-      var n=q.timer; $("tsec").textContent=n; $("timer").hidden=false;
-      tick=setInterval(function(){n--; $("tsec").textContent=Math.max(0,n); if(n<=0){clearInterval(tick);$("timer").firstChild.nodeValue="Time. ";$("tsec").textContent="";$("timer").lastChild.nodeValue="How did it go?"}},1000);
+      var tm=$("timer"); tm.hidden=false; tm.disabled=false; tm.textContent="▶ Start the "+q.timer+"-second timer";
+      tm.onclick=function(){
+        var n=q.timer; tm.disabled=true; $("opts").classList.add("hush"); tm.innerHTML='Hold it still… <i id="tsec">'+n+'</i>';
+        tick=setInterval(function(){n--; if(n>0){$("tsec").textContent=n}else{clearInterval(tick);tm.textContent="Time. How did it go?";$("opts").classList.remove("hush")}},1000);
+      };
     }
     var L=q.o.length;
     q.o.forEach(function(op,i){
@@ -583,10 +589,10 @@ footer a{color:var(--dim)}
     $("next").textContent=cur===Q.length-1?"Almost done →":"Next →";
     $("back").textContent=cur===0?"← Intro":"← Back";
   }
-  function resetTimerText(){$("timer").innerHTML='Hold it <i id="tsec">10</i> seconds'}
+  function resetTimerText(){$("timer").onclick=null}
   function choose(i){
     if(busy||onPre())return;
-    clearInterval(tick);
+    clearInterval(tick); $("opts").classList.remove("hush");
     ans[cur]=i;
     var opts=$("opts").children;
     for(var k=0;k<opts.length;k++){opts[k].setAttribute("aria-checked",k===i?"true":"false");opts[k].tabIndex=k===i?0:-1}
