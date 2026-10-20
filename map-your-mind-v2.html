@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Map Your Mind (v2 test) · Aeongenics</title>
+<meta name="description" content="Do you see pictures in your mind? Hear an inner voice? Twenty quick questions, about five minutes, and your place on the map of minds.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aeongenics">
+<meta property="og:title" content="Map Your Mind · Aeongenics">
+<meta property="og:description" content="Do you see pictures in your mind? Hear an inner voice? Twenty quick questions, about five minutes, and your place on the map of minds.">
+<meta property="og:url" content="https://aeongenics.com/map-your-mind.html">
+<meta property="og:image" content="https://aeongenics.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Map Your Mind · Aeongenics">
+<meta name="twitter:description" content="Do you see pictures in your mind? Hear an inner voice? Twenty quick questions, about five minutes, and your place on the map of minds.">
+<meta name="twitter:image" content="https://aeongenics.com/og-image.png">
+
+<meta name="description" content="A five-minute, twenty-question tour of your inner world: mind's eye, inner voice, other senses and the speed of thought. By Erez Aeon Batat, author of Solve for Human.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --void:#05070d; --deep:#0b1020; --glass:rgba(150,180,255,.06); --glass-line:rgba(170,200,255,.16);
+  --ink:#eef2ff; --dim:#9aa6c4; --faint:#5f6a88;
+  --amber:#ffb45c; --ice:#7cc4ff; --violet:#a98bff;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --accent:var(--amber);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--void)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(60% 50% at 80% 10%,rgba(124,196,255,.10),transparent 70%),
+  radial-gradient(50% 45% at 10% 90%,rgba(255,180,92,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding-inline:20px;width:100%}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,13,.55);border-bottom:1px solid var(--glass-line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.mark{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 200deg,var(--amber),var(--violet),var(--ice),var(--amber));box-shadow:0 0 18px rgba(124,196,255,.45);position:relative}
+.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--void)}
+.logo b{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;flex-wrap:wrap;gap:2px 18px}
+nav a{color:var(--dim);text-decoration:none;font-size:13px;letter-spacing:.04em;padding:4px 0;position:relative}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:linear-gradient(90deg,var(--amber),var(--ice));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav a[aria-current="page"]{color:var(--ink)}
+nav a[aria-current="page"]::after,nav a:hover::after{transform:scaleX(1)}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:4px}
+main{flex:1;padding-block:40px 80px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ice)}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(32px,5.6vw,64px);line-height:1.05}
+h2{font-size:clamp(22px,3vw,30px);line-height:1.2}
+h3{font-family:var(--display);font-weight:500;font-size:16px;margin:0;letter-spacing:.01em}
+p{margin:0;max-width:62ch}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--dim)}
+.grad{background:linear-gradient(100deg,var(--amber) 0%,#ffd9a8 30%,var(--ice) 70%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:600 14px var(--body);letter-spacing:.03em;padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;color:var(--void);background:linear-gradient(100deg,var(--amber),var(--ice));transition:box-shadow .3s,transform .2s,opacity .3s;touch-action:manipulation}
+.btn:hover{box-shadow:0 0 28px rgba(124,196,255,.45);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--glass-line)}
+.btn.ghost:hover{border-color:var(--ice)}
+.btn:disabled{opacity:.35;cursor:default;box-shadow:none;transform:none}
+.glass{background:var(--glass);border:1px solid var(--glass-line);border-radius:18px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;gap:12px;min-width:0}
+.meta{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.05em}
+footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);padding-block:26px;color:var(--faint);font-size:13px}
+footer a{color:var(--dim)}
+
+/* stage + screen transitions */
+.stage{max-width:760px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr)}
+.stage.wide{max-width:1120px}
+.screen{grid-area:1/1;min-width:0;transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1)}
+.screen.out-left{opacity:0;transform:translateX(-40px)}
+.screen.out-right{opacity:0;transform:translateX(40px)}
+.screen.in-right{opacity:0;transform:translateX(40px);transition:none}
+.screen.in-left{opacity:0;transform:translateX(-40px);transition:none}
+
+/* intro */
+.intro{display:grid;gap:22px;padding:clamp(26px,5vw,48px);position:relative;overflow:hidden}
+.intro .glow,.qcard .glow{position:absolute;width:260px;height:260px;border-radius:50%;filter:blur(70px);opacity:.28;pointer-events:none}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.chip{border:1px solid var(--glass-line);border-radius:14px;padding:14px;background:rgba(255,255,255,.02);display:grid;gap:4px}
+.chip i{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.chip span{font-size:14px;color:var(--dim);line-height:1.4}
+.privacy{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--dim);border:1px dashed rgba(124,196,255,.3);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px}
+.privacy svg{flex:none;margin-top:2px}
+.kbd{font-family:var(--mono);font-size:11px;color:var(--faint);border:1px solid var(--glass-line);border-radius:5px;padding:1px 6px}
+
+/* question card */
+.qcard{padding:clamp(22px,4.5vw,40px);gap:22px;position:relative;overflow:hidden}
+.progress{display:grid;gap:10px}
+.ptop{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ptrack{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.pfill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--amber),var(--violet),var(--ice));box-shadow:0 0 14px rgba(124,196,255,.5);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.segs span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s}
+.segs span.on{color:var(--accent)}
+.qtext{display:grid;gap:10px;min-height:5.5em}
+.qhint{color:var(--dim);font-size:15px}
+.icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;border:1px solid var(--glass-line);background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.08),transparent 70%)}
+.opts{display:grid;gap:10px}
+.opt{font:500 15px/1.35 var(--body);color:var(--ink);text-align:left;padding:13px 16px;border-radius:12px;border:1px solid var(--glass-line);background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .25s,background .25s,transform .2s;display:flex;align-items:center;gap:14px;touch-action:manipulation;min-height:52px}
+.opt:hover{border-color:var(--ice);background:rgba(124,196,255,.08)}
+.opt .n{flex:none;font-family:var(--mono);font-size:12px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;border:1px solid var(--glass-line);color:var(--dim)}
+.opt .dots{margin-left:auto;display:flex;gap:3px;flex:none}
+.opt .dots b{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.12)}
+.opt .dots b.f{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+.opt[aria-checked="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--accent) 25%,transparent)}
+.opt[aria-checked="true"] .n{background:var(--accent);color:var(--void);border-color:var(--accent)}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* result */
+.result{display:grid;gap:22px}
+.rhead{display:grid;gap:12px;text-align:center;justify-items:center;padding-top:6px}
+.rhead p{margin-inline:auto}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.mapbox{padding:18px}
+.map{width:100%;height:auto;display:block;overflow:visible}
+.map .zl{font-family:var(--display);font-size:13px;font-weight:500;fill:var(--dim);transition:fill .6s}
+.map .zs{font-family:var(--mono);font-size:9px;letter-spacing:.12em;fill:var(--faint)}
+.map .zone{transition:opacity .8s}
+.map .ax{font-family:var(--mono);font-size:10px;letter-spacing:.16em;fill:var(--faint)}
+.map .active .zl{fill:var(--ink)}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.profile{gap:16px}
+.ptype{font-family:var(--display);font-size:clamp(26px,3.6vw,38px);font-weight:500;line-height:1.1}
+.meters{display:grid;gap:12px}
+.meter{display:grid;gap:5px}
+.meter .lab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.meter .lab b{color:var(--ink);font-weight:500}
+.meter .tr{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.meter .fl{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.terms{display:grid;gap:10px}
+.term{border-left:2px solid var(--violet);padding:4px 0 4px 12px;font-size:15px;color:var(--dim)}
+.term b{color:var(--ink);font-weight:600}
+.speed{border:1px solid var(--glass-line);border-radius:14px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;background:rgba(124,196,255,.04)}
+.speed svg{flex:none}
+.speed p{font-size:15px}
+.copied{font-family:var(--mono);font-size:12px;color:var(--ice);min-height:1.2em}
+#copyfallback{width:100%;min-height:130px;font:13px/1.5 var(--mono);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:12px;padding:12px;resize:vertical}
+.closing{grid-template-columns:auto 1fr auto;align-items:center;gap:22px;position:relative;overflow:hidden}
+.closing img{width:84px;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 24px rgba(124,196,255,.25);display:block}
+#res-h:focus,#qtitle:focus{outline:none}
+.instant .meter .fl,.instant .screen{transition:none!important}
+.disclaimer{font-size:13px;color:var(--faint);text-align:center;max-width:70ch;margin-inline:auto}
+.zones-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zcard{border:1px solid var(--glass-line);border-radius:12px;padding:12px;font-size:13px;color:var(--dim);display:grid;gap:4px;transition:border-color .4s,background .4s}
+.zcard h3{font-size:13px;color:var(--ink)}
+.zcard.me{border-color:var(--amber);background:rgba(255,180,92,.07)}
+
+@media (max-width:860px){.rgrid{grid-template-columns:1fr}.closing{grid-template-columns:auto 1fr}.closing .btn{grid-column:1/-1;justify-self:start}}
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .glass{padding:18px}
+  .qcard,.intro{padding:20px 16px}
+  .segs span{font-size:9px;letter-spacing:.04em}
+  .zones-legend{grid-template-columns:1fr}
+  .opt{padding:12px 12px;gap:10px;font-size:14.5px}
+  .opt .dots{display:none}
+  .qnav .btn{padding:12px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .screen,.pfill,.meter .fl,.opt,.btn,nav a::after,.zcard{transition:none!important}
+  .screen.out-left,.screen.out-right,.screen.in-left,.screen.in-right{transform:none}
+  .pulse{animation:none;opacity:.35}
+}
+
+/* ---------- v2 additions ---------- */
+.segs{grid-template-columns:repeat(3,1fr)}
+.pre-note{font-size:15px;color:var(--dim)}
+.timer{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;color:var(--accent);border:1px solid var(--glass-line);border-radius:999px;padding:6px 14px;width:max-content}
+.timer i{font-style:normal;font-size:18px;color:var(--ink);min-width:1.4em;text-align:center}
+.sec-intro{border-left:2px solid var(--accent);padding:4px 0 4px 12px;font-size:14px;color:var(--dim)}
+.form{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.field select{font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:10px;padding:11px 12px;width:100%}
+.field select option{background:#0b1020}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink);border:1px dashed rgba(124,196,255,.35);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ice);flex:none}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--violet);color:#d9ccff;border-radius:999px;padding:5px 12px;background:rgba(169,139,255,.08)}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lists ul{margin:0;padding-left:18px;color:var(--dim);font-size:15px;display:grid;gap:6px}
+.lists h3{margin-bottom:8px}
+.radar{width:100%;max-width:380px;height:auto;display:block;margin:0 auto}
+.radar text{font-family:var(--mono);font-size:10px;letter-spacing:.08em;fill:var(--dim)}
+.note{border-left:2px solid var(--amber);padding:4px 0 4px 12px;font-size:15px;color:var(--dim)}
+.scene{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.scene div{border:1px solid var(--glass-line);border-radius:12px;padding:14px;font-size:14.5px;color:var(--dim);display:grid;gap:6px}
+.scene div.me{border-color:var(--amber);background:rgba(255,180,92,.06)}
+.scene b{font-family:var(--display);font-weight:500;font-size:14px}
+.share{display:flex;flex-wrap:wrap;gap:10px}
+.share a,.share button{font:600 13px var(--body);color:var(--ink);text-decoration:none;border:1px solid var(--glass-line);border-radius:999px;padding:10px 16px;background:rgba(255,255,255,.03);cursor:pointer}
+.share a:hover,.share button:hover{border-color:var(--ice)}
+.vs{border:1px solid var(--ice);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink);background:rgba(124,196,255,.06)}
+@media (max-width:640px){.lists,.scene{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html"><span class="mark" aria-hidden="true"></span><b>Aeongenics</b></a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="index.html#book">The Book</a>
+      <a href="index.html#research">Research</a>
+      <a href="map-your-mind.html" aria-current="page">Map Your Mind</a>
+      <a href="index.html#consulting">Consulting</a>
+      <a href="index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="stage" id="stage">
+
+    <!-- INTRO -->
+    <section class="screen" id="s-intro" aria-labelledby="intro-h">
+      <div class="glass intro">
+        <span class="glow" style="background:var(--amber);right:-90px;top:-90px" aria-hidden="true"></span>
+        <span class="glow" style="background:var(--ice);left:-110px;bottom:-120px" aria-hidden="true"></span>
+        <span class="eyebrow">Test your mind · about 8 minutes · 20 questions</span>
+        <h1 id="intro-h">Map Your <span class="grad">Mind</span></h1>
+        <p class="lede">Close your eyes and picture a friend's face. Some people see it as vividly as real life. Some see nothing at all and simply know what that friend looks like. Both are normal, and almost nobody realizes how different the people around them are, even in their own family. Let's find out where you land.</p>
+        <div class="chips" aria-label="Three sections">
+          <div class="chip"><i style="color:var(--amber)">01 · Mind's eye</i><span>Faces, scenes, an apple you can spin</span></div>
+          <div class="chip"><i style="color:var(--violet)">02 · Other inner senses</i><span>Music, voices, coffee, a hammer, a feeling</span></div>
+          <div class="chip"><i style="color:var(--ice)">03 · Inner voice</i><span>Your monologue, its speed, and thinking about thinking</span></div>
+        </div>
+        <p class="pre-note">Close your eyes for each question if it helps. There are no right answers: every mind on this map is a normal mind, just a different one.</p>
+        <div class="privacy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span>No name, no email, no tracking. At the end you can choose to add your anonymous answers to our research.</span>
+        </div>
+        <div class="row">
+          <button class="btn" id="start" type="button">Start mapping</button>
+          <span class="meta">Tip: number keys answer, <span class="kbd">←</span> goes back</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTION -->
+    <section class="screen" id="s-q" hidden aria-live="polite">
+      <div class="glass qcard" id="qcard">
+        <span class="glow" id="qglow" style="right:-110px;top:-110px" aria-hidden="true"></span>
+        <div class="progress">
+          <div class="ptop"><span class="eyebrow" id="qsec">Mind's eye</span><span class="meta" id="qcount">1 / 20</span></div>
+          <div class="ptrack" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="ptrack"><div class="pfill" id="pfill"></div></div>
+          <div class="segs" aria-hidden="true"><span data-s="0">Mind's eye</span><span data-s="1">Other senses</span><span data-s="2">Inner voice</span></div>
+        </div>
+        <p class="sec-intro" id="secintro" hidden></p>
+        <div class="row" style="gap:16px;flex-wrap:nowrap;align-items:flex-start">
+          <div class="icon" id="qicon" aria-hidden="true"></div>
+          <div class="qtext"><h2 id="qtitle" tabindex="-1"></h2><p class="qhint" id="qhint"></p></div>
+        </div>
+        <div class="timer" id="timer" hidden>Hold it <i id="tsec">10</i> seconds</div>
+        <div class="opts" id="opts" role="radiogroup" aria-labelledby="qtitle"></div>
+        <div class="qnav">
+          <button class="btn ghost" id="back" type="button">← Back</button>
+          <button class="btn" id="next" type="button" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT YOU -->
+    <section class="screen" id="s-about" hidden aria-labelledby="about-h">
+      <div class="glass qcard">
+        <span class="eyebrow">Almost there · optional</span>
+        <h2 id="about-h" tabindex="-1">A little about you</h2>
+        <p class="qhint">Optional and anonymous. It lets us compare your map with people like you.</p>
+        <div class="form">
+          <div class="field"><label for="f-age">Age</label><select id="f-age"><option value="">Prefer not to say</option><option>Under 18</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55–64</option><option>65+</option></select></div>
+          <div class="field"><label for="f-country">Country</label><select id="f-country"><option value="">Prefer not to say</option></select></div>
+          <div class="field"><label for="f-gender">Gender</label><select id="f-gender"><option value="">Prefer not to say</option><option>Woman</option><option>Man</option><option>Another way</option></select></div>
+          <div class="field"><label for="f-field">Field of work</label><select id="f-field"><option value="">Prefer not to say</option><option>Arts and design</option><option>Science and research</option><option>Technology and engineering</option><option>Health and medicine</option><option>Education</option><option>Business and finance</option><option>Trades and hands-on work</option><option>Student</option><option>Other</option></select></div>
+          <label class="consent"><input type="checkbox" id="f-consent"><span>I understand that my answers will be used anonymously in Aeongenics research.</span></label>
+        </div>
+        <div class="qnav">
+          <button class="btn ghost" id="about-back" type="button">← Back</button>
+          <button class="btn" id="about-go" type="button">See my map →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="s-res" hidden aria-labelledby="res-h">
+      <div class="result">
+        <div class="rhead">
+          <span class="eyebrow">Your map is ready</span>
+          <h1 id="res-h">You are <span class="grad" id="rtype"></span></h1>
+          <p class="lede" id="rtag"></p>
+          <div class="badges" id="rbadges"></div>
+        </div>
+
+        <div class="vs" id="rvs" hidden></div>
+
+        <div class="rgrid">
+          <div class="glass mapbox">
+            <svg class="map" id="map" viewBox="0 0 400 400" role="img" aria-labelledby="map-title">
+              <title id="map-title">Your position on a map of senses versus words, and flowing versus steered</title>
+              <defs>
+                <radialGradient id="gA" cx="0" cy="0" r="1"><stop offset="0" stop-color="#ffb45c" stop-opacity=".35"/><stop offset="1" stop-color="#ffb45c" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gB" cx="1" cy="0" r="1"><stop offset="0" stop-color="#7cc4ff" stop-opacity=".35"/><stop offset="1" stop-color="#7cc4ff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gC" cx="1" cy="1" r="1"><stop offset="0" stop-color="#ffd9a8" stop-opacity=".3"/><stop offset="1" stop-color="#ffd9a8" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gD" cx="0" cy="1" r="1"><stop offset="0" stop-color="#a98bff" stop-opacity=".35"/><stop offset="1" stop-color="#a98bff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gDot"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#ffe0b8"/><stop offset="1" stop-color="#ffb45c" stop-opacity="0"/></radialGradient>
+                <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="rgba(170,200,255,.07)" stroke-width="1"/></pattern>
+              </defs>
+              <rect x="40" y="20" width="340" height="340" rx="14" fill="rgba(5,7,13,.5)" stroke="rgba(170,200,255,.16)"/>
+              <rect x="40" y="20" width="340" height="340" rx="14" fill="url(#grid)"/>
+              <g class="zone" data-z="imm"><rect x="40" y="20" width="170" height="170" rx="14" fill="url(#gA)"/><text class="zl" x="54" y="46">The Immersive</text><text class="zs" x="54" y="62">SENSES, ON ITS OWN</text></g>
+              <g class="zone" data-z="sto"><rect x="210" y="20" width="170" height="170" rx="14" fill="url(#gB)"/><text class="zl" x="366" y="46" text-anchor="end">The Storyteller</text><text class="zs" x="366" y="62" text-anchor="end">WORDS, ON ITS OWN</text></g>
+              <g class="zone" data-z="str"><rect x="210" y="190" width="170" height="170" rx="14" fill="url(#gC)"/><text class="zl" x="366" y="342" text-anchor="end">The Strategist</text><text class="zs" x="366" y="326" text-anchor="end">WORDS, STEERED</text></g>
+              <g class="zone" data-z="arc"><rect x="40" y="190" width="170" height="170" rx="14" fill="url(#gD)"/><text class="zl" x="54" y="342">The Architect</text><text class="zs" x="54" y="326">SENSES, STEERED</text></g>
+              <line x1="210" y1="26" x2="210" y2="354" stroke="rgba(170,200,255,.18)" stroke-dasharray="3 5"/>
+              <line x1="46" y1="190" x2="374" y2="190" stroke="rgba(170,200,255,.18)" stroke-dasharray="3 5"/>
+              <text class="ax" x="210" y="384" text-anchor="middle">← SENSES · WORDS →</text>
+              <text class="ax" x="22" y="190" text-anchor="middle" transform="rotate(-90 22 190)">← STEERED · ON ITS OWN →</text>
+              <g id="friend" hidden><circle r="7" fill="none" stroke="#7cc4ff" stroke-width="2"/><text id="ftag" y="-14" text-anchor="middle" style="font:500 10px var(--mono);letter-spacing:.14em;fill:#bfe1ff">FRIEND</text></g>
+              <g id="me" transform="translate(210 190)">
+                <circle r="26" fill="url(#gDot)" opacity=".55"/>
+                <circle class="pulse" r="10" fill="none" stroke="#ffb45c" stroke-width="2"/>
+                <circle r="6" fill="#fff" stroke="#ffb45c" stroke-width="2"/>
+                <text id="metag" y="-16" text-anchor="middle" style="font:500 10px var(--mono);letter-spacing:.14em;fill:#ffe0b8">YOU</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="glass profile">
+            <span class="eyebrow" id="rzone-eyebrow">Your type</span>
+            <div class="ptype" id="rtype2"></div>
+            <p id="rdesc"></p>
+            <div class="meters" id="meters"></div>
+          </div>
+        </div>
+
+        <div class="rgrid">
+          <div class="glass">
+            <h3>Your inner senses</h3>
+            <svg class="radar" id="radar" viewBox="0 0 360 340" role="img" aria-label="Your inner senses"></svg>
+          </div>
+          <div class="glass">
+            <div class="lists">
+              <div><h3>You're probably good at</h3><ul id="rgood"></ul></div>
+              <div><h3>You may find harder</h3><ul id="rhard"></ul></div>
+            </div>
+            <div class="terms" id="rterms"></div>
+            <div id="rnotes" style="display:grid;gap:10px"></div>
+          </div>
+        </div>
+
+        <div class="glass">
+          <h3>The same scene, four minds</h3>
+          <p style="color:var(--dim)">Remember the girl with the umbrella in front of the Eiffel Tower? Here is how it tends to arrive in each kind of mind.</p>
+          <div class="scene" id="scene"></div>
+          <p style="color:var(--ink)">Same words, four different inner worlds. The person next to you at dinner, at work or at home might live in any of them.</p>
+        </div>
+
+        <div class="glass" style="gap:14px">
+          <h3>Compare minds with friends and family</h3>
+          <p style="color:var(--dim)">Send them the test. When they finish, they'll see their map next to yours.</p>
+          <div class="share" id="share">
+            <a id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
+            <a id="sh-mail">Email</a>
+            <a id="sh-fb" target="_blank" rel="noopener">Facebook</a>
+            <a id="sh-x" target="_blank" rel="noopener">X</a>
+            <button id="sh-card" type="button">Image for Instagram</button>
+            <button id="sh-native" type="button" hidden>More…</button>
+            <button id="copy" type="button">Copy link</button>
+          </div>
+          <span class="copied" id="copied" role="status"></span>
+          <textarea id="copyfallback" hidden readonly aria-label="Link to copy"></textarea>
+          <div class="row"><button class="btn ghost" id="again" type="button">Take it again</button></div>
+        </div>
+
+        <div class="glass closing">
+          <span class="glow" style="position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(60px);opacity:.3;right:-60px;top:-80px;background:var(--violet);pointer-events:none" aria-hidden="true"></span>
+          <a href="index.html#book"><img src="cover.jpg?v=2" alt="Solve for Human book cover" width="900" height="1346"></a>
+          <div style="display:grid;gap:6px">
+            <h2 style="font-size:clamp(18px,2.4vw,24px)">Curious why minds differ this much?</h2>
+            <p style="color:var(--dim)">It's the subject of <i>Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet)</i>.</p>
+          </div>
+          <a class="btn" href="index.html#book">Discover the book</a>
+        </div>
+
+        <p class="disclaimer">For curiosity, not a diagnosis. This is a self-portrait built from your own answers, not a clinical or validated test. If something here sparks a real question about your mind, a qualified professional is the right next stop.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer><div class="wrap"><a href="https://aeongenics.com/" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Aeongenics</a> · consciousness research and AI consulting · Erez Aeon Batat</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbxnbLMdU163Yu3ndfZLcwoqlIi3GlZzlDYUsXPfEGXKDNoCiJuKJ8-uMzt__EdTULmj/exec";
+  var VERSION="v2-2026-10-20";
+  var PAGE=location.origin+location.pathname;
+  var still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $=function(id){return document.getElementById(id)};
+
+  var SECTIONS=[
+    {name:"Mind's eye",color:"var(--amber)",hex:"#ffb45c"},
+    {name:"Other inner senses",color:"var(--violet)",hex:"#a98bff"},
+    {name:"Inner voice and the flow of thought",color:"var(--ice)",hex:"#7cc4ff",intro:"This section is about your inner monologue: the stream of verbal thoughts running through your mind. That's different from mental pictures, imagined sounds or any other inner sense."}
+  ];
+
+  /* Each option: e = effects on scales (0-100). Scales:
+     V vividness · A autonomy (100 plays on its own, 0 steered) · D imagery density
+     mu music · vo voices · sm smell · ta taste · to touch · em emotion
+     W inner voice · S thought speed · M metacognition · N direction
+     f = flags. Scoring follows Aeon's notes in "Map Your Mind v2 - clean text". */
+  var Q=[
+    {s:0,ic:"face",t:"Picture a close friend's face.",h:"Take a breath, close your eyes if you like. How does the face appear?",
+     o:[["As vivid as in real life",{V:100}],["Clear, with decent detail",{V:75}],["A fleeting image that came and went",{V:50}],["A faint hint, an outline, more idea than image",{V:25}],["Pitch black: I just know it's there",{V:0},["aph"]]]},
+    {s:0,ic:"film",t:"Was the image of your friend moving like a video, or still like a photo?",h:"",
+     o:[["A still image, like a photo, or it moved for a second or two, like a GIF",{A:55}],["A fairly clear video of my friend in a real past situation",{A:75}],["A 4K movie: a whole new scene my mind made up on its own",{A:100,V:95}],["A still image that moves only when I tell it to",{A:0}],["I mostly felt it but didn't see it: pitch black, or a faint outline",{V:5},["aph"]]]},
+    {s:0,ic:"tower",pre:"Picture a young girl holding an umbrella in front of the Eiffel Tower. Then press Continue.",t:"What color was the umbrella? What was she wearing? What was her other hand doing?",h:"",
+     o:[["A whole movie, full of detail: I know all three",{V:100,A:100}],["A still image, and I know all three",{V:85,A:55}],["The umbrella had a color, but her clothes and other hand only appeared when you asked",{V:60,A:30}],["A blurry outline with no details or color",{V:25,A:15}],["Nothing visual. I just sensed the scene",{V:0},["aph"]]]},
+    {s:0,ic:"sun",timer:10,t:"Picture an old man leaning on a cane, watching the sunset. Hold it as a still image for 10 seconds.",h:"",
+     o:[["I can't. It's like a movie: things keep happening and I can't hold it still",{A:100,V:90}],["I can hold it for a few seconds, then it starts moving and I have to force it back",{A:70,V:80}],["I can hold it, but after a second or a few it fades into darkness and I have to bring it back",{A:30,V:50}],["Easily: the image is still and vivid, and I can hold it as long as I want",{A:0,V:90}],["I can't see anything. What are you all talking about?",{V:0},["aph"]]]},
+    {s:0,ic:"apple",t:"Imagine a red apple in 3D. Cut it in half. Now slowly turn the two halves in opposite directions, at the same time.",h:"",
+     o:[["I see the halves, but the image quickly turns into a movie of its own and I can't keep them spinning",{A:100,V:80}],["I see the apple clearly and can cut it, but turning the halves is hard",{A:60,V:70}],["I see the halves as if the apple were in front of me, turning just as I want",{A:0,V:90}],["I see the apple only flat, in 2D, with no depth",{V:50},["flat"]],["I can feel the halves turning in the dark, but there's no image",{V:0},["aph"]]]},
+
+    {s:1,ic:"note",t:"Play a song in your head. Now turn the volume up and down.",h:"",
+     o:[["I hear it as if it were on the radio, and I can turn the volume up and down as much as I like",{mu:100}],["I hear it as if it were on the radio, but the volume is fixed",{mu:75}],["I hear the whole song, but silently, as if on mute",{mu:50}],["I hear only part of it, one instrument or the vocals, and silently",{mu:25}],["I can't hear music in my mind",{mu:0},["deafmusic"]]]},
+    {s:1,ic:"sax",t:"Play a song you like that has both instruments and vocals. Now try to add a saxophone.",h:"",
+     o:[["I hear it all clearly, as if on the radio: instruments and singer together, and I can add the saxophone",{mu:100}],["I hear the instruments in harmony, but not the singer at the same time; it's one or the other. I can add the saxophone",{mu:70}],["I hear the instruments in harmony, but not the singer at the same time. I can't add the saxophone",{mu:55}],["I hear only a melody, a single track: either the singer or one instrument",{mu:30},["melody"]],["I can't hear anything. What are you talking about?",{mu:0},["deafmusic"]]]},
+    {s:1,ic:"voice",t:"Think of someone close to you and hear them speak in your mind.",h:"",
+     o:[["I hear them as if they were next to me, in their own voice",{vo:100}],["I hear their voice, but silently, as if muted",{vo:70}],["I get their intonation and way of speaking, but the voice is mine or a generic one",{vo:45}],["I hear someone speaking, but it doesn't sound like them",{vo:25}],["I can't hear anyone speak at all",{vo:0}]]},
+    {s:1,ic:"cup",t:"Imagine holding a cup of fresh coffee. Can you smell it?",h:"",
+     o:[["As if it were in my hands, and I can change the aroma or make it stronger or weaker",{sm:100}],["Yes, a strong coffee smell, but I find it hard to change it",{sm:70}],["A faint whisper of it",{sm:35}],["I can't smell it at all in my mind",{sm:0}]]},
+    {s:1,ic:"lemon",t:"Now imagine biting into a slice of lemon.",h:"",
+     o:[["I taste it as if I'd really bitten it; the flavor is still in my mouth",{ta:100}],["I taste it distinctly in my mind, but it isn't the same as eating it",{ta:70}],["A faint whisper of the taste",{ta:35}],["I can't taste it at all in my mind",{ta:0}]]},
+    {s:1,ic:"hammer",t:"Imagine holding a hammer just below its metal head. Now slowly slide your hand toward the end of the handle. Do you feel the weight shift?",h:"Feel the weight in your hand first, then let it move as your hand slides.",
+     o:[["Yes, very clearly, with every inch I slide my hand",{to:100}],["I feel the difference between the two ends, but not along the way",{to:65}],["I sort of feel a weight, but it doesn't change as my hand slides",{to:35}],["No, I can't feel the hammer's weight in my imagination",{to:0}]]},
+    {s:1,ic:"thermo",t:"It's very cold outside and you're touching a metal door handle. Now let it warm slowly until it's hot, like metal left in the summer sun. Can you feel the temperature change?",h:"",
+     o:[["Yes, very clearly, every step of the way",{to:100}],["I feel the difference between the two extremes, but not the change in between",{to:65}],["I sort of feel a temperature, but it doesn't change at all",{to:35}],["No, I can't feel the handle's temperature in my imagination",{to:0}]]},
+    {s:1,ic:"heart",t:"Think of frustration. Not what the word means: can your mind recreate the feeling itself?",h:"This is about imagination, not mood. Some minds can generate a feeling on demand, the way others generate a picture.",
+     o:[["Yes, the moment I read the word, as if I were frustrated right now",{em:100,A:100}],["Yes, if I try, and I can make it stronger or weaker",{em:80,A:0}],["A faint echo of it, if I try hard",{em:40}],["I know what it means, but I don't actually feel it in my imagination",{em:0}]]},
+
+    {s:2,ic:"talk",t:"Can you hear your inner monologue?",h:"",
+     o:[["Sure, all the time. It never stops",{W:100}],["Very often, yes",{W:80}],["Sometimes",{W:55}],["Rarely",{W:25}],["I have no idea what you're talking about. I've never heard myself think",{W:0},["nomono"]]]},
+    {s:2,ic:"talk2",t:"Do you rehearse conversations in your head?",h:"Arguments you won in the shower, speeches you'll never give, the perfect reply you thought of three days too late.",
+     o:[["Almost always, and I hear them as speech",{W:100}],["Almost always, and I see them like a movie that plays on its own, with the characters talking",{W:30,A:100,D:85}],["Sometimes, mostly as inner speech",{W:70}],["Sometimes, mostly as a movie with sound that plays on its own",{W:30,A:75,D:65}],["Rarely or never",{}]]},
+    {s:2,ic:"bolt",t:"How fast does your inner monologue usually run? Your words, not your mental images.",h:"Pick the picture that fits, even if pictures aren't your thing.",
+     o:[["A racetrack",{S:100}],["A busy highway",{S:75}],["Normal traffic",{S:50}],["A calm stroll",{S:25}],["I never hear an inner monologue",{W:0},["nomono"]]]},
+    {s:2,ic:"spark",t:"How busy is your visual imagination?",h:"At full blast it's a film on fast-forward, scene piling on scene. At the quiet end, an occasional slide, or none at all.",
+     o:[["I see images all the time. I basically think in pictures",{D:100}],["Very busy, but not all the time",{D:75}],["It depends on what I'm thinking about",{D:50}],["Sporadic, here and there. I'm not that visual",{D:25}],["I rarely or never see pictures in my mind",{D:0}]]},
+    {s:2,ic:"branch",t:"During a conversation, how far back can you trace your own train of thought?",h:"Conversations branch. Can you climb back down the branches to where you started?",
+     o:[["Usually all the way: I can trace back to every open branch of the conversation",{M:100}],["A few branches back, but not usually more",{M:70}],["I remember the topic, but not how we got there or what I was just thinking",{M:40}],["I can't really remember what I was just thinking. It's as if it got deleted",{M:15}],["This question gives me a headache. I have no idea what you mean",{M:0}]]},
+    {s:2,ic:"loop",t:"Can you think about your thinking while you're thinking?",h:"Noticing how fast your inner monologue runs while it runs, or watching how you arrived at a thought, as if a second awareness were following along.",
+     o:[["Of course. I \"think in stereo\" all the time: two monologues at once, and I can't turn it off",{M:100},["stereo"]],["Sure, no problem, but only when I choose to",{M:80}],["Sometimes, but I have to try hard",{M:50}],["Almost never, but I know what you mean",{M:25}],["No idea what you're talking about. Sounds like a mental nightmare",{M:0}]]},
+    {s:2,ic:"compass",t:"You walk into a mall from the parking lot and find your store. Suddenly the lights go out and every store is closed. Could you find your way back to your car by sense of direction alone?",h:"No landmarks, no signs. Just the general direction.",
+     o:[["No way. I remember places visually; without landmarks, or at night, my sense of direction is terrible",{N:0}],["Maybe, if I didn't go far. It's hit or miss for me",{N:35}],["I'm pretty good at this, so probably yes",{N:70}],["Of course. It's like having a compass built into my forehead",{N:100},["compass"]]]}
+  ];
+
+  var IC={
+    face:'<circle cx="12" cy="10" r="5"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+    film:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    tower:'<path d="M12 2l-2 7h4zM9 9h6l2 6H7zM7 15l-3 7M17 15l3 7M10 15c0 3 4 3 4 0"/>',
+    sun:'<path d="M3 17h18M6 21h12"/><path d="M7 17a5 5 0 0 1 10 0"/><path d="M12 6v3M5.6 9.6l2 2M18.4 9.6l-2 2"/>',
+    apple:'<path d="M12 7c-3-2-7 0-7 5 0 4 3 8 5 8 1 0 1.3-.5 2-.5s1 .5 2 .5c2 0 5-4 5-8 0-5-4-7-7-5z"/><path d="M12 7c0-2 1-3 3-4"/>',
+    note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+    sax:'<path d="M15 3h3M16.5 3v9a5 5 0 0 1-10 0V10"/><circle cx="6.5" cy="17" r="3"/><path d="M14 7h2M14 10h2"/>',
+    voice:'<path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>',
+    cup:'<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2M8 3c0 2 2 2 2 4M12 3c0 2 2 2 2 4"/>',
+    lemon:'<ellipse cx="12" cy="12" rx="8" ry="6" transform="rotate(-30 12 12)"/><path d="M8 16l8-8M12 12l-3-2M12 12l2 3"/>',
+    hammer:'<path d="M4 7h9v4H4z"/><path d="M13 9h2M9 11l7 10"/>',
+    thermo:'<path d="M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z"/><path d="M12 9v7"/>',
+    heart:'<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+    talk:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+    talk2:'<path d="M3 4h12v8H8l-3 3V12H3z"/><path d="M15 9h6v8h-2v3l-3-3h-5v-3"/>',
+    bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    spark:'<rect x="3" y="4" width="8" height="7" rx="1"/><rect x="13" y="4" width="8" height="7" rx="1"/><rect x="3" y="13" width="8" height="7" rx="1"/><rect x="13" y="13" width="8" height="7" rx="1"/>',
+    branch:'<circle cx="6" cy="19" r="2"/><circle cx="6" cy="5" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M6 13c0-3 4-5 10-5"/>',
+    loop:'<circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/>',
+    compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'
+  };
+
+  var TYPES={
+    imm:{name:"The Immersive",color:"#ffb45c",tag:"Your inner world plays on its own: vivid, busy and alive.",
+      desc:"Ask your mind for a picture and you get a scene, often with motion, sound and detail you never asked for. In the language of the book, your Spatial Mind leads, and it doesn't wait for permission. That makes for rich memories, deep absorption, and a gift for taking in a place or a person all at once.",
+      good:["Taking in a scene, a room or a mood at a glance","Rich memories you can step back into","Creative work that starts from images, sounds or feelings","Being fully present in an experience"],
+      hard:["Holding an image still, or turning a busy mind down","Following long chains of abstract words","Retracing how a conversation got where it is"],
+      scene:"The tower arrives with the girl already moving: wind in her coat, a red umbrella, pigeons, maybe the smell of rain. Nobody asked for the pigeons."},
+    arc:{name:"The Architect",color:"#a98bff",tag:"You see it, and you can move it.",
+      desc:"Your mind's eye is clear, and it takes direction: you can hold a picture still, rotate it, take it apart. Your Spatial Mind supplies the images and your Temporal Mind steers them. It is the toolkit of designers, engineers, surgeons and anyone who solves problems by looking at them from the inside.",
+      good:["Rotating, building and fixing things in your head","Planning by picturing the result","A visual memory you can search on purpose","Explaining with sketches and examples"],
+      hard:["Thinking with no image to hang it on","Abstract talk with nothing to picture","Switching the pictures off at night"],
+      scene:"A clear still frame. Zoom in on the umbrella, swing the camera around, make it yellow instead. Done."},
+    sto:{name:"The Storyteller",color:"#7cc4ff",tag:"Your mind talks, and it often talks on its own.",
+      desc:"Thought comes to you as words: a running narrator, rehearsed conversations, replies you polish long after the moment has passed. The voice doesn't always ask permission to start. In the language of the book, your Temporal Mind leads, with a commentary that runs by itself.",
+      good:["Putting experience into words","Remembering what was said, and how","Thinking out loud, on paper or in your head","Persuading, explaining, telling a story"],
+      hard:["Quieting the narrator, especially at night","Being in the moment without commenting on it","Recalling images and faces in detail"],
+      scene:"A voice gets there before the picture: a girl, Paris, an umbrella, so probably rain. The scene is a sentence that keeps going."},
+    str:{name:"The Strategist",color:"#ffd9a8",tag:"You think in words, and you watch yourself think.",
+      desc:"Your inner voice is a tool you can pick up and put down, and you can often follow your own train of thought back to where it started. Many people here think in stereo: a thought, and a second voice observing it. In the language of the book, your Temporal Mind leads, and steers.",
+      good:["Abstract reasoning and long chains of logic","Tracing a conversation back through its branches","Noticing your own thinking, and correcting it","Seeing the big picture and planning ahead"],
+      hard:["Picturing things vividly","Switching the analysis off and simply being there","Turning plans into action: the mind may feel it has already done it"],
+      scene:"Little or no image. The idea is there, complete, and a second thought is already asking why the question chose an umbrella."}
+  };
+  var ORDER=["imm","arc","sto","str"];
+
+  var ans=new Array(Q.length).fill(null), pre=new Array(Q.length).fill(false), cur=0, busy=false, advanceTimer=null, tick=null;
+
+  function swap(from,to,dir,after){
+    if(!from){to.hidden=false;after&&after();return}
+    if(from===to){after&&after();return}
+    if(still){from.hidden=true;to.hidden=false;after&&after();return}
+    busy=true;
+    from.classList.add(dir>0?"out-left":"out-right");
+    setTimeout(function(){
+      from.hidden=true; from.classList.remove("out-left","out-right");
+      to.classList.add(dir>0?"in-right":"in-left"); to.hidden=false;
+      after&&after(); void to.offsetWidth;
+      to.classList.remove("in-right","in-left");
+      setTimeout(function(){busy=false},420);
+    },300);
+  }
+  function visible(){return [$("s-intro"),$("s-q"),$("s-about"),$("s-res")].filter(function(s){return !s.hidden})[0]}
+
+  function onPre(){var q=Q[cur];return q.pre&&!pre[cur]}
+  function render(){
+    var q=Q[cur], sec=SECTIONS[q.s];
+    clearInterval(tick); $("timer").hidden=true;
+    document.documentElement.style.setProperty("--accent",sec.color);
+    $("qsec").textContent="Section "+(q.s+1)+" of 3 · "+sec.name;
+    $("qsec").style.color=sec.color;
+    $("qcount").textContent=(cur+1)+" / "+Q.length;
+    var done=ans.filter(function(a){return a!==null}).length;
+    $("pfill").style.width=(done/Q.length*100)+"%";
+    $("ptrack").setAttribute("aria-valuenow",done);
+    document.querySelectorAll(".segs span").forEach(function(s){s.classList.toggle("on",+s.dataset.s<=q.s)});
+    var first=sec.intro&&(cur===0||Q[cur-1].s!==q.s);
+    $("secintro").hidden=!first; if(first)$("secintro").textContent=sec.intro;
+    $("qglow").style.background=sec.hex;
+    $("qicon").innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+sec.hex+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+IC[q.ic]+'</svg>';
+    var box=$("opts"); box.innerHTML="";
+    if(onPre()){
+      $("qtitle").textContent=q.pre; $("qhint").textContent="Take a moment to really see it."; $("qhint").hidden=false;
+      $("next").disabled=false; $("next").textContent="Continue →";
+      $("back").textContent=cur===0?"← Intro":"← Back";
+      return;
+    }
+    $("qtitle").textContent=q.t; $("qhint").textContent=q.h;
+    $("qhint").hidden=!q.h;
+    if(q.timer&&ans[cur]===null){
+      var n=q.timer; $("tsec").textContent=n; $("timer").hidden=false;
+      tick=setInterval(function(){n--; $("tsec").textContent=Math.max(0,n); if(n<=0){clearInterval(tick);$("timer").firstChild.nodeValue="Time. ";$("tsec").textContent="";$("timer").lastChild.nodeValue="How did it go?"}},1000);
+    }
+    var L=q.o.length;
+    q.o.forEach(function(op,i){
+      var b=document.createElement("button");
+      b.type="button"; b.className="opt"; b.setAttribute("role","radio");
+      b.setAttribute("aria-checked",ans[cur]===i?"true":"false");
+      b.tabIndex=(ans[cur]===i||(ans[cur]===null&&i===0))?0:-1;
+      b.innerHTML='<span class="n">'+(i+1)+'</span><span></span>';
+      b.lastChild.textContent=op[0];
+      b.addEventListener("click",function(){choose(i)});
+      box.appendChild(b);
+    });
+    $("next").disabled=ans[cur]===null;
+    $("next").textContent=cur===Q.length-1?"Almost done →":"Next →";
+    $("back").textContent=cur===0?"← Intro":"← Back";
+  }
+  function resetTimerText(){$("timer").innerHTML='Hold it <i id="tsec">10</i> seconds'}
+  function choose(i){
+    if(busy||onPre())return;
+    clearInterval(tick);
+    ans[cur]=i;
+    var opts=$("opts").children;
+    for(var k=0;k<opts.length;k++){opts[k].setAttribute("aria-checked",k===i?"true":"false");opts[k].tabIndex=k===i?0:-1}
+    $("next").disabled=false;
+    var done=ans.filter(function(a){return a!==null}).length;
+    $("pfill").style.width=(done/Q.length*100)+"%";
+    clearTimeout(advanceTimer);
+    advanceTimer=setTimeout(next,still?150:420);
+  }
+  function step(dir){
+    var card=$("s-q");
+    resetTimerText();
+    if(still){render();focusTitle();return}
+    busy=true;
+    card.classList.add(dir>0?"out-left":"out-right");
+    setTimeout(function(){
+      card.classList.remove("out-left","out-right");
+      card.classList.add(dir>0?"in-right":"in-left");
+      render(); void card.offsetWidth;
+      card.classList.remove("in-right","in-left");
+      focusTitle();
+      setTimeout(function(){busy=false},380);
+    },260);
+  }
+  function focusTitle(){try{$("qtitle").focus({preventScroll:true})}catch(_){}}
+  function next(){
+    clearTimeout(advanceTimer);
+    if(busy)return;
+    if(onPre()){pre[cur]=true;step(1);return}
+    if(ans[cur]===null)return;
+    if(cur<Q.length-1){cur++;step(1)}
+    else swap($("s-q"),$("s-about"),1,function(){window.scrollTo(0,0);try{$("about-h").focus({preventScroll:true})}catch(_){}});
+  }
+  function back(){
+    clearTimeout(advanceTimer);
+    if(busy)return;
+    if(Q[cur].pre&&pre[cur]&&ans[cur]===null){pre[cur]=false;step(-1);return}
+    if(cur>0){cur--;step(-1)}
+    else swap($("s-q"),$("s-intro"),-1,function(){$("start").focus()});
+  }
+
+  /* ---------- scoring ---------- */
+  function avg(l){return l.length?l.reduce(function(a,b){return a+b},0)/l.length:null}
+  function score(){
+    var by={}, flags={};
+    Q.forEach(function(q,i){
+      if(ans[i]===null)return;
+      var op=q.o[ans[i]], e=op[1];
+      Object.keys(e).forEach(function(k){(by[k]=by[k]||[]).push(e[k])});
+      (op[2]||[]).forEach(function(f){flags[f]=(flags[f]||0)+1});
+    });
+    var g=function(k,d){var v=avg(by[k]||[]);return v===null?d:Math.round(v)};
+    var r={V:g("V",50),A:g("A",null),D:g("D",50),mu:g("mu",50),vo:g("vo",50),sm:g("sm",50),ta:g("ta",50),to:g("to",50),em:g("em",50),W:g("W",50),S:g("S",null),M:g("M",50),N:g("N",50)};
+    var senses=avg([r.mu,r.vo,r.sm,r.ta,r.to,r.em]);
+    r.SP=Math.round(r.V*.4+r.D*.3+senses*.3);          /* Spatial side: pictures, density, senses */
+    r.x=Math.round(50+(r.W-r.SP)/2);                  /* 0 senses-led … 100 words-led */
+    var flow=r.A===null?(100-r.M):(r.A*.65+(100-r.M)*.35);
+    r.y=Math.round(flow);                              /* 0 steered … 100 on its own */
+    r.flags=flags;
+    r.type=r.x<50?(r.y>=50?"imm":"arc"):(r.y>=50?"sto":"str");
+    return r;
+  }
+  function badges(r){
+    var b=[], f=r.flags;
+    if((f.aph||0)>=2||r.V<=15) b.push(["Aphantasia","little or no voluntary visual imagery. You know what an apple looks like; the picture just doesn't appear. Roughly 1 in 25 people have it."]);
+    if(ans[0]===0&&r.V>=85) b.push(["Hyperphantasia","imagery so vivid it can feel close to actual sight."]);
+    if(f.flat) b.push(["Flat imagery","your mind's eye sees in 2D, without depth. It's rarely discussed and surprisingly common."]);
+    if((f.nomono||0)>=1&&r.W<=20) b.push(["No inner monologue","thinking happens without a running verbal stream. Not a lack of thought: thought without a soundtrack."]);
+    if(f.melody) b.push(["Melody mind","your musical imagination plays one line at a time, not a full band."]);
+    if(f.stereo) b.push(["Stereo thinker","a second stream of thought watches the first, all the time."]);
+    if(f.compass) b.push(["Inner compass","your sense of direction works without landmarks."]);
+    return b;
+  }
+  function notes(r){
+    var n=[];
+    if(ans[10]!==null&&ans[11]!==null&&Math.abs(ans[10]-ans[11])>=2) n.push("Your answers on the hammer and the door handle point two ways. Most people who can feel one can feel the other, so one of them may be worth trying again.");
+    if(ans[15]!==null&&ans[16]!==null&&ans[15]<=1&&ans[16]<=1) n.push("You report a fast inner monologue and a very busy visual imagination. Either both run loud, or one is driving the other: rich images setting off the commentary, or a racing commentary calling up the images.");
+    if(ans[13]!==null&&ans[15]!==null&&ans[13]<=1&&ans[15]===4) n.push("You hear your inner monologue often, yet say you never hear it run. One of those answers may be worth a second look.");
+    return n;
+  }
+  var SCALES=[["Mind's eye","V","#ffb45c"],["Busy imagery","D","#ffd9a8"],["Inner voice","W","#7cc4ff"],["Thought speed","S","#a98bff"],["Thinking about thinking","M","#7cc4ff"],["Sense of direction","N","#9aa6c4"]];
+
+  /* ---------- result ---------- */
+  var last=null, friend=null;
+  function enc(r){return [r.type,r.x,r.y,r.V,r.W,r.M].join(".")}
+  function dec(s){var p=String(s||"").split(".");if(p.length!==6||!TYPES[p[0]])return null;return {type:p[0],x:+p[1],y:+p[2],V:+p[3],W:+p[4],M:+p[5]}}
+  function showResult(r){
+    last=r;
+    var t=TYPES[r.type];
+    $("rtype").textContent=t.name; $("rtype2").textContent=t.name; $("rtype2").style.color=t.color;
+    $("rtag").textContent=t.tag; $("rdesc").textContent=t.desc;
+    var bb=$("rbadges"); bb.innerHTML="";
+    var bl=badges(r); bl.forEach(function(x){var s=document.createElement("span");s.className="badge";s.textContent=x[0];bb.appendChild(s)});
+    var m=$("meters"); m.innerHTML="";
+    SCALES.forEach(function(sc){
+      var v=r[sc[1]]; if(v===null||v===undefined)return;
+      var d=document.createElement("div"); d.className="meter";
+      d.innerHTML='<div class="lab"><span></span><b>'+v+'</b></div><div class="tr"><div class="fl" style="background:linear-gradient(90deg,rgba(255,255,255,.15),'+sc[2]+')"></div></div>';
+      d.querySelector("span").textContent=sc[0]; d.querySelector(".fl").dataset.v=v; m.appendChild(d);
+    });
+    fillList("rgood",t.good); fillList("rhard",t.hard);
+    var tb=$("rterms"); tb.innerHTML="";
+    bl.forEach(function(x){var d=document.createElement("div");d.className="term";d.innerHTML="<b></b> ";d.firstChild.textContent=x[0]+":";d.appendChild(document.createTextNode(x[1]));tb.appendChild(d)});
+    var nb=$("rnotes"); nb.innerHTML="";
+    notes(r).forEach(function(x){var d=document.createElement("p");d.className="note";d.textContent=x;nb.appendChild(d)});
+    var sc=$("scene"); sc.innerHTML="";
+    ORDER.forEach(function(k){var d=document.createElement("div");d.className=k===r.type?"me":"";d.innerHTML="<b></b><span></span>";d.firstChild.textContent=TYPES[k].name+(k===r.type?" · you":"");d.firstChild.style.color=TYPES[k].color;d.lastChild.textContent=TYPES[k].scene;sc.appendChild(d)});
+    radar(r);
+    document.querySelectorAll("#map .zone").forEach(function(g){g.classList.toggle("active",g.dataset.z===r.type);g.style.opacity=g.dataset.z===r.type?1:.62});
+    if(friend){
+      $("rvs").hidden=false;
+      $("rvs").textContent=(friend.type===r.type?"You and the friend who sent you this are both "+t.name+". Same zone, and still two different maps: compare your dots.":"The friend who sent you this is "+TYPES[friend.type].name+"; you are "+t.name+". Look at the two dots on the map: that's the distance between your inner worlds.");
+      var fx=40+friend.x/100*340, fy=360-friend.y/100*340;
+      $("friend").setAttribute("transform","translate("+fx+" "+fy+")"); $("friend").hidden=false;
+    }
+    setupShare(r);
+    $("stage").classList.add("wide");
+    swap(visible(),$("s-res"),1,function(){
+      window.scrollTo(0,0);
+      setTimeout(function(){animateResult(r)},still?0:250);
+      try{$("res-h").setAttribute("tabindex","-1");$("res-h").focus({preventScroll:true})}catch(_){}
+    });
+  }
+  function fillList(id,arr){var u=$(id);u.innerHTML="";arr.forEach(function(s){var li=document.createElement("li");li.textContent=s;u.appendChild(li)})}
+  function radar(r){
+    var ax=[["Sight",r.V],["Music",r.mu],["Voices",r.vo],["Smell",r.sm],["Taste",r.ta],["Touch",r.to],["Emotion",r.em]];
+    var cx=180,cy=170,R=120,n=ax.length,h="";
+    for(var ring=1;ring<=4;ring++){var pts=[];for(var i=0;i<n;i++){var a=-Math.PI/2+i*2*Math.PI/n;pts.push((cx+Math.cos(a)*R*ring/4).toFixed(1)+","+(cy+Math.sin(a)*R*ring/4).toFixed(1))}h+='<polygon points="'+pts.join(" ")+'" fill="none" stroke="rgba(170,200,255,.12)"/>'}
+    var pp=[];
+    for(var j=0;j<n;j++){
+      var a2=-Math.PI/2+j*2*Math.PI/n, v=Math.max(4,ax[j][1])/100;
+      h+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a2)*R).toFixed(1)+'" y2="'+(cy+Math.sin(a2)*R).toFixed(1)+'" stroke="rgba(170,200,255,.12)"/>';
+      pp.push((cx+Math.cos(a2)*R*v).toFixed(1)+","+(cy+Math.sin(a2)*R*v).toFixed(1));
+      var lx=cx+Math.cos(a2)*(R+20), ly=cy+Math.sin(a2)*(R+20)+3;
+      h+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+(Math.abs(Math.cos(a2))<.2?"middle":(Math.cos(a2)>0?"start":"end"))+'">'+ax[j][0].toUpperCase()+'</text>';
+    }
+    h+='<defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset="1" stop-color="#a98bff"/></linearGradient></defs>';
+    h+='<polygon points="'+pp.join(" ")+'" fill="url(#rg)" fill-opacity=".28" stroke="url(#rg)" stroke-width="2"/>';
+    $("radar").innerHTML=h;
+  }
+  function animateResult(r){
+    var tx=40+r.x/100*340, ty=360-r.y/100*340;
+    tx=Math.max(52,Math.min(368,tx)); ty=Math.max(32,Math.min(348,ty));
+    var me=$("me"), tag=$("metag");
+    tag.setAttribute("y",ty<90?26:-16);
+    document.querySelectorAll("#meters .fl").forEach(function(f){f.style.width=f.dataset.v+"%"});
+    if(still){me.setAttribute("transform","translate("+tx+" "+ty+")");return}
+    var x0=210,y0=190,t0=null,D=1500;
+    function f(ts){
+      if(!t0)t0=ts; var p=Math.min(1,(ts-t0)/D);
+      var e=1-Math.pow(1-p,3), sw=Math.sin(p*Math.PI)*18;
+      me.setAttribute("transform","translate("+(x0+(tx-x0)*e+sw)+" "+(y0+(ty-y0)*e-sw*.6)+")");
+      if(p<1)requestAnimationFrame(f);
+    }
+    requestAnimationFrame(f);
+  }
+
+  /* ---------- save (only with consent) ---------- */
+  function save(r){
+    if(!$("f-consent").checked)return;
+    var payload={app:"mym2",version:VERSION,answers:ans.map(function(a){return a===null?"":a+1}),
+      scores:{V:r.V,A:r.A,D:r.D,mu:r.mu,vo:r.vo,sm:r.sm,ta:r.ta,to:r.to,em:r.em,W:r.W,S:r.S,M:r.M,N:r.N,x:r.x,y:r.y},
+      type:r.type,badges:badges(r).map(function(b){return b[0]}),
+      age:$("f-age").value,country:$("f-country").value,gender:$("f-gender").value,field:$("f-field").value,
+      consent:true,pair:friend?friend.code:"",lang:(navigator.language||"")};
+    try{fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})}catch(_){}
+  }
+
+  /* ---------- share ---------- */
+  function link(r){return PAGE+"?vs="+encodeURIComponent(enc(r))}
+  function setupShare(r){
+    var u=link(r), msg="I just mapped my mind: I'm "+TYPES[r.type].name+". Take the test and we'll see how different our inner worlds are:";
+    $("sh-wa").href="https://wa.me/?text="+encodeURIComponent(msg+" "+u);
+    $("sh-mail").href="mailto:?subject="+encodeURIComponent("How different are our minds?")+"&body="+encodeURIComponent(msg+"\n\n"+u);
+    $("sh-fb").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(u);
+    $("sh-x").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(msg)+"&url="+encodeURIComponent(u);
+    $("sh-native").hidden=!navigator.share;
+  }
+  $("sh-native").addEventListener("click",function(){if(last&&navigator.share)navigator.share({title:"Map Your Mind",text:"I'm "+TYPES[last.type].name+". Map yours:",url:link(last)}).catch(function(){})});
+  function fallbackCopy(text){
+    var ta=$("copyfallback"); ta.value=text; ta.hidden=false; ta.focus(); ta.select();
+    var ok=false; try{ok=document.execCommand("copy")}catch(_){ok=false}
+    $("copied").textContent=ok?"Link copied.":"Select the link below and copy it.";
+  }
+  $("copy").addEventListener("click",function(){
+    if(!last)return; var text=link(last);
+    try{
+      if(navigator.clipboard&&window.isSecureContext) navigator.clipboard.writeText(text).then(function(){$("copied").textContent="Link copied."},function(){fallbackCopy(text)});
+      else fallbackCopy(text);
+    }catch(_){fallbackCopy(text)}
+  });
+  $("sh-card").addEventListener("click",function(){
+    if(!last)return;
+    var t=TYPES[last.type], c=document.createElement("canvas"); c.width=1080; c.height=1350;
+    var g=c.getContext("2d");
+    var bg=g.createLinearGradient(0,0,1080,1350); bg.addColorStop(0,"#0b1020"); bg.addColorStop(1,"#05070d"); g.fillStyle=bg; g.fillRect(0,0,1080,1350);
+    var glow=g.createRadialGradient(860,220,10,860,220,520); glow.addColorStop(0,t.color+"55"); glow.addColorStop(1,"transparent"); g.fillStyle=glow; g.fillRect(0,0,1080,1350);
+    g.fillStyle="#7cc4ff"; g.font="500 30px 'IBM Plex Mono', monospace"; g.fillText("MAP YOUR MIND · AEONGENICS",90,150);
+    g.fillStyle="#eef2ff"; g.font="500 64px Unbounded, 'Arial Black', sans-serif"; g.fillText("I am",90,300);
+    g.fillStyle=t.color; g.font="500 88px Unbounded, 'Arial Black', sans-serif"; g.fillText(t.name.replace("The ",""),90,410);
+    g.fillStyle="#9aa6c4"; g.font="36px 'Instrument Sans', sans-serif"; wrap(g,t.tag,90,500,900,48);
+    var y=680;
+    SCALES.forEach(function(sc){var v=last[sc[1]]; if(v===null||v===undefined)return;
+      g.fillStyle="#9aa6c4"; g.font="28px 'IBM Plex Mono', monospace"; g.fillText(sc[0].toUpperCase(),90,y);
+      g.fillStyle="rgba(255,255,255,.08)"; g.fillRect(90,y+16,900,14); g.fillStyle=sc[2]; g.fillRect(90,y+16,9*v,14); y+=88;});
+    g.fillStyle="#eef2ff"; g.font="500 34px 'Instrument Sans', sans-serif"; g.fillText("Map yours: aeongenics.com/map-your-mind",90,1260);
+    c.toBlob(function(b){
+      var f=new File([b],"my-mind-map.png",{type:"image/png"});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:"My mind map"}).catch(function(){});return}
+      var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="my-mind-map.png"; document.body.appendChild(a); a.click(); a.remove();
+      $("copied").textContent="Image saved. Post it to your Story and add the link.";
+    },"image/png");
+  });
+  function wrap(g,text,x,y,maxW,lh){var w=text.split(" "),line="";for(var i=0;i<w.length;i++){var tl=line+w[i]+" ";if(g.measureText(tl).width>maxW&&line){g.fillText(line,x,y);line=w[i]+" ";y+=lh}else line=tl}g.fillText(line,x,y)}
+
+  /* ---------- wiring ---------- */
+  var COUNTRIES="Argentina,Australia,Austria,Belgium,Brazil,Canada,Chile,China,Colombia,Czechia,Denmark,Egypt,Finland,France,Germany,Greece,Hungary,India,Indonesia,Ireland,Israel,Italy,Japan,Mexico,Netherlands,New Zealand,Nigeria,Norway,Philippines,Poland,Portugal,Romania,Russia,Saudi Arabia,Singapore,South Africa,South Korea,Spain,Sweden,Switzerland,Taiwan,Thailand,Turkey,Ukraine,United Arab Emirates,United Kingdom,United States,Vietnam,Other".split(",");
+  COUNTRIES.forEach(function(c){var o=document.createElement("option");o.textContent=c;$("f-country").appendChild(o)});
+
+  function restart(){
+    ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); cur=0; render();
+    $("stage").classList.remove("wide");
+    swap(visible(),$("s-q"),1,function(){window.scrollTo(0,0);focusTitle()});
+  }
+  $("start").addEventListener("click",function(){if(busy)return; render(); swap($("s-intro"),$("s-q"),1,focusTitle)});
+  $("about-go").addEventListener("click",function(){if(busy)return; var r=score(); save(r); showResult(r)});
+  $("about-back").addEventListener("click",function(){if(busy)return; render(); swap($("s-about"),$("s-q"),-1,focusTitle)});
+  $("again").addEventListener("click",function(){if(!busy)restart()});
+  $("next").addEventListener("click",next);
+  $("back").addEventListener("click",back);
+
+  document.addEventListener("keydown",function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(e.target&&/TEXTAREA|SELECT|INPUT/.test(e.target.tagName))return;
+    if($("s-q").hidden){
+      if(!$("s-intro").hidden&&e.key==="Enter"&&document.activeElement===document.body){$("start").click();e.preventDefault()}
+      return;
+    }
+    var n=parseInt(e.key,10);
+    if(!onPre()&&n>=1&&n<=Q[cur].o.length){choose(n-1);e.preventDefault();return}
+    if(e.key==="Enter"&&onPre()){next();e.preventDefault();return}
+    if(e.key==="ArrowLeft"||e.key==="Backspace"){back();e.preventDefault();return}
+    if(e.key==="ArrowRight"){next();e.preventDefault();return}
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+      var opts=$("opts").children; if(!opts.length)return;
+      var i=Array.prototype.indexOf.call(opts,document.activeElement);
+      if(i<0)i=ans[cur]===null?-1:ans[cur];
+      i=e.key==="ArrowDown"?Math.min(opts.length-1,i+1):Math.max(0,i-1);
+      opts[i].focus(); e.preventDefault();
+    }
+  });
+
+  try{
+    var qs=new URLSearchParams(location.search);
+    var vs=qs.get("vs"); if(vs){friend=dec(vs); if(friend){friend.code=vs; var b=document.createElement("p"); b.className="vs"; b.textContent="A friend who is "+TYPES[friend.type].name+" sent you this. Finish the test to see your maps side by side."; $("s-intro").querySelector(".intro").insertBefore(b,$("s-intro").querySelector(".lede"))}}
+    /* demo: ?demo=result&a=1,2,3,... (answers 1-based) jumps straight to a result; ?demo=q&n=4 opens a question */
+    if(qs.get("demo")==="q"){var qn=Math.max(1,Math.min(Q.length,parseInt(qs.get("n"),10)||1));cur=qn-1;for(var d=0;d<cur;d++)ans[d]=1;$("s-intro").hidden=true;render();$("s-q").hidden=false}
+    if(qs.get("demo")==="result"){
+      var a=(qs.get("a")||"5,5,5,5,5,2,4,3,2,2,1,1,2,1,1,1,5,1,1,3").split(",");
+      for(var k=0;k<Q.length;k++){var v=parseInt(a[k],10);ans[k]=isNaN(v)?null:Math.max(0,Math.min(Q[k].o.length-1,v-1))}
+      $("s-intro").hidden=true; still=true; document.body.classList.add("instant");
+      showResult(score());
+      setTimeout(function(){document.body.classList.remove("instant");still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches},50);
+    }
+  }catch(_){}
+
+  /* ---------- living field (same as home) ---------- */
+  var c=$("field"),x=c.getContext("2d"),W,H,DP,pts=[],mx=0,my=0;
+  function size(){DP=Math.min(window.devicePixelRatio||1,2);W=c.width=innerWidth*DP;H=c.height=innerHeight*DP}
+  size(); addEventListener("resize",size);
+  addEventListener("pointermove",function(e){mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+  var N=innerWidth<700?220:440;
+  for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
+  var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function frame(){
+    t+=1; x.clearRect(0,0,W,H);
+    var R0=Math.min(W,H)*.38, cx=W*.5+mx*40*DP, cy=H*.5+my*30*DP;
+    x.globalCompositeOperation="lighter";
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i]; p.a+=p.s*(p.g?1.6:1);
+      var tilt=p.g?0.9:-0.5, wob=Math.sin(t*.004+p.b*3)*.08;
+      var sx=Math.sin(p.b+wob)*Math.cos(p.a), sy=Math.cos(p.b+wob), sz=Math.sin(p.b+wob)*Math.sin(p.a);
+      var y2=sy*Math.cos(tilt)-sz*Math.sin(tilt), z2=sy*Math.sin(tilt)+sz*Math.cos(tilt);
+      var k=1/(1.8-z2*.6), px=cx+sx*R0*p.r*k, py=cy+y2*R0*p.r*k;
+      var al=.12+.4*(z2+1)/2, rad=(p.g?1.1:1.3)*DP*(.6+(z2+1)*.5);
+      x.fillStyle=p.g?"rgba(124,196,255,"+al+")":"rgba(255,180,92,"+al+")";
+      x.beginPath(); x.arc(px,py,rad,0,6.283); x.fill();
+    }
+    x.globalCompositeOperation="source-over";
+    if(!fieldStill) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+</body>
+</html>
