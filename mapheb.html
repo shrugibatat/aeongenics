@@ -328,7 +328,7 @@ nav a::after{transform-origin:right}
         <p class="pre-note">אפשר לעצום עיניים בכל שאלה, אם זה עוזר. אין תשובות נכונות: כל מוח על המפה הזו הוא מוח נורמלי, פשוט שונה.</p>
         <div class="privacy">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          <span>בלי מעקב, והתשובות שלכם נשארות אנונימיות. בסוף אפשר גם לבחור לצרף את התשובות האנונימיות שלכם למחקר שלנו.</span>
+          <span>בלי מעקב, והתשובות שלכם נשארות אנונימיות. אם תבקשו את התוצאות במייל, הכתובת משמשת רק כדי לשלוח אותן. בסוף אפשר גם לבחור לצרף את התשובות האנונימיות שלכם למחקר שלנו.</span>
         </div>
         <div class="row">
           <button class="btn" id="start" type="button">מתחילים במיפוי</button>
@@ -424,13 +424,14 @@ nav a::after{transform-origin:right}
           <div class="ecards" id="cards-rest"></div>
         </div>
 
-        <!-- The results email is in English (MailerLite template), so it stays off in the Hebrew version. -->
-        <div class="glass mailbox" id="mailbox" hidden>
+        <div class="glass mailbox" id="mailbox">
+          <h3>שלחו לי את התוצאות במייל</h3>
+          <p style="color:var(--dim)">קבלו עותק של המפה שלכם לתיבת הדואר, עם קישור חזרה לעמוד הזה. (בינתיים המייל עצמו באנגלית.)</p>
           <form id="mlform" class="mlrow" novalidate>
-            <input type="email" id="ml-email" aria-label="Email">
-            <button class="btn" type="submit" id="ml-go">Send</button>
+            <input type="email" id="ml-email" placeholder="האימייל שלכם" autocomplete="email" aria-label="האימייל שלכם" required dir="ltr">
+            <button class="btn" type="submit" id="ml-go">שלחו לי</button>
           </form>
-          <input type="checkbox" id="ml-upd" hidden>
+          <label class="consent" style="padding:10px 12px"><input type="checkbox" id="ml-upd"><span>שלחו לי גם עדכונים מ־Aeongenics מדי פעם</span></label>
           <p class="meta" id="ml-msg" role="status"></p>
         </div>
 
@@ -916,7 +917,7 @@ nav a::after{transform-origin:right}
   $("mlform").addEventListener("submit",function(e){
     e.preventDefault();
     var em=$("ml-email").value.trim(), msg=$("ml-msg");
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Please enter a valid email address.";msg.style.color="#ffb45c";return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="נא להזין כתובת אימייל תקינה.";msg.style.color="#ffb45c";return}
     if(!last)return;
     var fd=new FormData();
     fd.append("fields[email]",em);
@@ -924,11 +925,11 @@ nav a::after{transform-origin:right}
     fd.append("fields[mym_link]",resultLink());
     fd.append("fields[mym_updates]",$("ml-upd").checked?"yes":"");
     fd.append("ml-submit","1"); fd.append("anticsrf","true");
-    $("ml-go").disabled=true; msg.style.color=""; msg.textContent="Sending…";
+    $("ml-go").disabled=true; msg.style.color=""; msg.textContent="שולחים…";
     fetch(ML_URL,{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
-      if(j&&j.success){msg.style.color="#7cc4ff";msg.textContent="Sent! Check your inbox in a minute (and the spam folder, just in case).";$("mlform").hidden=true}
-      else{msg.style.color="#ffb45c";msg.textContent="That didn't go through. Please check the address and try again.";$("ml-go").disabled=false}
-    }).catch(function(){msg.style.color="#ffb45c";msg.textContent="Couldn't reach the mail service. Please try again in a moment.";$("ml-go").disabled=false});
+      if(j&&j.success){msg.style.color="#7cc4ff";msg.textContent="נשלח! בדקו את תיבת הדואר בעוד דקה (וגם את תיקיית הספאם, ליתר ביטחון).";$("mlform").hidden=true}
+      else{msg.style.color="#ffb45c";msg.textContent="זה לא עבר. בדקו את הכתובת ונסו שוב.";$("ml-go").disabled=false}
+    }).catch(function(){msg.style.color="#ffb45c";msg.textContent="אין חיבור לשירות הדואר כרגע. נסו שוב בעוד רגע.";$("ml-go").disabled=false});
   });
 
   /* ---------- wiring ---------- */
