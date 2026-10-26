@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>מפת המוח שלכם · Aeongenics</title>
+<link rel="canonical" href="https://aeongenics.com/mapheb">
+<meta name="description" content="רואים תמונות בדמיון? שומעים קול פנימי? מריחים קפה שלא נמצא בחדר? עשרים שאלות, כשמונה דקות, ומפה של האופן שבו המוח שלכם שונה מזה של כל השאר.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Aeongenics">
+<meta property="og:title" content="מפת המוח שלכם · Aeongenics">
+<meta property="og:description" content="רואים תמונות בדמיון? שומעים קול פנימי? מריחים קפה שלא נמצא בחדר? עשרים שאלות, כשמונה דקות, ומפה של האופן שבו המוח שלכם שונה מזה של כל השאר.">
+<meta property="og:url" content="https://aeongenics.com/mapheb">
+<meta property="og:image" content="https://aeongenics.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="מפת המוח שלכם · Aeongenics">
+<meta name="twitter:description" content="רואים תמונות בדמיון? שומעים קול פנימי? מריחים קפה שלא נמצא בחדר? עשרים שאלות, כשמונה דקות, ומפה של האופן שבו המוח שלכם שונה מזה של כל השאר.">
+<meta name="twitter:image" content="https://aeongenics.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Heebo:wght@400;500;700&display=swap">
+<style>
+:root{
+  --void:#05070d; --deep:#0b1020; --glass:rgba(150,180,255,.06); --glass-line:rgba(170,200,255,.16);
+  --ink:#eef2ff; --dim:#9aa6c4; --faint:#5f6a88;
+  --amber:#ffb45c; --ice:#7cc4ff; --violet:#a98bff;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --accent:var(--amber);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--void)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(60% 50% at 80% 10%,rgba(124,196,255,.10),transparent 70%),
+  radial-gradient(50% 45% at 10% 90%,rgba(255,180,92,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding-inline:20px;width:100%}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(5,7,13,.55);border-bottom:1px solid var(--glass-line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.mark{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 200deg,var(--amber),var(--violet),var(--ice),var(--amber));box-shadow:0 0 18px rgba(124,196,255,.45);position:relative}
+.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--void)}
+.logo b{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;flex-wrap:wrap;gap:2px 18px}
+nav a{color:var(--dim);text-decoration:none;font-size:13px;letter-spacing:.04em;padding:4px 0;position:relative}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:linear-gradient(90deg,var(--amber),var(--ice));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav a[aria-current="page"]{color:var(--ink)}
+nav a[aria-current="page"]::after,nav a:hover::after{transform:scaleX(1)}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:4px}
+main{flex:1;padding-block:40px 80px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ice)}
+h1,h2{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(32px,5.6vw,64px);line-height:1.05}
+h2{font-size:clamp(22px,3vw,30px);line-height:1.2}
+h3{font-family:var(--display);font-weight:500;font-size:16px;margin:0;letter-spacing:.01em}
+p{margin:0;max-width:62ch}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--dim)}
+.grad{background:linear-gradient(100deg,var(--amber) 0%,#ffd9a8 30%,var(--ice) 70%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:600 14px var(--body);letter-spacing:.03em;padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;color:var(--void);background:linear-gradient(100deg,var(--amber),var(--ice));transition:box-shadow .3s,transform .2s,opacity .3s;touch-action:manipulation}
+.btn:hover{box-shadow:0 0 28px rgba(124,196,255,.45);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--glass-line)}
+.btn.ghost:hover{border-color:var(--ice)}
+.btn:disabled{opacity:.35;cursor:default;box-shadow:none;transform:none}
+.glass{background:var(--glass);border:1px solid var(--glass-line);border-radius:18px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;gap:12px;min-width:0}
+.meta{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.05em}
+footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);padding-block:26px;color:var(--faint);font-size:13px}
+footer a{color:var(--dim)}
+
+/* stage + screen transitions */
+.stage{max-width:760px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr)}
+.stage.wide{max-width:1120px}
+.screen{grid-area:1/1;min-width:0;transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1)}
+.screen.out-left{opacity:0;transform:translateX(-40px)}
+.screen.out-right{opacity:0;transform:translateX(40px)}
+.screen.in-right{opacity:0;transform:translateX(40px);transition:none}
+.screen.in-left{opacity:0;transform:translateX(-40px);transition:none}
+
+/* intro */
+.intro{display:grid;gap:22px;padding:clamp(26px,5vw,48px);position:relative;overflow:hidden}
+.intro .glow,.qcard .glow{position:absolute;width:260px;height:260px;border-radius:50%;filter:blur(70px);opacity:.28;pointer-events:none}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.chip{border:1px solid var(--glass-line);border-radius:14px;padding:14px;background:rgba(255,255,255,.02);display:grid;gap:4px}
+.chip i{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.chip span{font-size:14px;color:var(--dim);line-height:1.4}
+.privacy{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--dim);border:1px dashed rgba(124,196,255,.3);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px}
+.privacy svg{flex:none;margin-top:2px}
+.kbd{font-family:var(--mono);font-size:11px;color:var(--faint);border:1px solid var(--glass-line);border-radius:5px;padding:1px 6px}
+
+/* question card */
+.qcard{padding:clamp(22px,4.5vw,40px);gap:22px;position:relative;overflow:hidden}
+.progress{display:grid;gap:10px}
+.ptop{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ptrack{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.pfill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--amber),var(--violet),var(--ice));box-shadow:0 0 14px rgba(124,196,255,.5);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.segs span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s}
+.segs span.on{color:var(--accent)}
+.qtext{display:grid;gap:10px;min-height:5.5em}
+.qhint{color:var(--dim);font-size:15px}
+.icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;border:1px solid var(--glass-line);background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.08),transparent 70%)}
+.opts{display:grid;gap:10px}
+.opt{font:500 15px/1.35 var(--body);color:var(--ink);text-align:left;padding:13px 16px;border-radius:12px;border:1px solid var(--glass-line);background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .25s,background .25s,transform .2s;display:flex;align-items:center;gap:14px;touch-action:manipulation;min-height:52px}
+.opt:hover{border-color:var(--ice);background:rgba(124,196,255,.08)}
+.opt .n{flex:none;font-family:var(--mono);font-size:12px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;border:1px solid var(--glass-line);color:var(--dim)}
+.opt .dots{margin-left:auto;display:flex;gap:3px;flex:none}
+.opt .dots b{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.12)}
+.opt .dots b.f{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+.opt[aria-checked="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--accent) 25%,transparent)}
+.opt[aria-checked="true"] .n{background:var(--accent);color:var(--void);border-color:var(--accent)}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* result */
+.result{display:grid;gap:22px}
+.rhead{display:grid;gap:12px;text-align:center;justify-items:center;padding-top:6px}
+.rhead p{margin-inline:auto}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.mapbox{padding:18px}
+.map{width:100%;height:auto;display:block;overflow:visible}
+.map .zl{font-family:var(--display);font-size:13px;font-weight:500;fill:var(--dim);transition:fill .6s}
+.map .zs{font-family:var(--mono);font-size:9px;letter-spacing:.12em;fill:var(--faint)}
+.map .zone{transition:opacity .8s}
+.map .ax{font-family:var(--mono);font-size:10px;letter-spacing:.16em;fill:var(--faint)}
+.map .active .zl{fill:var(--ink)}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.profile{gap:16px}
+.ptype{font-family:var(--display);font-size:clamp(26px,3.6vw,38px);font-weight:500;line-height:1.1}
+.meters{display:grid;gap:12px}
+.meter{display:grid;gap:5px}
+.meter .lab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.meter .lab b{color:var(--ink);font-weight:500}
+.meter .tr{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.meter .fl{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.terms{display:grid;gap:10px}
+.term{border-left:2px solid var(--violet);padding:4px 0 4px 12px;font-size:15px;color:var(--dim)}
+.term b{color:var(--ink);font-weight:600}
+.speed{border:1px solid var(--glass-line);border-radius:14px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;background:rgba(124,196,255,.04)}
+.speed svg{flex:none}
+.speed p{font-size:15px}
+.copied{font-family:var(--mono);font-size:12px;color:var(--ice);min-height:1.2em}
+#copyfallback{width:100%;min-height:130px;font:13px/1.5 var(--mono);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:12px;padding:12px;resize:vertical}
+.closing{grid-template-columns:auto 1fr auto;align-items:center;gap:22px;position:relative;overflow:hidden}
+.closing img{width:84px;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 24px rgba(124,196,255,.25);display:block}
+#res-h:focus,#qtitle:focus{outline:none}
+.instant .meter .fl,.instant .screen{transition:none!important}
+.disclaimer{font-size:13px;color:var(--faint);text-align:center;max-width:70ch;margin-inline:auto}
+.zones-legend{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zcard{border:1px solid var(--glass-line);border-radius:12px;padding:12px;font-size:13px;color:var(--dim);display:grid;gap:4px;transition:border-color .4s,background .4s}
+.zcard h3{font-size:13px;color:var(--ink)}
+.zcard.me{border-color:var(--amber);background:rgba(255,180,92,.07)}
+
+@media (max-width:860px){.rgrid{grid-template-columns:1fr}.closing{grid-template-columns:auto 1fr}.closing .btn{grid-column:1/-1;justify-self:start}}
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .glass{padding:18px}
+  .qcard,.intro{padding:20px 16px}
+  .segs span{font-size:9px;letter-spacing:.04em}
+  .zones-legend{grid-template-columns:1fr}
+  .opt{padding:12px 12px;gap:10px;font-size:14.5px}
+  .opt .dots{display:none}
+  .qnav .btn{padding:12px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .screen,.pfill,.meter .fl,.opt,.btn,nav a::after,.zcard{transition:none!important}
+  .screen.out-left,.screen.out-right,.screen.in-left,.screen.in-right{transform:none}
+  .pulse{animation:none;opacity:.35}
+}
+
+/* ---------- v2 additions ---------- */
+.segs{grid-template-columns:repeat(4,1fr)}
+.pre-note{font-size:15px;color:var(--dim)}
+.timer{display:inline-flex;align-items:center;gap:10px;font:500 14px var(--mono);color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:9px 18px;width:max-content;background:rgba(255,180,92,.06);cursor:pointer}
+.timer:disabled{cursor:default}
+.opts{transition:opacity .4s}
+.opts.hush{opacity:.15}
+.timer i{font-style:normal;font-size:18px;color:var(--ink);min-width:1.4em;text-align:center}
+.sec-intro{border-left:2px solid var(--accent);padding:4px 0 4px 12px;font-size:14px;color:var(--dim)}
+.form{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.field select{font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:10px;padding:11px 12px;width:100%}
+.field select option{background:#0b1020}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink);border:1px dashed rgba(124,196,255,.35);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ice);flex:none}
+.care{display:grid;gap:8px;border:0;margin:0;padding:0}
+.care legend{font-size:15px;color:var(--ink);margin-bottom:6px;padding:0}
+.care label{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--dim);border:1px solid var(--glass-line);border-radius:10px;padding:10px 12px;cursor:pointer}
+.care input{accent-color:var(--amber);width:18px;height:18px;margin:0;flex:none}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--violet);color:#d9ccff;border-radius:999px;padding:5px 12px;background:rgba(169,139,255,.08)}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lists ul{margin:0;padding-left:18px;color:var(--dim);font-size:15px;display:grid;gap:6px}
+.lists h3{margin-bottom:8px}
+.radar{width:100%;max-width:380px;height:auto;display:block;margin:0 auto}
+.radar text{font-family:var(--mono);font-size:10px;letter-spacing:.08em;fill:var(--dim)}
+.note{border-left:2px solid var(--amber);padding:4px 0 4px 12px;font-size:15px;color:var(--dim)}
+.scene{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.scene div{border:1px solid var(--glass-line);border-radius:12px;padding:14px;font-size:14.5px;color:var(--dim);display:grid;gap:6px}
+.scene div.me{border-color:var(--amber);background:rgba(255,180,92,.06)}
+.scene b{font-family:var(--display);font-weight:500;font-size:14px}
+.share{display:flex;flex-wrap:wrap;gap:10px}
+.share a,.share button{font:600 13px var(--body);color:var(--ink);text-decoration:none;border:1px solid var(--glass-line);border-radius:999px;padding:10px 16px;background:rgba(255,255,255,.03);cursor:pointer}
+.share a:hover,.share button:hover{border-color:var(--ice)}
+.predict{border-color:rgba(255,180,92,.35);background:linear-gradient(135deg,rgba(255,180,92,.07),rgba(169,139,255,.05))}
+.plist{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.plist li{font-size:clamp(16px,1.8vw,19px);line-height:1.45;color:var(--ink);padding-left:28px;position:relative}
+.plist li::before{content:"";position:absolute;left:4px;top:.55em;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--violet));box-shadow:0 0 10px rgba(255,180,92,.5)}
+.deep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px}
+.deep h3{margin-bottom:8px}
+.deep ul{margin:0;padding-left:18px;color:var(--dim);font-size:15px;display:grid;gap:6px}
+@media (max-width:700px){.deep{grid-template-columns:1fr}}
+
+.summary{border-color:rgba(255,180,92,.4);background:linear-gradient(160deg,rgba(255,180,92,.08),rgba(124,196,255,.05) 60%,rgba(169,139,255,.06));box-shadow:0 0 40px rgba(255,180,92,.08)}
+.sl{display:grid;gap:5px}
+.sl-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.sl-top b{color:var(--ink);font-weight:500}
+.sl-tr{position:relative;height:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin:4px 0}
+.sl-z{border-radius:99px;background:rgba(255,255,255,.06)}
+.sl-z:nth-of-type(1){background:color-mix(in srgb,var(--c) 10%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(2){background:color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(3){background:color-mix(in srgb,var(--c) 27%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(4){background:color-mix(in srgb,var(--c) 36%,rgba(255,255,255,.04))}
+.sl-z:nth-of-type(5){background:color-mix(in srgb,var(--c) 47%,rgba(255,255,255,.04))}
+.sl-k{position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff;border:3px solid var(--c);box-shadow:0 0 14px var(--c);transition:left 1.4s cubic-bezier(.2,.7,.2,1)}
+.sl-tagged{margin-top:30px}
+.sl-tag{font-weight:500;position:absolute;bottom:20px;left:0;white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);background:rgba(5,7,13,.75);border-radius:999px;padding:3px 9px;transition:left 1.4s cubic-bezier(.2,.7,.2,1)}
+.sl-ends{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.feats{display:grid;gap:8px}
+.feat{display:flex;gap:10px;align-items:flex-start;border:1px solid rgba(169,139,255,.35);background:rgba(169,139,255,.07);border-radius:12px;padding:10px 12px;font-size:14.5px;color:var(--dim)}
+.feat svg{flex:none;margin-top:2px}
+.feat b{color:var(--ink);font-weight:600}
+.ecard{border-left:3px solid var(--c)}
+.ehead{display:flex;align-items:center;justify-content:flex-start;gap:12px}
+.eic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;border:1px solid var(--glass-line);background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--c) 22%,transparent),transparent 75%)}
+.ehead .elvl{margin-left:auto;border:1px solid color-mix(in srgb,var(--c) 50%,transparent);color:var(--c);border-radius:999px;padding:3px 10px}
+.eknow,.eprob{display:flex;gap:10px;align-items:flex-start}
+.eknow svg,.eprob svg{flex:none;margin-top:3px}
+.eprob{border-left:0;padding-left:0}
+.mindviz{display:block;width:100%;height:clamp(240px,42vw,380px);margin:-6px 0 -10px}
+.mlrow{display:flex;gap:10px;flex-wrap:wrap}
+.mlrow input{flex:1 1 220px;font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 16px}
+.mlrow input:focus{outline:2px solid var(--ice);outline-offset:2px}
+#ml-msg{font-size:13px;min-height:1.2em}
+.ecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ecard{gap:10px;align-content:start}
+
+.ehead h3{font-size:17px}
+.elvl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.ecard .tr{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.ecard .fl{height:100%;width:0;border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.ecard p{font-size:15px;max-width:none}
+.ecard .eprob span{font-style:italic}
+.eyou{color:var(--ink)}
+.eknow{color:var(--dim)}
+.eknow b{color:var(--ink);font-weight:600}
+.eprob{color:var(--ink)}
+@media (max-width:760px){.ecards{grid-template-columns:1fr}}
+.vs{border:1px solid var(--ice);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink);background:rgba(124,196,255,.06)}
+@media (max-width:640px){.lists,.scene{grid-template-columns:1fr}}
+
+/* ---------- Hebrew / right-to-left ---------- */
+:root{--display:"Unbounded","Heebo","Arial Black",system-ui,sans-serif;--body:"Instrument Sans","Heebo",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono","Heebo",ui-monospace,Menlo,Consolas,monospace}
+.eyebrow,.chip i,.segs span,.meter .lab,.sl-top,.sl-ends,.sl-tag,.elvl,.badge,.field label,.meta{letter-spacing:.02em}
+nav a::after{transform-origin:right}
+.opt{text-align:right}
+.opt .dots{margin-left:0;margin-right:auto}
+.term{border-left:0;border-right:2px solid var(--violet);padding:4px 12px 4px 0}
+.sec-intro{border-left:0;border-right:2px solid var(--accent);padding:4px 12px 4px 0}
+.note{border-left:0;border-right:2px solid var(--amber);padding:4px 12px 4px 0}
+.ecard{border-left:1px solid var(--glass-line);border-right:3px solid var(--c)}
+.ehead .elvl{margin-left:0;margin-right:auto}
+.lists ul,.deep ul{padding-left:0;padding-right:18px}
+.radar{direction:ltr}
+.sl-k{left:auto;right:0;margin:-10px -10px 0 0;transition:right 1.4s cubic-bezier(.2,.7,.2,1)}
+.sl-tag{left:auto;right:0;transition:right 1.4s cubic-bezier(.2,.7,.2,1)}
+.screen.out-left{transform:translateX(40px)}
+.screen.out-right{transform:translateX(-40px)}
+.screen.in-right{transform:translateX(-40px)}
+.screen.in-left{transform:translateX(40px)}
+</style>
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html"><span class="mark" aria-hidden="true"></span><b>Aeongenics</b></a>
+    <nav aria-label="Pages" dir="ltr">
+      <a href="index.html">Home</a>
+      <a href="index.html#book">The Book</a>
+      <a href="index.html#research">Research</a>
+      <a href="map-your-mind.html">Map Your Mind</a>
+      <a href="index.html#consulting">Consulting</a>
+      <a href="index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="stage" id="stage">
+
+    <!-- INTRO -->
+    <section class="screen" id="s-intro" aria-labelledby="intro-h">
+      <div class="glass intro">
+        <span class="glow" style="background:var(--amber);left:-90px;top:-90px" aria-hidden="true"></span>
+        <span class="glow" style="background:var(--ice);right:-110px;bottom:-120px" aria-hidden="true"></span>
+        <span class="eyebrow">בדקו את המוח שלכם · כ־8 דקות · 20 שאלות</span>
+        <h1 id="intro-h">מפת <span class="grad">המוח</span> שלכם</h1>
+        <canvas id="mindviz" class="mindviz" aria-hidden="true"></canvas>
+        <p class="lede">עצמו עיניים ודמיינו את הפנים של חבר. יש מי שרואים אותן חיות כמו במציאות. יש מי שלא רואים כלום ופשוט יודעים איך החבר נראה. שני המצבים נורמליים, וכמעט אף אחד לא יודע עד כמה האנשים סביבו שונים, אפילו בתוך המשפחה. בואו נגלה איפה אתם על המפה.</p>
+        <div class="chips" aria-label="ארבעה חלקים">
+          <div class="chip"><i style="color:var(--amber)">01 · עין הדמיון</i><span>פנים, נופים, תפוח שאפשר לסובב</span></div>
+          <div class="chip"><i style="color:var(--violet)">02 · חושים פנימיים אחרים</i><span>מוזיקה, קולות, קפה, פטיש, רגש</span></div>
+          <div class="chip"><i style="color:var(--ice)">03 · הקול הפנימי</i><span>המונולוג הפנימי שלכם וכמה מהר הוא רץ</span></div>
+          <div class="chip"><i style="color:#ffd9a8">04 · מטה־קוגניציה ועוד</i><span>חשיבה על החשיבה, והתמצאות במרחב</span></div>
+        </div>
+        <p class="pre-note">אפשר לעצום עיניים בכל שאלה, אם זה עוזר. אין תשובות נכונות: כל מוח על המפה הזו הוא מוח נורמלי, פשוט שונה.</p>
+        <div class="privacy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span>בלי מעקב, והתשובות שלכם נשארות אנונימיות. בסוף אפשר גם לבחור לצרף את התשובות האנונימיות שלכם למחקר שלנו.</span>
+        </div>
+        <div class="row">
+          <button class="btn" id="start" type="button">מתחילים במיפוי</button>
+          <span class="meta">טיפ: מקשי המספרים בוחרים תשובה, <span class="kbd">→</span> חוזר אחורה</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTION -->
+    <section class="screen" id="s-q" hidden aria-live="polite">
+      <div class="glass qcard" id="qcard">
+        <span class="glow" id="qglow" style="left:-110px;top:-110px" aria-hidden="true"></span>
+        <div class="progress">
+          <div class="ptop"><span class="eyebrow" id="qsec">עין הדמיון</span><span class="meta" id="qcount" dir="ltr">1 / 20</span></div>
+          <div class="ptrack" role="progressbar" aria-label="התקדמות" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="ptrack"><div class="pfill" id="pfill"></div></div>
+          <div class="segs" aria-hidden="true"><span data-s="0">עין הדמיון</span><span data-s="1">חושים אחרים</span><span data-s="2">קול פנימי</span><span data-s="3">מטה־קוגניציה</span></div>
+        </div>
+        <p class="sec-intro" id="secintro" hidden></p>
+        <div class="row" style="gap:16px;flex-wrap:nowrap;align-items:flex-start">
+          <div class="icon" id="qicon" aria-hidden="true"></div>
+          <div class="qtext"><h2 id="qtitle" tabindex="-1"></h2><p class="qhint" id="qhint"></p></div>
+        </div>
+        <button class="timer" id="timer" type="button" hidden></button>
+        <div class="opts" id="opts" role="radiogroup" aria-labelledby="qtitle"></div>
+        <div class="qnav">
+          <button class="btn ghost" id="back" type="button">→ חזרה</button>
+          <button class="btn" id="next" type="button" disabled>הבא ←</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT YOU -->
+    <section class="screen" id="s-about" hidden aria-labelledby="about-h">
+      <div class="glass qcard">
+        <span class="eyebrow">כמעט סיימנו · לא חובה</span>
+        <h2 id="about-h" tabindex="-1">קצת עליכם</h2>
+        <p class="qhint">לא חובה ואנונימי. זה עוזר למחקר שלנו!</p>
+        <div class="form">
+          <div class="field"><label for="f-age">גיל</label><select id="f-age"><option value="">מעדיפים לא לומר</option><option value="Under 18">מתחת ל־18</option><option value="18–24">18–24</option><option value="25–34">25–34</option><option value="35–44">35–44</option><option value="45–54">45–54</option><option value="55–64">55–64</option><option value="65+">65+</option></select></div>
+          <div class="field"><label for="f-country">מדינה</label><select id="f-country"><option value="">מעדיפים לא לומר</option></select></div>
+          <div class="field"><label for="f-gender">מגדר</label><select id="f-gender"><option value="">מעדיפים לא לומר</option><option value="Woman">אישה</option><option value="Man">גבר</option><option value="Another way">אחר</option></select></div>
+          <div class="field"><label for="f-field">תחום עיסוק</label><select id="f-field"><option value="">מעדיפים לא לומר</option><option value="Arts and design">אמנות ועיצוב</option><option value="Science and research">מדע ומחקר</option><option value="Technology and engineering">טכנולוגיה והנדסה</option><option value="Health and medicine">בריאות ורפואה</option><option value="Education">חינוך</option><option value="Business and finance">עסקים ופיננסים</option><option value="Trades and hands-on work">מקצועות מעשיים ועבודת כפיים</option><option value="Student">סטודנטים</option><option value="Other">אחר</option></select></div>
+          <fieldset class="care" id="f-care"><legend>בכנות, זה לא ישנה את המפה: איך עניתם?</legend>
+            <label><input type="radio" name="care" value="careful">בקפידה: באמת ניסיתי בכל שאלה</label>
+            <label><input type="radio" name="care" value="mostly">ברוב השאלות, בקפידה</label>
+            <label><input type="radio" name="care" value="clicked">לחצתי מהר כדי לראות את התוצאה</label>
+          </fieldset>
+          <label class="consent"><input type="checkbox" id="f-consent"><span>ידוע לי שהתשובות שלי ישמשו באופן אנונימי במחקר של Aeongenics.</span></label>
+        </div>
+        <div class="qnav">
+          <button class="btn ghost" id="about-back" type="button">→ חזרה</button>
+          <button class="btn" id="about-go" type="button">הראו לי את המפה ←</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="s-res" hidden aria-labelledby="res-h">
+      <div class="result">
+        <div class="rhead">
+          <span class="eyebrow">המפה שלכם מוכנה</span>
+          <h1 id="res-h">המוח שלכם <span class="grad">במבט אחד</span></h1>
+          <p class="lede" id="rtag"></p>
+        </div>
+
+        <div class="glass predict">
+          <p style="color:var(--ink);font-size:clamp(16px,1.8vw,19px);max-width:none">כל אחד מכיר את המוח שלו מבפנים, ולכן קל להניח שאצל כולם זה עובד אותו דבר. זה לא כך. הכי הרבה לומדים על המוח שלכם ממה שיש לכם ולאחרים אין, וממה שיש לאחרים ולכם אין.</p>
+        </div>
+
+        <div class="rgrid">
+          <div class="glass summary">
+            <h2 style="font-size:clamp(20px,2.6vw,26px)">סיכום</h2>
+            <div class="meters" id="meters"></div>
+            <div id="feat-wrap" style="display:grid;gap:10px">
+              <h3 style="margin-top:6px">תכונות מיוחדות של המוח שלכם</h3>
+              <div class="feats" id="rterms"></div>
+            </div>
+            <div id="rnotes" style="display:grid;gap:10px"></div>
+          </div>
+          <div class="glass">
+            <h3>החושים הפנימיים שלכם</h3>
+            <svg class="radar" id="radar" viewBox="0 0 360 340" role="img" aria-label="החושים הפנימיים שלכם"></svg>
+          </div>
+        </div>
+
+        <div id="hi-wrap" style="display:grid;gap:14px">
+          <h2 style="font-size:clamp(20px,2.6vw,26px)">מה מייחד את המוח שלכם</h2>
+          <div class="ecards" id="cards-hi"></div>
+        </div>
+
+        <div id="rest-wrap" style="display:grid;gap:14px">
+          <h2 style="font-size:clamp(20px,2.6vw,26px)">שאר המפה שלכם</h2>
+          <div class="ecards" id="cards-rest"></div>
+        </div>
+
+        <!-- The results email is in English (MailerLite template), so it stays off in the Hebrew version. -->
+        <div class="glass mailbox" id="mailbox" hidden>
+          <form id="mlform" class="mlrow" novalidate>
+            <input type="email" id="ml-email" aria-label="Email">
+            <button class="btn" type="submit" id="ml-go">Send</button>
+          </form>
+          <input type="checkbox" id="ml-upd" hidden>
+          <p class="meta" id="ml-msg" role="status"></p>
+        </div>
+
+        <div class="glass closing">
+          <span class="glow" style="position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(60px);opacity:.3;left:-60px;top:-80px;background:var(--violet);pointer-events:none" aria-hidden="true"></span>
+          <a href="index.html#book"><img src="cover.jpg?v=2" alt="כריכת הספר Solve for Human" width="900" height="1346"></a>
+          <div style="display:grid;gap:6px">
+            <h2 style="font-size:clamp(18px,2.4vw,24px)" id="cta-h">סקרנים למה מוחות שונים כל כך זה מזה?</h2>
+            <p style="color:var(--dim)">זה הנושא של הספר <i dir="ltr">Solve for Human: What Makes Us Conscious, and Why AI Isn't (Yet)</i> (באנגלית).</p>
+          </div>
+          <a class="btn" href="index.html#book">גלו את הספר</a>
+        </div>
+
+        <div class="glass" style="gap:14px">
+          <h3>השוו מוחות עם חברים ומשפחה</h3>
+          <p style="color:var(--dim)">שלחו להם את המבחן. דווקא האנשים הקרובים אליכם עשויים לחיות בעולם פנימי שונה לגמרי, ולא תדעו אם לא תשאלו.</p>
+          <div class="share" id="share">
+            <a id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
+            <a id="sh-mail">אימייל</a>
+            <a id="sh-fb" target="_blank" rel="noopener">Facebook</a>
+            <a id="sh-x" target="_blank" rel="noopener">X</a>
+            <button id="sh-card" type="button">תמונה לאינסטגרם</button>
+            <button id="sh-native" type="button" hidden>עוד…</button>
+            <button id="copy" type="button">העתקת קישור</button>
+          </div>
+          <span class="copied" id="copied" role="status"></span>
+          <textarea id="copyfallback" hidden readonly aria-label="קישור להעתקה" dir="ltr"></textarea>
+        </div>
+        <div class="row" style="justify-content:center"><button class="btn ghost" id="again" type="button">לעשות את המבחן שוב</button></div>
+
+        <p class="disclaimer">לסקרנות, לא לאבחון. זהו דיוקן שנבנה מהתשובות שלכם, לא מבחן קליני או מתוקף. אם משהו כאן מעורר שאלה אמיתית לגבי המוח שלכם, איש מקצוע מוסמך הוא הכתובת הנכונה.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer><div class="wrap"><a href="https://aeongenics.com/" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Aeongenics</a> · מחקר תודעה וייעוץ בינה מלאכותית · <span dir="ltr">Erez Aeon Batat</span></div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbxnbLMdU163Yu3ndfZLcwoqlIi3GlZzlDYUsXPfEGXKDNoCiJuKJ8-uMzt__EdTULmj/exec";
+  var VERSION="v2-he-2026-10-26";
+  var PAGE=location.origin+location.pathname;
+  var still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $=function(id){return document.getElementById(id)};
+
+  var SECTIONS=[
+    {name:"עין הדמיון",color:"var(--amber)",hex:"#ffb45c"},
+    {name:"חושים פנימיים אחרים",color:"var(--violet)",hex:"#a98bff"},
+    {name:"הקול הפנימי",color:"var(--ice)",hex:"#7cc4ff",intro:"החלק הזה עוסק במונולוג הפנימי שלכם: זרם המחשבות המילוליות שעובר לכם בראש. זה שונה מתמונות בדמיון, מצלילים מדומיינים או מכל חוש פנימי אחר."},
+    {name:"מטה־קוגניציה ועוד",color:"#ffd9a8",hex:"#ffd9a8",intro:"הקטע האחרון: חשיבה על החשיבה שלכם, ועוד שאלה אחת על התמצאות."}
+  ];
+
+  /* Each option: e = effects on scales (0-100). Scales:
+     V vividness · A autonomy (100 plays on its own, 0 steered) · D imagery density
+     mu music · vo voices · sm smell · ta taste · to touch · em emotion
+     W inner voice · S thought speed · M metacognition · N direction
+     f = flags. Scoring follows Aeon's notes in "Map Your Mind v2 - clean text". */
+  var Q=[
+    {s:0,ic:"face",t:"דמיינו את הפנים של חבר קרוב.",h:"קחו נשימה, ואם בא לכם, עצמו עיניים. איך הפנים מופיעות?",
+     o:[["חיות כמו במציאות",{V:100}],["ברורות, עם לא מעט פרטים",{V:75}],["תמונה חולפת שהופיעה ונעלמה",{V:50}],["רמז קלוש, קווי מתאר, יותר רעיון מתמונה",{V:25}],["חושך מוחלט: פשוט ידוע לי שהן שם",{V:0},["aph"]]]},
+    {s:0,ic:"film",t:"התמונה של החבר זזה כמו וידאו, או עמדה במקום כמו צילום?",h:"",
+     o:[["תמונה קפואה, כמו צילום, או שזזה לשנייה־שתיים, כמו GIF",{A:55}],["וידאו די ברור של החבר במצב אמיתי מהעבר",{A:75}],["סרט ב־4K: סצנה חדשה לגמרי שהמוח המציא בעצמו",{A:100,V:95}],["תמונה קפואה שזזה רק לפי פקודה שלי",{A:0}],["בעיקר הרגשתי אותה ולא ראיתי: חושך מוחלט, או קווי מתאר קלושים",{V:5},["aph"]]]},
+    {s:0,ic:"tower",pre:"דמיינו ילדה קטנה מחזיקה מטרייה מול מגדל אייפל. ואז לחצו על 'המשך'.",t:"באיזה צבע הייתה המטרייה? מה היא לבשה? מה עשתה היד השנייה שלה?",h:"",
+     o:[["סרט שלם, מלא פרטים: שלוש התשובות ידועות לי",{V:100,A:100}],["תמונה קפואה, ושלוש התשובות ידועות לי",{V:85,A:55}],["למטרייה היה צבע, אבל הבגדים והיד השנייה הופיעו רק כששאלתם",{V:60,A:30}],["קווי מתאר מטושטשים, בלי פרטים ובלי צבע",{V:25,A:15}],["שום דבר חזותי. רק חשתי את הסצנה",{V:0},["aph"]]]},
+    {s:0,ic:"sun",timer:15,t:"דמיינו איש זקן נשען על מקל ומביט בשקיעה. הפעילו את הטיימר, והחזיקו את התמונה קפואה בראש עד שהוא נגמר.",h:"",
+     o:[["בלתי אפשרי. זה כמו סרט: דברים ממשיכים לקרות ואין לי איך לעצור את התמונה",{A:100,V:90}],["אפשר להחזיק אותה כמה שניות, ואז היא מתחילה לזוז וצריך להחזיר אותה בכוח",{A:70,V:80}],["אפשר להחזיק אותה, אבל אחרי שנייה או כמה היא דועכת לחושך וצריך להחזיר אותה",{A:30,V:50}],["בקלות: התמונה קפואה וחיה, ואפשר להחזיק אותה כמה שרוצים",{A:0,V:90}],["אין לי שום תמונה. על מה כולכם מדברים?",{V:0},["aph"]]]},
+    {s:0,ic:"apple",t:"דמיינו תפוח אדום בתלת־ממד. חתכו אותו לחצי. עכשיו סובבו לאט את שני החצאים בכיוונים מנוגדים, באותו זמן.",h:"",
+     o:[["החצאים נראים לי, אבל התמונה הופכת מהר לסרט משלה ואין לי איך להמשיך לסובב אותם",{A:100,V:80}],["התפוח ברור לי ואפשר לחתוך אותו, אבל לסובב את החצאים קשה",{A:60,V:70}],["החצאים נראים כאילו התפוח מולי, ומסתובבים בדיוק לפי רצוני",{A:0,V:90}],["התפוח נראה לי רק שטוח, בדו־ממד, בלי עומק",{V:50},["flat"]],["אפשר להרגיש את החצאים מסתובבים בחושך, אבל אין תמונה",{V:0},["aph"]]]},
+
+    {s:1,ic:"note",t:"נגנו שיר בראש. עכשיו הגבירו והנמיכו את העוצמה.",h:"",
+     o:[["השיר נשמע כאילו מהרדיו, ואפשר להגביר ולהנמיך כרצוני",{mu:100}],["השיר נשמע כאילו מהרדיו, אבל העוצמה קבועה",{mu:75}],["כל השיר נשמע, אבל בשקט, כמו על השתקה",{mu:50}],["רק חלק ממנו נשמע, כלי אחד או השירה, ובשקט",{mu:25}],["אין מוזיקה בראש שלי",{mu:0},["deafmusic"]]]},
+    {s:1,ic:"sax",t:"נגנו שיר שאתם אוהבים, עם כלים ושירה. עכשיו נסו להוסיף לו סקסופון.",h:"",
+     o:[["הכול נשמע ברור, כאילו מהרדיו: כלים וזמר יחד, ואפשר להוסיף את הסקסופון",{mu:100}],["הכלים נשמעים בהרמוניה, אבל לא יחד עם הזמר; או זה או זה. אפשר להוסיף את הסקסופון",{mu:70}],["הכלים נשמעים בהרמוניה, אבל לא יחד עם הזמר. אי אפשר להוסיף את הסקסופון",{mu:55}],["רק מנגינה, ערוץ אחד: הזמר או כלי אחד",{mu:30},["melody"]],["לא נשמע כלום. על מה אתם מדברים?",{mu:0},["deafmusic"]]]},
+    {s:1,ic:"voice",t:"חשבו על מישהו קרוב אליכם ושמעו אותו מדבר בראש.",h:"",
+     o:[["כאילו האדם לידי, בקול שלו",{vo:100}],["הקול שלו נשמע, אבל בשקט, כמו בהשתקה",{vo:70}],["האינטונציה וצורת הדיבור שלו מגיעות, אבל הקול הוא שלי או קול כללי",{vo:45}],["מישהו מדבר, אבל זה לא נשמע כמוהו",{vo:25}],["אי אפשר לשמוע אף אחד מדבר בראש",{vo:0}]]},
+    {s:1,ic:"cup",t:"דמיינו שאתם מחזיקים כוס קפה טרי. אפשר להריח אותו?",h:"",
+     o:[["כאילו הכוס בידיים, ואפשר לשנות את הניחוח או לחזק ולהחליש אותו",{sm:100}],["כן, ריח קפה חזק, אבל קשה לשנות אותו",{sm:70}],["לחישה קלושה שלו",{sm:35}],["אין שום ריח בדמיון",{sm:0}]]},
+    {s:1,ic:"lemon",t:"עכשיו דמיינו שאתם נוגסים בפרוסת לימון.",h:"",
+     o:[["הטעם כאילו נגסתי באמת; הוא עדיין בפה",{ta:100}],["הטעם ברור בדמיון, אבל זה לא כמו לאכול",{ta:70}],["לחישה קלושה של הטעם",{ta:35}],["אין שום טעם בדמיון",{ta:0}]]},
+    {s:1,ic:"hammer",t:"דמיינו שאתם אוחזים בפטיש ממש מתחת לראש המתכת. עכשיו החליקו את היד לאט לקצה הידית. מרגישים את המשקל זז?",h:"קודם הרגישו את המשקל ביד, ואז תנו לו לזוז כשהיד מחליקה.",
+     o:[["כן, ברור מאוד, עם כל סנטימטר שהיד מחליקה",{to:100}],["יש הבדל בין שני הקצוות, אבל לא לאורך הדרך",{to:65}],["בערך יש משקל, אבל הוא לא משתנה כשהיד מחליקה",{to:35}],["לא, אין תחושה של משקל הפטיש בדמיון",{to:0}]]},
+    {s:1,ic:"thermo",t:"בחוץ קר מאוד ואתם נוגעים בידית דלת ממתכת. עכשיו תנו לה להתחמם לאט עד שהיא לוהטת, כמו מתכת שנשארה בשמש של הקיץ. מרגישים את הטמפרטורה משתנה?",h:"",
+     o:[["כן, ברור מאוד, בכל שלב בדרך",{to:100}],["יש הבדל בין שני הקצוות, אבל לא בשינוי שבאמצע",{to:65}],["בערך יש טמפרטורה, אבל היא לא משתנה בכלל",{to:35}],["לא, אין תחושה של טמפרטורת הידית בדמיון",{to:0}]]},
+    {s:1,ic:"heart",t:"חשבו על תסכול. לא על מה שהמילה אומרת: האם המוח שלכם יכול ליצור מחדש את התחושה עצמה?",h:"זו שאלה על דמיון, לא על מצב רוח. יש מוחות שמסוגלים לייצר רגש לפי בקשה, כמו שאחרים מייצרים תמונה.",
+     o:[["כן, ברגע שקראתי את המילה, כאילו התסכול כאן עכשיו",{em:100}],["כן, אם מנסים, ואפשר לחזק או להחליש אותה",{em:80}],["הד קלוש שלה, אם מתאמצים",{em:40}],["ברור לי מה זה, אבל בדמיון אין שום תחושה",{em:0}]]},
+
+    {s:2,ic:"talk",t:"שומעים את המונולוג הפנימי שלכם?",h:"",
+     o:[["בטח, כל הזמן. הוא אף פעם לא נעצר",{W:100}],["לעתים קרובות מאוד, כן",{W:80}],["לפעמים",{W:55}],["לעתים רחוקות",{W:25}],["אין לי מושג על מה אתם מדברים. מעולם לא שמעתי את המחשבות שלי",{W:0},["nomono"]]]},
+    {s:2,ic:"talk2",t:"אתם מתאמנים על שיחות בראש?",h:"ויכוחים שניצחתם במקלחת, נאומים שלא תשאו לעולם, התשובה המושלמת שעלתה לכם שלושה ימים מאוחר מדי.",
+     o:[["כמעט תמיד, והן נשמעות כדיבור",{W:100}],["כמעט תמיד, והן נראות כמו סרט שרץ מעצמו, עם דמויות שמדברות",{W:30,A:100,D:85}],["לפעמים, בעיקר כדיבור פנימי",{W:70}],["לפעמים, בעיקר כסרט עם קול שרץ מעצמו",{W:30,A:75,D:65}],["לעתים רחוקות או אף פעם",{}]]},
+    {s:2,ic:"bolt",t:"באיזו מהירות רץ בדרך כלל המונולוג הפנימי שלכם? המילים, לא התמונות בדמיון.",h:"בחרו את התמונה שמתאימה, גם אם תמונות זה לא הצד החזק שלכם.",
+     o:[["מסלול מרוצים",{S:100}],["כביש מהיר עמוס",{S:75}],["תנועה רגילה",{S:50}],["טיול רגוע",{S:25}],["אין לי מונולוג פנימי בכלל",{W:0},["nomono"]]]},
+    {s:2,ic:"spark",t:"כמה עמוס הדמיון החזותי שלכם?",h:"במלוא העוצמה זה סרט בהרצה מהירה, סצנה על סצנה. בקצה השקט, שקופית מדי פעם, או כלום.",
+     o:[["התמונות לא מפסיקות. בעצם החשיבה שלי היא בתמונות",{D:100}],["עמוס מאוד, אבל לא כל הזמן",{D:75}],["תלוי במה שחושבים עליו",{D:50}],["ספורדי, פה ושם. החזותי הוא לא הצד החזק שלי",{D:25}],["לעתים רחוקות או אף פעם אין תמונות בדמיון",{D:0}]]},
+    {s:3,ic:"branch",t:"באמצע שיחה, כמה רחוק אחורה אפשר לעקוב אחרי רצף המחשבות שלכם?",h:"שיחות מתפצלות. אפשר לטפס בחזרה על הענפים עד הנקודה שבה התחלתם?",
+     o:[["בדרך כלל עד הסוף: אפשר לחזור לכל ענף פתוח בשיחה",{M:100}],["די רחוק, אבל ככל שהולכים אחורה זה קשה יותר",{M:75}],["כמה ענפים אחורה, אבל בדרך כלל לא יותר",{M:50}],["אין לי ממש זיכרון של מה שחשבתי לפני רגע. כאילו זה נמחק",{M:15}],["השאלה הזו עושה לי כאב ראש. אין לי מושג למה הכוונה",{M:0}]]},
+    {s:3,ic:"loop",t:"אפשר לחשוב על החשיבה שלכם בזמן שאתם חושבים?",h:"לשים לב כמה מהר רץ המונולוג הפנימי בזמן שהוא רץ, או לראות איך הגעתם למחשבה, כאילו מודעות שנייה עוקבת מהצד.",
+     o:[["ברור. \"חשיבה בסטריאו\" כל הזמן: שני מונולוגים במקביל, ואין דרך לכבות את זה",{M:100},["stereo"]],["בטח, בלי בעיה, אבל רק כשבוחרים",{M:80}],["לפעמים, אבל צריך להתאמץ",{M:50}],["כמעט אף פעם, אבל ברור לי למה הכוונה",{M:25}],["אין לי מושג על מה מדובר. נשמע כמו סיוט מחשבתי",{M:0}]]},
+    {s:3,ic:"compass",t:"נכנסתם לקניון מהחניון ומצאתם את החנות. פתאום האורות כבים וכל החנויות סגורות. הייתם מוצאים את הדרך חזרה לרכב רק לפי חוש הכיוון?",h:"בלי ציוני דרך, בלי שלטים. רק הכיוון הכללי.",
+     o:[["אין סיכוי. מקומות נשמרים אצלי בזיכרון חזותי; בלי ציוני דרך, או בלילה, חוש הכיוון שלי גרוע",{N:0}],["אולי, אם לא הלכתי רחוק. אצלי זה פעם כן פעם לא",{N:35}],["זה די חזק אצלי, אז כנראה שכן",{N:70}],["ברור. כאילו יש לי מצפן מובנה במצח",{N:100},["compass"]]]}
+  ];
+
+  var IC={
+    face:'<circle cx="12" cy="10" r="5"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+    film:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    tower:'<path d="M12 2l-2 7h4zM9 9h6l2 6H7zM7 15l-3 7M17 15l3 7M10 15c0 3 4 3 4 0"/>',
+    sun:'<path d="M3 17h18M6 21h12"/><path d="M7 17a5 5 0 0 1 10 0"/><path d="M12 6v3M5.6 9.6l2 2M18.4 9.6l-2 2"/>',
+    apple:'<path d="M12 7c-3-2-7 0-7 5 0 4 3 8 5 8 1 0 1.3-.5 2-.5s1 .5 2 .5c2 0 5-4 5-8 0-5-4-7-7-5z"/><path d="M12 7c0-2 1-3 3-4"/>',
+    note:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+    sax:'<path d="M15 3h3M16.5 3v9a5 5 0 0 1-10 0V10"/><circle cx="6.5" cy="17" r="3"/><path d="M14 7h2M14 10h2"/>',
+    voice:'<path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>',
+    cup:'<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2M8 3c0 2 2 2 2 4M12 3c0 2 2 2 2 4"/>',
+    lemon:'<ellipse cx="12" cy="12" rx="8" ry="6" transform="rotate(-30 12 12)"/><path d="M8 16l8-8M12 12l-3-2M12 12l2 3"/>',
+    hammer:'<path d="M4 7h9v4H4z"/><path d="M13 9h2M9 11l7 10"/>',
+    thermo:'<path d="M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z"/><path d="M12 9v7"/>',
+    heart:'<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+    talk:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+    talk2:'<path d="M3 4h12v8H8l-3 3V12H3z"/><path d="M15 9h6v8h-2v3l-3-3h-5v-3"/>',
+    bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    spark:'<rect x="3" y="4" width="8" height="7" rx="1"/><rect x="13" y="4" width="8" height="7" rx="1"/><rect x="3" y="13" width="8" height="7" rx="1"/><rect x="13" y="13" width="8" height="7" rx="1"/>',
+    branch:'<circle cx="6" cy="19" r="2"/><circle cx="6" cy="5" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M6 13c0-3 4-5 10-5"/>',
+    loop:'<circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/>',
+    compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+    hand:'<path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>',
+    eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>',
+    star:'<path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"/>'
+  };
+
+  var ans=new Array(Q.length).fill(null), pre=new Array(Q.length).fill(false), cur=0, busy=false, advanceTimer=null, tick=null;
+  /* data-quality signals (saved silently with consent): ms per question, total time, Q4 timer used */
+  var secs=new Array(Q.length).fill(0), qT0=0, startT=0, timerUsed=false;
+  function clockOut(){if(qT0){secs[cur]+=Date.now()-qT0;qT0=0}}
+
+  function swap(from,to,dir,after){
+    if(!from){to.hidden=false;after&&after();return}
+    if(from===to){after&&after();return}
+    if(still){from.hidden=true;to.hidden=false;after&&after();return}
+    busy=true;
+    from.classList.add(dir>0?"out-left":"out-right");
+    setTimeout(function(){
+      from.hidden=true; from.classList.remove("out-left","out-right");
+      to.classList.add(dir>0?"in-right":"in-left"); to.hidden=false;
+      after&&after(); void to.offsetWidth;
+      to.classList.remove("in-right","in-left");
+      setTimeout(function(){busy=false},420);
+    },300);
+  }
+  function visible(){return [$("s-intro"),$("s-q"),$("s-about"),$("s-res")].filter(function(s){return !s.hidden})[0]}
+
+  function onPre(){var q=Q[cur];return q.pre&&!pre[cur]}
+  function render(){
+    var q=Q[cur], sec=SECTIONS[q.s];
+    clearInterval(tick); $("timer").hidden=true; $("opts").classList.remove("hush");
+    document.documentElement.style.setProperty("--accent",sec.color);
+    $("qsec").textContent="חלק "+(q.s+1)+" מתוך 4 · "+sec.name;
+    $("qsec").style.color=sec.color;
+    $("qcount").textContent=(cur+1)+" / "+Q.length;
+    var done=ans.filter(function(a){return a!==null}).length;
+    $("pfill").style.width=(done/Q.length*100)+"%";
+    $("ptrack").setAttribute("aria-valuenow",done);
+    document.querySelectorAll(".segs span").forEach(function(s){s.classList.toggle("on",+s.dataset.s<=q.s)});
+    var first=sec.intro&&(cur===0||Q[cur-1].s!==q.s);
+    $("secintro").hidden=!first; if(first)$("secintro").textContent=sec.intro;
+    $("qglow").style.background=sec.hex;
+    $("qicon").innerHTML='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+sec.hex+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+IC[q.ic]+'</svg>';
+    var box=$("opts"); box.innerHTML="";
+    if(onPre()){
+      $("qtitle").textContent=q.pre; $("qhint").textContent="קחו רגע כדי באמת לראות את זה."; $("qhint").hidden=false;
+      $("next").disabled=false; $("next").textContent="המשך ←";
+      $("back").textContent=cur===0?"→ לפתיחה":"→ חזרה";
+      return;
+    }
+    $("qtitle").textContent=q.t; $("qhint").textContent=q.h; qT0=Date.now();
+    $("qhint").hidden=!q.h;
+    if(q.timer&&ans[cur]===null){
+      var tm=$("timer"); tm.hidden=false; tm.disabled=false; tm.textContent="▶ הפעלת טיימר של "+q.timer+" שניות";
+      tm.onclick=function(){
+        var n=q.timer; tm.disabled=true; timerUsed=true; $("opts").classList.add("hush"); tm.innerHTML='החזיקו אותה קפואה… <i id="tsec">'+n+'</i>';
+        tick=setInterval(function(){n--; if(n>0){$("tsec").textContent=n}else{clearInterval(tick);tm.textContent="הזמן נגמר. איך היה?";$("opts").classList.remove("hush")}},1000);
+      };
+    }
+    var L=q.o.length;
+    q.o.forEach(function(op,i){
+      var b=document.createElement("button");
+      b.type="button"; b.className="opt"; b.setAttribute("role","radio");
+      b.setAttribute("aria-checked",ans[cur]===i?"true":"false");
+      b.tabIndex=(ans[cur]===i||(ans[cur]===null&&i===0))?0:-1;
+      b.innerHTML='<span class="n">'+(i+1)+'</span><span></span>';
+      b.lastChild.textContent=op[0];
+      b.addEventListener("click",function(){choose(i)});
+      box.appendChild(b);
+    });
+    $("next").disabled=ans[cur]===null;
+    $("next").textContent=cur===Q.length-1?"כמעט סיימנו ←":"הבא ←";
+    $("back").textContent=cur===0?"→ לפתיחה":"→ חזרה";
+  }
+  function resetTimerText(){$("timer").onclick=null}
+  function choose(i){
+    if(busy||onPre())return;
+    clearInterval(tick); $("opts").classList.remove("hush");
+    ans[cur]=i;
+    var opts=$("opts").children;
+    for(var k=0;k<opts.length;k++){opts[k].setAttribute("aria-checked",k===i?"true":"false");opts[k].tabIndex=k===i?0:-1}
+    $("next").disabled=false;
+    var done=ans.filter(function(a){return a!==null}).length;
+    $("pfill").style.width=(done/Q.length*100)+"%";
+    clearTimeout(advanceTimer);
+    advanceTimer=setTimeout(next,still?150:420);
+  }
+  function step(dir){
+    var card=$("s-q");
+    resetTimerText();
+    if(still){render();focusTitle();return}
+    busy=true;
+    card.classList.add(dir>0?"out-left":"out-right");
+    setTimeout(function(){
+      card.classList.remove("out-left","out-right");
+      card.classList.add(dir>0?"in-right":"in-left");
+      render(); void card.offsetWidth;
+      card.classList.remove("in-right","in-left");
+      focusTitle();
+      setTimeout(function(){busy=false},380);
+    },260);
+  }
+  function focusTitle(){try{$("qtitle").focus({preventScroll:true})}catch(_){}}
+  function next(){
+    clearTimeout(advanceTimer);
+    if(busy)return;
+    if(!onPre())clockOut();
+    if(onPre()){pre[cur]=true;step(1);return}
+    if(ans[cur]===null)return;
+    if(cur<Q.length-1){cur++;step(1)}
+    else swap($("s-q"),$("s-about"),1,function(){window.scrollTo(0,0);try{$("about-h").focus({preventScroll:true})}catch(_){}});
+  }
+  function back(){
+    clearTimeout(advanceTimer);
+    if(busy)return;
+    clockOut();
+    if(Q[cur].pre&&pre[cur]&&ans[cur]===null){pre[cur]=false;step(-1);return}
+    if(cur>0){cur--;step(-1)}
+    else swap($("s-q"),$("s-intro"),-1,function(){$("start").focus()});
+  }
+
+  /* ---------- scoring ---------- */
+  function avg(l){return l.length?l.reduce(function(a,b){return a+b},0)/l.length:null}
+  function score(){
+    var by={}, flags={};
+    Q.forEach(function(q,i){
+      if(ans[i]===null)return;
+      var op=q.o[ans[i]], e=op[1];
+      Object.keys(e).forEach(function(k){(by[k]=by[k]||[]).push(e[k])});
+      (op[2]||[]).forEach(function(f){flags[f]=(flags[f]||0)+1});
+    });
+    var g=function(k,d){var v=avg(by[k]||[]);return v===null?d:Math.round(v)};
+    var r={V:g("V",50),A:g("A",null),D:g("D",50),mu:g("mu",50),vo:g("vo",50),sm:g("sm",50),ta:g("ta",50),to:g("to",50),em:g("em",50),W:g("W",50),S:g("S",null),M:g("M",50),N:g("N",50)};
+    var senses=avg([r.mu,r.vo,r.sm,r.ta,r.to,r.em]);
+    r.SP=Math.round(r.V*.4+r.D*.3+senses*.3);          /* Spatial side: pictures, density, senses */
+    r.x=Math.round(50+(r.W-r.SP)/2);                  /* 0 senses-led … 100 words-led */
+    var flow=r.A===null?(100-r.M):(r.A*.65+(100-r.M)*.35);
+    r.y=Math.round(flow);                              /* 0 steered … 100 on its own */
+    r.flags=flags;
+    return r;
+  }
+  function badges(r){
+    var b=[], f=r.flags;
+    if((f.aph||0)>=2||r.V<=15) b.push(["אפנטזיה","מעט דמיון חזותי רצוני או בכלל לא. אתם יודעים איך תפוח נראה; התמונה פשוט לא מופיעה. בערך 1 מכל 25 אנשים."]);
+    if(ans[0]===0&&r.V>=85) b.push(["היפרפנטזיה","דמיון חזותי כל כך חי שהוא יכול להרגיש כמעט כמו ראייה ממש."]);
+    if(f.flat) b.push(["דמיון שטוח","עין הדמיון שלכם רואה בדו־ממד, בלי עומק. מדברים על זה מעט, וזה נפוץ להפתיע."]);
+    if((f.nomono||0)>=1&&r.W<=20) b.push(["בלי מונולוג פנימי","החשיבה מתרחשת בלי זרם מילולי רץ. לא חוסר מחשבה: מחשבה בלי פסקול."]);
+    if(f.melody) b.push(["מוח מלודי","הדמיון המוזיקלי שלכם מנגן קו אחד בכל פעם, לא להקה שלמה."]);
+    if(f.stereo) b.push(["חשיבה בסטריאו","זרם מחשבה שני מתבונן בראשון, כל הזמן."]);
+    if(f.compass) b.push(["מצפן פנימי","חוש הכיוון שלכם עובד גם בלי ציוני דרך."]);
+    return b;
+  }
+  function notes(r){
+    var n=[];
+    if(ans[10]!==null&&ans[11]!==null&&Math.abs(ans[10]-ans[11])>=2) n.push("התשובות שלכם על הפטיש ועל ידית הדלת מצביעות לכיוונים שונים. רוב מי שמרגישים אחד מרגישים גם את השני, אז אולי כדאי לנסות שוב את אחד מהם.");
+    if(ans[15]!==null&&ans[16]!==null&&ans[15]<=1&&ans[16]<=1) n.push("דיווחתם על מונולוג פנימי מהיר ועל דמיון חזותי עמוס מאוד. או ששניהם רועשים, או שאחד מניע את השני: תמונות עשירות שמציתות את הפרשנות, או פרשנות דוהרת שמזמנת את התמונות.");
+    if(ans[13]!==null&&ans[15]!==null&&ans[13]<=1&&ans[15]===4) n.push("אתם שומעים את המונולוג הפנימי לעתים קרובות, אבל אומרים שאף פעם לא שומעים אותו רץ. אולי כדאי להציץ שוב באחת התשובות.");
+    return n;
+  }
+  var SCALES=[["עין הדמיון","V","#ffb45c",["אין","חי"]],["דמיון עמוס","D","#ffd9a8",["שקט","בלי הפסקה"]],["קול פנימי","W","#7cc4ff",["שקט","לא נעצר"]],["מהירות המחשבה","S","#a98bff",["טיול","מסלול מרוצים"]],["חשיבה על החשיבה","M","#7cc4ff",["לעתים רחוקות","תמיד"]],["חוש כיוון","N","#9aa6c4",["אבודים","מצפן פנימי"]]];
+  function slider(v,color,ends,label,tag){
+    return '<div class="sl'+(tag?' sl-tagged':'')+'" style="--c:'+color+'">'+(label?'<div class="sl-top"><span>'+label+'</span><b>'+v+'</b></div>':'')+'<div class="sl-tr">'+(tag?'<b class="sl-tag" data-v="'+v+'">'+tag+'</b>':'')+'<span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><span class="sl-z"></span><i class="sl-k" data-v="'+v+'"></i></div><div class="sl-ends"><span>'+ends[0]+'</span><span>'+ends[1]+'</span></div></div>';
+  }
+  function svgIc(name,color,size){return '<svg width="'+(size||20)+'" height="'+(size||20)+'" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[name]+'</svg>'}
+
+  /* ---------- result ---------- */
+  var last=null, friend=null;
+  /* personal results link (used in the results email): ?r=answers, 1-based */
+  function resultLink(){return PAGE+"?r="+ans.map(function(a){return a===null?"":a+1}).join(",")}
+  /* ---------- education cards: one per faculty (Aeon, Oct 20: educate, no personality reading) ----------
+     For each band: you = what you reported, know = how other minds differ, prob = "you're probably one of those people who..."
+     tag = short label for the summary line. Bands: hi >= 67, lo <= 33, else mid. */
+  var CARDS=[
+    {id:"eye",ic:"eye",ends:["אין תמונה","חי כמו ראייה"],name:"עין הדמיון",color:"#ffb45c",boost:1.25,v:function(r){return r.V},
+     hi:{tag:"עין דמיון חיה",you:"עין הדמיון שלכם חיה: פנים ונופים מופיעים בבירור כשאתם קוראים להם.",know:"לא כולם רואים משהו בכלל. בערך 1 מכל 25 אנשים חיים עם אפנטזיה: בלי תמונות רצוניות בדמיון. כשהם \"מדמיינים\" חבר, הם פשוט יודעים איך הוא נראה.",prob:"יכולים להריץ מחדש סצנה מלפני שנים ולגלות בה משהו חדש."},
+     mid:{tag:"עין דמיון חלקית",you:"עין הדמיון שלכם עובדת, אבל התמונות חלקיות או חולפות.",know:"מוחות נמצאים בכל נקודה על הסקאלה הזו, מתמונות חדות כמו ראייה אמיתית (היפרפנטזיה) ועד בלי תמונה בכלל (אפנטזיה). רוב האנשים מניחים שכולם רואים מה שהם רואים.",prob:"מזהים פנים מיד, אבל יתקשו לתאר אותן לקלסתרון."},
+     lo:{tag:"בלי עין דמיון (אפנטזיה)",you:"כשאתם מנסים לדמיין משהו, מופיעה מעט תמונה או בכלל לא.",know:"לזה קוראים אפנטזיה, ובערך 1 מכל 25 אנשים חיים איתה. רבים מגלים את זה רק כמבוגרים, כשהם מבינים ש\"דמיינו חוף\" נאמר מילולית. אצל אחרים, תמונה בעיניים עצומות יכולה להיות חיה כמעט כמו ראייה.",prob:"זוכרים עובדות על מקום יותר טוב מאשר איך הוא נראה."}},
+    {id:"flow",ic:"film",ends:["בשליטה","רץ מעצמו"],name:"תמונות שרצות מעצמן",color:"#ffd9a8",lvl:{hi:"מעצמו",mid:"מעורב",lo:"בשליטה"},v:function(r){return r.V<=20?null:r.A},
+     hi:{tag:"תמונות שרצות מעצמן",you:"התמונות שלכם נוטות לרוץ מעצמן: הן זזות, משתנות ומוסיפות פרטים שלא ביקשתם.",know:"אצל אנשים אחרים, תמונה בדמיון נשארת בדיוק איפה ששמו אותה, קפואה כמו צילום, עד שהם מחליטים להזיז אותה.",prob:"נסחפים לחלום בהקיץ, או מתקשים לכבות סצנה בלילה."},
+     mid:{tag:"תמונות שלפעמים נודדות",you:"התמונות שלכם לפעמים נשארות במקום ולפעמים בורחות לדרכן.",know:"יש מוחות שמסוגלים להחזיק תמונה קפואה כמה שרוצים; אחרים לא מצליחים למנוע ממנה להפוך לסרט.",prob:"מתחילים חלום בהקיץ בכוונה ואז רואים אותו לוקח תפנית משלו."},
+     lo:{tag:"תמונות בשליטה שלכם",you:"אתם מנווטים את התמונות שלכם: הן נשארות קפואות עד שאתם מזיזים אותן.",know:"אצל אנשים רבים הדמיון רץ כמו סרט שאי אפשר לעצור. כשמבקשים מהם להחזיק תמונה קפואה 15 שניות, הם רואים את הסצנה ממשיכה לזוז.",prob:"יכולים לסובב, לפרק או לסדר מחדש דברים בראש, בכוונה."}},
+    {id:"voice",ic:"talk",ends:["שקט","לא נעצר"],name:"הקול הפנימי",color:"#7cc4ff",boost:1.15,v:function(r){return r.W},
+     hi:{tag:"קול פנימי קבוע",you:"המונולוג הפנימי שלכם הוא בן לוויה קבוע.",know:"לא לכולם יש כזה. יש אנשים שחושבים בלי שום קול פנימי, ומופתעים באמת לגלות שאחרים מדברים עם עצמם כל היום.",prob:"מתאמנים על שיחות בראש, וממציאים את התשובה המושלמת שעות מאוחר מדי."},
+     mid:{tag:"קול פנימי לסירוגין",you:"אתם שומעים את הקול הפנימי שלכם חלק מהזמן.",know:"בקצה אחד יש אנשים שהמונולוג שלהם לא נעצר, אפילו כשהם נרדמים; בקצה השני, אנשים שחושבים לגמרי בלי מילים.",prob:"חושבים במילים על דברים מסוימים ובלי מילים על אחרים."},
+     lo:{tag:"מוח שקט, בלי מונולוג פנימי",you:"לעתים רחוקות או אף פעם אתם לא שומעים מונולוג פנימי.",know:"הרבה אנשים מניחים שכולם מספרים לעצמם את המחשבות במילים. בפועל יש מי שחושבים בתמונות, ברגשות או במשמעות טהורה, ויש מי ששומעים קול שלא נעצר לעולם.",prob:"יודעים את התשובה לפני שהספקתם לנסח אותה במשפט."}},
+    {id:"music",ic:"note",ends:["שקט","להקה שלמה"],name:"מוזיקה בראש",color:"#a98bff",v:function(r){return r.mu},
+     hi:{tag:"להקה שלמה בראש",you:"אתם יכולים לנגן מוזיקה בראש, כולל כל הכלים.",know:"יש אנשים ששומעים רק קו מלודי אחד, ויש כאלה שלא שומעים מוזיקה בראש בכלל, אפילו לא שיר שנתקע.",prob:"שיר נתקע להם בראש לכמה ימים."},
+     mid:{tag:"מוזיקה בראש, בחלקה",you:"אתם שומעים מוזיקה בראש, אבל רק בחלקה: בשקט, או חלק אחד בכל פעם.",know:"אחרים שומעים כל כלי בעוצמה מלאה ואפילו יכולים להוסיף כלים חדשים. יש מי שלא שומעים כלום.",prob:"מסוגלים לעקוב אחרי מנגינה בראש, אבל לא אחרי העיבוד השלם."},
+     lo:{tag:"רדיו פנימי שקט",you:"אין לכם מוזיקה בראש.",know:"אצל אנשים רבים, שיר מתנגן בראש כמו מהרדיו, בכל עוצמה, ולפעמים מסרב להפסיק. להיעדר צלילים מדומיינים יש שם: אנאורליה.",prob:"כמעט אף פעם לא נתקע להם שיר בראש."}},
+    {id:"voices",ic:"voice",ends:["אין","כאילו הם כאן"],name:"קולות של אחרים",color:"#7cc4ff",v:function(r){return r.vo},
+     hi:{tag:"קולות שנשמעים בראש",you:"אתם שומעים קולות של אנשים בראש, כאילו הם בחדר.",know:"יש אנשים שלא מצליחים להיזכר באף קול, אפילו של מי שחיו איתו שנים. הם זוכרים מה נאמר, לא איך זה נשמע.",prob:"יכולים \"לשמוע\" בדיוק איך חבר יגיב לחדשות."},
+     mid:{tag:"קולות שנשמעים למחצה",you:"אתם זוכרים איך אנשים מדברים, אבל לא ממש את הקול שלהם.",know:"אחרים שומעים את קולו של אדם אהוב במלואו, כולל טון ומבטא. יש מי שלא שומעים קול בכלל.",prob:"זוכרים את צורת הניסוח של מישהו יותר מאשר את צליל הקול שלו."},
+     lo:{tag:"בלי קולות מדומיינים",you:"אתם לא שומעים קולות של אחרים בראש.",know:"אצל אנשים רבים, לדמיין קול של חבר זה כמו שיחת טלפון: טון, מבטא והכול.",prob:"זוכרים מה מישהו אמר, לא איך זה נשמע."}},
+    {id:"smelltaste",ic:"cup",ends:["אין","כמו אמיתי"],name:"ריח וטעם",color:"#ffb45c",v:function(r){return Math.round((r.sm+r.ta)/2)},
+     hi:{tag:"ריח וטעם בדמיון",you:"אתם יכולים להריח ולטעום בדמיון.",know:"הרבה אנשים לא מסוגלים לאף אחד מהם. השניים בדרך כלל באים יחד: מי שמדמיינים אחד נוטים לדמיין גם את השני, ומי שלא, בדרך כלל לא מסוגלים לאף אחד מהם.",prob:"כמעט טועמים מתכון רק מלקרוא אותו."},
+     mid:{tag:"רמז של ריח וטעם בדמיון",you:"אתם מקבלים רמז קלוש של ריחות וטעמים בדמיון.",know:"יש מי שמזמנים את ריח הקפה או את חמיצות הלימון כרצונם, בעוצמה שמעלה ריר. אחרים לא מקבלים כלום. שני החושים האלה בדרך כלל באים יחד.",prob:"כמעט טועמים מנה שמישהו מתאר, אבל לא לגמרי."},
+     lo:{tag:"בלי ריח או טעם בדמיון",you:"אתם לא מריחים ולא טועמים בדמיון.",know:"יש מי שכן: הם מזמנים את ריח הקפה או את חמיצות הלימון כרצונם. ריח וטעם בדרך כלל באים יחד, ולכן רוב מי שחסר להם אחד חסר להם גם השני.",prob:"לא יכולים להריח מנה ולדעת אילו תבלינים יש בה."}},
+    {id:"touch",ic:"hand",ends:["אין","כל פרט"],name:"מגע: משקל וטמפרטורה",color:"#a98bff",v:function(r){return r.to},
+     hi:{tag:"מגע מדומיין שמרגישים",you:"אתם מרגישים משקל וטמפרטורה בדמיון, ואפילו מרגישים אותם משתנים.",know:"הרבה אנשים לא מרגישים כלום כשהם מדמיינים פטיש ביד או ידית קרה. אחרים מרגישים את המשקל זז עם כל סנטימטר שהיד מחליקה.",prob:"\"מרגישים\" איך כלי עבודה ישב ביד עוד לפני שהרמתם אותו."},
+     mid:{tag:"רמז של מגע מדומיין",you:"אתם מרגישים רמז של משקל וטמפרטורה, אבל לא את השינויים בדרך.",know:"אצל חלק מהאנשים המגע המדומיין כל כך מדויק שהם מרגישים ידית מתחממת שלב אחר שלב. אחרים לא מרגישים כלום.",prob:"חשים שמשהו כבד בלי ממש להרגיש אותו."},
+     lo:{tag:"בלי מגע מדומיין",you:"אתם לא מרגישים משקל או טמפרטורה בדמיון.",know:"אצל חלק מהאנשים המגע המדומיין כל כך מדויק שהם מרגישים את משקל הפטיש זז כשהיד מחליקה במורד הידית.",prob:"צריכים להחזיק משהו בפועל לפני שאפשר לשפוט אותו."}},
+    {id:"emotion",ic:"heart",ends:["רק הרעיון","מרגישים עכשיו"],name:"רגשות לפי בקשה",color:"#ffd9a8",v:function(r){return r.em},
+     hi:{tag:"רגשות שאפשר לשחזר כרצונכם",you:"אתם יכולים לשחזר רגש לפי בקשה, רק מלחשוב עליו.",know:"הרבה אנשים מסוגלים להיזכר רק ברעיון של רגש, לא בתחושה עצמה. בקשו מהם להרגיש תסכול, והם יודעים מה זה אומר, אבל בפנים לא קורה כלום.",prob:"מתרגשים באמת, או נסערים, רק מלהיזכר או משמיעת סיפור."},
+     mid:{tag:"הד של רגשות",you:"אתם יכולים להחזיר הד קלוש של רגש, אם מתאמצים.",know:"אצל חלק מהאנשים המילה \"תסכול\" לבדה מספיקה כדי שירגישו אותו ממש עכשיו. אצל אחרים לא קורה כלום.",prob:"יכולים לחזור לרגש ועדיין לשמור ממנו מרחק."},
+     lo:{tag:"רגשות שמכירים אבל לא מרגישים מחדש",you:"אתם יודעים מה רגשות אומרים, אבל לא יכולים לשחזר אותם בדמיון.",know:"אצל חלק מהאנשים, המילה \"תסכול\" מספיקה כדי שירגישו תסכול ממש עכשיו.",prob:"יכולים לדבר על זיכרון כואב בשלווה."}},
+    {id:"meta",ic:"loop",ends:["בלי עקבות","כל ענף"],name:"מעקב אחרי המחשבות",color:"#7cc4ff",v:function(r){return r.M},
+     hi:{tag:"מוח שמתבונן בעצמו חושב",you:"אתם יכולים לעקוב אחרי החשיבה שלכם, אחורה דרך ענפי השיחה, ואפילו לראות את עצמכם חושבים.",know:"הרבה אנשים לא יכולים: מחשבה מלפני דקה פשוט נעלמת. חשיבה על החשיבה נקראת מטה־קוגניציה, והיא שונה מאוד מאדם לאדם.",prob:"שואלים \"רגע, איך הגענו לנושא הזה?\" ובאמת יודעים לענות."},
+     mid:{tag:"כמה צעדים של מבט לאחור",you:"אתם יכולים לעקוב אחרי רצף המחשבות כמה צעדים אחורה.",know:"יש מי שמסוגלים לשחזר כל ענף בשיחה; אחרים לא זוכרים מה חשבו לפני רגע.",prob:"זוכרים איפה שיחה התחילה, אבל לא כל פנייה שהיא עשתה."},
+     lo:{tag:"מחשבות שלא משאירות עקבות",you:"המחשבות שלכם ממשיכות הלאה ומשאירות מעט עקבות.",know:"יש מי שמסוגלים לשחזר כל ענף בשיחה, ויש אפילו מי שמריצים זרם מחשבה שני שמתבונן בראשון.",prob:"חיים במחשבה הנוכחית, לא בקודמת."}},
+    {id:"compass",ic:"compass",ends:["אבודים","מצפן פנימי"],name:"חוש כיוון",color:"#9aa6c4",v:function(r){return r.N},
+     hi:{tag:"מצפן פנימי חזק",you:"יש לכם מצפן פנימי חזק.",know:"הרבה אנשים הולכים לאיבוד ברגע שציוני הדרך נעלמים, ולא מצליחים להצביע על המקום שבו חנו.",prob:"מובילים את כולם החוצה מבניין לא מוכר."},
+     mid:{tag:"חוש כיוון בינוני",you:"חוש הכיוון שלכם עובד, כל עוד לא התרחקתם יותר מדי.",know:"יש מי שתמיד יודעים איפה הצפון; אחרים הולכים לאיבוד שתי פניות מהבית.",prob:"מוצאים בסוף את הדרך חזרה, אחרי פנייה שגויה או שתיים."},
+     lo:{tag:"בלי מצפן פנימי",you:"בלי ציוני דרך, חוש הכיוון שלכם נעלם.",know:"יש מי שמנווטים לפי מצפן פנימי, עם ציוני דרך או בלי, ותמיד יודעים איפה הרכב.",prob:"נשענים על אפליקציית הניווט גם בעיר מוכרת."}}
+  ];
+  function band(v){return v>=67?"hi":(v<=33?"lo":"mid")}
+  function extras(c,r){
+    var f=r.flags||{};
+    if(c.id==="eye"&&f.flat) return "אתם גם רואים תמונות שטוחות, בלי עומק. רוב מי שמדמיינים דברים מניחים את העומק כמובן מאליו.";
+    if(c.id==="music"&&f.melody) return "אתם שומעים קו אחד בכל פעם, המנגינה או הזמר, לא את הלהקה כולה. אחרים שומעים הרמוניה מלאה.";
+    if(c.id==="meta"&&f.stereo) return "אתם גם חושבים בסטריאו: זרם מחשבה שני מתבונן בראשון, כל הזמן. אצל רוב האנשים זה לא כך.";
+    if(c.id==="voice"&&r.S!==null&&r.W>33) return r.S>=75?"והוא רץ מהר: יותר מסלול מרוצים מאשר טיול.":(r.S<=25?"והוא רץ בקצב רגוע ונינוח.":"");
+    return "";
+  }
+  function cardsFor(r){
+    return CARDS.map(function(c,i){var v=c.v(r); if(v===null||v===undefined||isNaN(v))return null; var b=band(v); return {c:c,v:v,b:b,t:c[b],x:Math.abs(v-50)*(c.boost||1),i:i}}).filter(Boolean)
+      .sort(function(a,b){return Math.round(b.x/10)-Math.round(a.x/10)||a.i-b.i});
+  }
+  var CTAS=["סקרנים למה מוחות שונים כל כך זה מזה?","רוצים לדעת איך עובדת המכניקה של המוח שלכם?","למה המוח שלכם עובד כמו שהוא עובד?","תהיתם פעם למה המשפחה שלכם חושבת כל כך אחרת מכם?","מה מניע את סוג המוח שלכם?"];
+
+  function showResult(r){
+    last=r;
+    var cs=cardsFor(r), top=cs.filter(function(k){return k.b!=="mid"}).slice(0,3);
+    if(!top.length) top=cs.slice(0,2);
+    r.top=top.map(function(k){return k.t.tag});
+    $("rtag").textContent="מה בולט: "+listJoin(r.top)+".";
+    var bl=badges(r);
+    var hiBox=$("cards-hi"), restBox=$("cards-rest"); hiBox.innerHTML=""; restBox.innerHTML="";
+    cs.forEach(function(k){(k.x>=17?hiBox:restBox).appendChild(card(k,r))});
+    $("rest-wrap").hidden=!restBox.children.length;
+    $("hi-wrap").hidden=!hiBox.children.length;
+    var m=$("meters"); m.innerHTML="";
+    SCALES.forEach(function(sc){
+      var v=r[sc[1]]; if(v===null||v===undefined)return;
+      m.insertAdjacentHTML("beforeend",slider(v,sc[2],sc[3],sc[0]));
+    });
+    var tb=$("rterms"); tb.innerHTML="";
+    bl.forEach(function(x){var d=document.createElement("div");d.className="feat";d.innerHTML=svgIc("star","#a98bff",18)+"<span><b></b> </span>";d.querySelector("b").textContent=x[0]+":";d.lastChild.appendChild(document.createTextNode(x[1]));tb.appendChild(d)});
+    $("feat-wrap").hidden=!bl.length;
+    var nb=$("rnotes"); nb.innerHTML="";
+    notes(r).forEach(function(x){var d=document.createElement("p");d.className="note";d.textContent=x;nb.appendChild(d)});
+    radar(r);
+    $("cta-h").textContent=CTAS[Math.floor(Math.random()*CTAS.length)];
+    setupShare(r);
+    $("stage").classList.add("wide");
+    swap(visible(),$("s-res"),1,function(){
+      window.scrollTo(0,0);
+      setTimeout(function(){animateResult(r)},still?0:250);
+      try{$("res-h").setAttribute("tabindex","-1");$("res-h").focus({preventScroll:true})}catch(_){}
+    });
+  }
+  function listJoin(a){return a.length<2?a.join(""):a.slice(0,-1).join(", ")+" ו"+a[a.length-1]}
+  function card(k,r){
+    var d=document.createElement("div"); d.className="glass ecard"; d.style.setProperty("--c",k.c.color);
+    var lvl=(k.c.lvl||{hi:"חזק",mid:"חלקי",lo:"מעט או בכלל לא"})[k.b];
+    d.innerHTML='<div class="ehead"><span class="eic">'+svgIc(k.c.ic,k.c.color,22)+'</span><h3></h3></div>'+slider(k.v,k.c.color,k.c.ends,null,lvl)+'<p class="eyou"></p><p class="eknow">'+svgIc("bulb","#ffd9a8",18)+'<span><b>הידעתם?</b> <span></span></span></p><p class="eprob">'+svgIc("star",k.c.color,18)+'<span></span></p>';
+    d.querySelector("h3").textContent=k.c.name; d.querySelector("h3").style.color=k.c.color;
+    var ex=extras(k.c,r);
+    d.querySelector(".eyou").textContent=k.t.you+(ex?" "+ex:"");
+    d.querySelector(".eknow span span").textContent=k.t.know;
+    d.querySelector(".eprob span").textContent="אתם כנראה מאלה ש"+k.t.prob;
+    return d;
+  }
+  function fillList(id,arr){var u=$(id);u.innerHTML="";arr.forEach(function(s){var li=document.createElement("li");li.textContent=s;u.appendChild(li)})}
+  function radar(r){
+    var ax=[["ראייה",r.V],["מוזיקה",r.mu],["קולות",r.vo],["ריח",r.sm],["טעם",r.ta],["מגע",r.to],["רגש",r.em]];
+    var cx=180,cy=170,R=120,n=ax.length,h="";
+    for(var ring=1;ring<=4;ring++){var pts=[];for(var i=0;i<n;i++){var a=-Math.PI/2+i*2*Math.PI/n;pts.push((cx+Math.cos(a)*R*ring/4).toFixed(1)+","+(cy+Math.sin(a)*R*ring/4).toFixed(1))}h+='<polygon points="'+pts.join(" ")+'" fill="none" stroke="rgba(170,200,255,.12)"/>'}
+    var pp=[];
+    for(var j=0;j<n;j++){
+      var a2=-Math.PI/2+j*2*Math.PI/n, v=Math.max(4,ax[j][1])/100;
+      h+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a2)*R).toFixed(1)+'" y2="'+(cy+Math.sin(a2)*R).toFixed(1)+'" stroke="rgba(170,200,255,.12)"/>';
+      pp.push((cx+Math.cos(a2)*R*v).toFixed(1)+","+(cy+Math.sin(a2)*R*v).toFixed(1));
+      var lx=cx+Math.cos(a2)*(R+20), ly=cy+Math.sin(a2)*(R+20)+3;
+      h+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+(Math.abs(Math.cos(a2))<.2?"middle":(Math.cos(a2)>0?"start":"end"))+'">'+ax[j][0].toUpperCase()+'</text>';
+    }
+    h+='<defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset="1" stop-color="#a98bff"/></linearGradient></defs>';
+    h+='<polygon points="'+pp.join(" ")+'" fill="url(#rg)" fill-opacity=".28" stroke="url(#rg)" stroke-width="2"/>';
+    $("radar").innerHTML=h;
+  }
+  function animateResult(r){
+    document.querySelectorAll(".sl-k").forEach(function(k){k.style.right=Math.max(2,Math.min(98,+k.dataset.v))+"%"});
+    document.querySelectorAll(".sl-tag").forEach(function(t){var v=Math.max(2,Math.min(98,+t.dataset.v));t.style.right=v+"%";t.style.transform=v<15?"translateX(14px)":(v>85?"translateX(calc(100% - 14px))":"translateX(50%)")});
+  }
+
+  /* ---------- save (only with consent) ---------- */
+  function save(r){
+    if(!$("f-consent").checked)return;
+    var care=document.querySelector('input[name="care"]:checked');
+    var given=ans.filter(function(a){return a!==null});
+    var q={care:care?care.value:"",total:startT?Math.round((Date.now()-startT)/1000):null,secs:secs.map(function(m){return Math.round(m/100)/10}),
+      timer:timerUsed,straight:given.length>0&&given.every(function(a){return a===given[0]}),checks:notes(r).length};
+    var payload={app:"mym2",version:VERSION,answers:ans.map(function(a){return a===null?"":a+1}),
+      scores:{V:r.V,A:r.A,D:r.D,mu:r.mu,vo:r.vo,sm:r.sm,ta:r.ta,to:r.to,em:r.em,W:r.W,S:r.S,M:r.M,N:r.N,q:q},
+      type:(r.top||[]).join("; "),badges:badges(r).map(function(b){return b[0]}),
+      age:$("f-age").value,country:$("f-country").value,gender:$("f-gender").value,field:$("f-field").value,
+      consent:true,pair:friend?friend.code:"",lang:(navigator.language||""),ui:"he"};
+    try{fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})}catch(_){}
+  }
+
+  /* ---------- share ---------- */
+  function setupShare(r){
+    var u=PAGE, msg="מיפיתי עכשיו את המוח שלי. מה בולט: "+listJoin(r.top)+". עשו את המבחן ובואו נראה כמה שונים העולמות הפנימיים שלנו:";
+    $("sh-wa").href="https://wa.me/?text="+encodeURIComponent(msg+" "+u);
+    $("sh-mail").href="mailto:?subject="+encodeURIComponent("כמה שונים המוחות שלנו?")+"&body="+encodeURIComponent(msg+"\n\n"+u);
+    $("sh-fb").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(u);
+    $("sh-x").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(msg)+"&url="+encodeURIComponent(u);
+    $("sh-native").hidden=!navigator.share;
+  }
+  $("sh-native").addEventListener("click",function(){if(last&&navigator.share)navigator.share({title:"מפת המוח",text:"מיפיתי את המוח שלי. מפו את שלכם:",url:PAGE}).catch(function(){})});
+  function fallbackCopy(text){
+    var ta=$("copyfallback"); ta.value=text; ta.hidden=false; ta.focus(); ta.select();
+    var ok=false; try{ok=document.execCommand("copy")}catch(_){ok=false}
+    $("copied").textContent=ok?"הקישור הועתק.":"סמנו את הקישור למטה והעתיקו אותו.";
+  }
+  $("copy").addEventListener("click",function(){
+    if(!last)return; var text=PAGE;
+    try{
+      if(navigator.clipboard&&window.isSecureContext) navigator.clipboard.writeText(text).then(function(){$("copied").textContent="הקישור הועתק."},function(){fallbackCopy(text)});
+      else fallbackCopy(text);
+    }catch(_){fallbackCopy(text)}
+  });
+  $("sh-card").addEventListener("click",function(){
+    if(!last)return;
+    var c=document.createElement("canvas"); c.width=1080; c.height=1350;
+    var g=c.getContext("2d");
+    var bg=g.createLinearGradient(0,0,1080,1350); bg.addColorStop(0,"#0b1020"); bg.addColorStop(1,"#05070d"); g.fillStyle=bg; g.fillRect(0,0,1080,1350);
+    var glow=g.createRadialGradient(860,220,10,860,220,520); glow.addColorStop(0,"rgba(169,139,255,.35)"); glow.addColorStop(1,"transparent"); g.fillStyle=glow; g.fillRect(0,0,1080,1350);
+    g.direction="rtl"; g.textAlign="right";
+    g.fillStyle="#7cc4ff"; g.font="500 30px Heebo, sans-serif"; g.fillText("מפת המוח · AEONGENICS",990,150);
+    g.fillStyle="#eef2ff"; g.font="700 80px Heebo, sans-serif"; g.fillText("המוח שלי",990,300); g.fillStyle="#ffb45c"; g.fillText("במבט אחד",990,400);
+    g.fillStyle="#9aa6c4"; g.font="500 34px Heebo, sans-serif"; g.fillText("מה בולט",990,520);
+    var y=600; g.font="500 46px Heebo, sans-serif";
+    (last.top||[]).forEach(function(tg){g.fillStyle="#ffb45c"; g.beginPath(); g.arc(976,y-16,9,0,6.283); g.fill(); g.fillStyle="#eef2ff"; y=wrap(g,tg,946,y,850,58)+96;});
+    g.fillStyle="#eef2ff"; g.font="500 34px Heebo, sans-serif"; g.fillText("מפו את שלכם: aeongenics.com/mapheb",990,1260);
+    c.toBlob(function(b){
+      var f=new File([b],"my-mind-map.png",{type:"image/png"});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:"My mind map"}).catch(function(){});return}
+      var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="my-mind-map.png"; document.body.appendChild(a); a.click(); a.remove();
+      $("copied").textContent="התמונה נשמרה. העלו אותה לסטורי והוסיפו את הקישור.";
+    },"image/png");
+  });
+  function wrap(g,text,x,y,maxW,lh){var w=text.split(" "),line="";for(var i=0;i<w.length;i++){var tl=line+w[i]+" ";if(g.measureText(tl).width>maxW&&line){g.fillText(line,x,y);line=w[i]+" ";y+=lh}else line=tl}g.fillText(line,x,y);return y}
+
+
+  /* ---------- email me my results (MailerLite form "Map Your Mind results") ---------- */
+  var ML_URL="https://assets.mailerlite.com/jsonp/1251629/forms/201882067352422366/subscribe";
+  $("mlform").addEventListener("submit",function(e){
+    e.preventDefault();
+    var em=$("ml-email").value.trim(), msg=$("ml-msg");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Please enter a valid email address.";msg.style.color="#ffb45c";return}
+    if(!last)return;
+    var fd=new FormData();
+    fd.append("fields[email]",em);
+    fd.append("fields[mym_summary]",(last.top&&last.top.length?listJoin(last.top).replace(/^./,function(c){return c.toUpperCase()})+".":"Your full map is ready."));
+    fd.append("fields[mym_link]",resultLink());
+    fd.append("fields[mym_updates]",$("ml-upd").checked?"yes":"");
+    fd.append("ml-submit","1"); fd.append("anticsrf","true");
+    $("ml-go").disabled=true; msg.style.color=""; msg.textContent="Sending…";
+    fetch(ML_URL,{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
+      if(j&&j.success){msg.style.color="#7cc4ff";msg.textContent="Sent! Check your inbox in a minute (and the spam folder, just in case).";$("mlform").hidden=true}
+      else{msg.style.color="#ffb45c";msg.textContent="That didn't go through. Please check the address and try again.";$("ml-go").disabled=false}
+    }).catch(function(){msg.style.color="#ffb45c";msg.textContent="Couldn't reach the mail service. Please try again in a moment.";$("ml-go").disabled=false});
+  });
+
+  /* ---------- wiring ---------- */
+  var COUNTRIES=[["ישראל","Israel"],["ארצות הברית","United States"],["אוסטרליה","Australia"],["אוסטריה","Austria"],["אוקראינה","Ukraine"],["איחוד האמירויות","United Arab Emirates"],["איטליה","Italy"],["אירלנד","Ireland"],["אנגליה / בריטניה","United Kingdom"],["ארגנטינה","Argentina"],["בלגיה","Belgium"],["ברזיל","Brazil"],["גרמניה","Germany"],["דנמרק","Denmark"],["דרום אפריקה","South Africa"],["הודו","India"],["הולנד","Netherlands"],["הונגריה","Hungary"],["יוון","Greece"],["מקסיקו","Mexico"],["מצרים","Egypt"],["נורווגיה","Norway"],["ניו זילנד","New Zealand"],["סין","China"],["ספרד","Spain"],["פולין","Poland"],["פורטוגל","Portugal"],["פינלנד","Finland"],["צ'כיה","Czechia"],["צרפת","France"],["קנדה","Canada"],["רומניה","Romania"],["רוסיה","Russia"],["שוודיה","Sweden"],["שווייץ","Switzerland"],["תאילנד","Thailand"],["טורקיה","Turkey"],["יפן","Japan"],["אחר","Other"]];
+  COUNTRIES.forEach(function(c){var o=document.createElement("option");o.textContent=c[0];o.value=c[1];$("f-country").appendChild(o)});
+
+  function restart(){
+    $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent="";
+    ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); secs=secs.map(function(){return 0}); qT0=0; timerUsed=false; startT=Date.now(); cur=0;
+    document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); render();
+    $("stage").classList.remove("wide");
+    swap(visible(),$("s-q"),1,function(){window.scrollTo(0,0);focusTitle()});
+  }
+  $("start").addEventListener("click",function(){if(busy)return; startT=Date.now(); render(); swap($("s-intro"),$("s-q"),1,focusTitle)});
+  $("about-go").addEventListener("click",function(){if(busy)return; var r=score(); showResult(r); save(r)});
+  $("about-back").addEventListener("click",function(){if(busy)return; render(); swap($("s-about"),$("s-q"),-1,focusTitle)});
+  $("again").addEventListener("click",function(){if(!busy)restart()});
+  $("next").addEventListener("click",next);
+  $("back").addEventListener("click",back);
+
+  document.addEventListener("keydown",function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(e.target&&/TEXTAREA|SELECT|INPUT/.test(e.target.tagName))return;
+    if($("s-q").hidden){
+      if(!$("s-intro").hidden&&e.key==="Enter"&&document.activeElement===document.body){$("start").click();e.preventDefault()}
+      return;
+    }
+    var n=parseInt(e.key,10);
+    if(!onPre()&&n>=1&&n<=Q[cur].o.length){choose(n-1);e.preventDefault();return}
+    if(e.key==="Enter"&&onPre()){next();e.preventDefault();return}
+    if(e.key==="ArrowRight"||e.key==="Backspace"){back();e.preventDefault();return}
+    if(e.key==="ArrowLeft"){next();e.preventDefault();return}
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+      var opts=$("opts").children; if(!opts.length)return;
+      var i=Array.prototype.indexOf.call(opts,document.activeElement);
+      if(i<0)i=ans[cur]===null?-1:ans[cur];
+      i=e.key==="ArrowDown"?Math.min(opts.length-1,i+1):Math.max(0,i-1);
+      opts[i].focus(); e.preventDefault();
+    }
+  });
+
+  try{
+    var qs=new URLSearchParams(location.search);
+    /* demo: ?demo=result&a=1,2,3,... (answers 1-based) jumps straight to a result; ?demo=q&n=4 opens a question */
+    if(qs.get("demo")==="q"){var qn=Math.max(1,Math.min(Q.length,parseInt(qs.get("n"),10)||1));cur=qn-1;for(var d=0;d<cur;d++)ans[d]=1;$("s-intro").hidden=true;render();$("s-q").hidden=false}
+    if(qs.get("demo")==="result"||qs.get("r")){
+      var a=(qs.get("r")||qs.get("a")||"5,5,5,5,5,2,4,3,2,2,1,1,2,1,1,1,5,1,1,3").split(",");
+      for(var k=0;k<Q.length;k++){var v=parseInt(a[k],10);ans[k]=isNaN(v)?null:Math.max(0,Math.min(Q[k].o.length-1,v-1))}
+      $("s-intro").hidden=true; still=true; document.body.classList.add("instant");
+      showResult(score());
+      setTimeout(function(){document.body.classList.remove("instant");still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches},50);
+    }
+  }catch(_){}
+
+  /* ---------- living field (same as home) ---------- */
+  var c=$("field"),x=c.getContext("2d"),W,H,DP,pts=[],mx=0,my=0;
+  function size(){DP=Math.min(window.devicePixelRatio||1,2);W=c.width=innerWidth*DP;H=c.height=innerHeight*DP}
+  size(); addEventListener("resize",size);
+  addEventListener("pointermove",function(e){mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+  var N=innerWidth<700?220:440;
+  for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
+  var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function frame(){
+    t+=1; x.clearRect(0,0,W,H);
+    var R0=Math.min(W,H)*.38, cx=W*.5+mx*40*DP, cy=H*.5+my*30*DP;
+    x.globalCompositeOperation="lighter";
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i]; p.a+=p.s*(p.g?1.6:1);
+      var tilt=p.g?0.9:-0.5, wob=Math.sin(t*.004+p.b*3)*.08;
+      var sx=Math.sin(p.b+wob)*Math.cos(p.a), sy=Math.cos(p.b+wob), sz=Math.sin(p.b+wob)*Math.sin(p.a);
+      var y2=sy*Math.cos(tilt)-sz*Math.sin(tilt), z2=sy*Math.sin(tilt)+sz*Math.cos(tilt);
+      var k=1/(1.8-z2*.6), px=cx+sx*R0*p.r*k, py=cy+y2*R0*p.r*k;
+      var al=.12+.4*(z2+1)/2, rad=(p.g?1.1:1.3)*DP*(.6+(z2+1)*.5);
+      x.fillStyle=p.g?"rgba(124,196,255,"+al+")":"rgba(255,180,92,"+al+")";
+      x.beginPath(); x.arc(px,py,rad,0,6.283); x.fill();
+    }
+    x.globalCompositeOperation="source-over";
+    if(!fieldStill) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+<script>
+/* Rotating "mind" for the intro: a brain drawn as a cloud of fine glowing dots, inside a field of glowing nodes.
+   Original drawing (no image); pauses off-screen; static for reduced motion. */
+(function(){
+  var cv=document.getElementById("mindviz"); if(!cv||!cv.getContext)return;
+  var g=cv.getContext("2d"), W=0,H=0,DP=1, still=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  var i, j;
+  /* brain-shaped surface built from its parts (front = +x): cerebrum with the central groove,
+     temporal lobes, cerebellum and brainstem. Only the outer surface is kept; drawn as fine dots. */
+  var PARTS=[
+    {c:[0,.12,0],r:[1.22,.8,.96],n:820,fold:.035},
+    {c:[.3,-.36,.5],r:[.6,.32,.38],n:110,fold:.02},
+    {c:[.3,-.36,-.5],r:[.6,.32,.38],n:110,fold:.02},
+    {c:[-.86,-.48,0],r:[.4,.26,.58],n:170,fold:0,ridge:1},
+    {c:[-.42,-.84,0],r:[.16,.4,.16],n:60,fold:0,tilt:.35}
+  ];
+  function inside(x,y,z,skip){
+    for(var q=0;q<PARTS.length;q++){if(q===skip)continue;var P=PARTS[q],dx=(x-P.c[0])/P.r[0],dy=(y-P.c[1])/P.r[1],dz=(z-P.c[2])/P.r[2];if(dx*dx+dy*dy+dz*dz<.95)return true}
+    return false;
+  }
+  var B=[];
+  PARTS.forEach(function(P,q){
+    var made=0, tries=0;
+    while(made<P.n&&tries<P.n*25){
+      tries++;
+      var u=Math.acos(2*Math.random()-1), v=Math.random()*Math.PI*2;
+      var ux=Math.sin(u)*Math.cos(v), uy=Math.cos(u), uz=Math.sin(u)*Math.sin(v);
+      var f=1+P.fold*Math.sin(8*ux+3*uy)*Math.cos(7*uz+2*uy)+(P.ridge?.035*Math.sin(uy*20):0);
+      var x=P.c[0]+ux*P.r[0]*f, y=P.c[1]+uy*P.r[1]*f, z=P.c[2]+uz*P.r[2]*f;
+      if(P.tilt){x+=(y-P.c[1])*P.tilt}
+      if(q===0){
+        if(y<-.3) y=-.3+(y+.3)*.4;
+        if(x>.7&&y<-.1) y=-.1+(y+.1)*.5;
+        z+=(z>0?.04:-.04);
+        if(Math.abs(z)<.13&&y>.25) y-=.13*(1-Math.abs(z)/.13);
+      }
+      if(inside(x,y,z,q))continue;
+      B.push([x,y,z]); made++;
+    }
+  });
+  /* faint mesh between very close neighbors only */
+  var BL=[];
+  for(i=0;i<B.length;i++){var best=[];for(j=i+1;j<B.length;j++){var dx=B[i][0]-B[j][0],dy=B[i][1]-B[j][1],dz=B[i][2]-B[j][2],dd=dx*dx+dy*dy+dz*dz;if(dd<.012)best.push([dd,j])}best.sort(function(p,q){return p[0]-q[0]});best.slice(0,2).forEach(function(e){BL.push([i,e[1]])})}
+
+  /* the field around it */
+  var F=[], COLS=["#ff9ad5","#ffb45c","#ffffff","#7cc4ff","#c9a8ff","#ffd9a8"];
+  for(i=0;i<60;i++){
+    var u2=Math.acos(2*Math.random()-1), v2=Math.random()*Math.PI*2, R=rnd(1.35,1.85);
+    F.push([Math.sin(u2)*Math.cos(v2)*R*1.15, Math.cos(u2)*R*.78, Math.sin(u2)*Math.sin(v2)*R, COLS[i%COLS.length], rnd(1.6,3.4)]);
+  }
+  var FL=[];
+  for(var a=0;a<F.length;a++){
+    var d=[]; for(var b=0;b<F.length;b++){if(a===b)continue;var dx=F[a][0]-F[b][0],dy=F[a][1]-F[b][1],dz=F[a][2]-F[b][2];d.push([dx*dx+dy*dy+dz*dz,b])}
+    d.sort(function(p,q){return p[0]-q[0]}); for(var c=0;c<2;c++){if(d[c][0]<.6&&a<d[c][1])FL.push([a,d[c][1]])}
+  }
+  function size(){DP=Math.min(window.devicePixelRatio||1,2);var r=cv.getBoundingClientRect();W=cv.width=Math.max(1,r.width*DP);H=cv.height=Math.max(1,r.height*DP)}
+  size(); addEventListener("resize",size);
+  var ang=.5, run=true, raf=0;
+  function proj(p,ca,sa){
+    var x=p[0]*ca+p[2]*sa, z=-p[0]*sa+p[2]*ca, y=p[1]+.2;
+    var ct=.97, st=-.22, y2=y*ct-z*st, z2=y*st+z*ct;
+    var S=Math.min(W*.8,H)*.31, k=3.4/(3.4-z2);
+    return [W/2+x*S*k, H/2-y2*S*k, z2, k];
+  }
+  function frame(){
+    g.clearRect(0,0,W,H);
+    var ca=Math.cos(ang), sa=Math.sin(ang);
+    var PF=F.map(function(p){return proj(p,ca,sa)});
+    g.lineWidth=1*DP; g.lineCap="round"; g.lineJoin="round";
+    FL.forEach(function(l){var a=PF[l[0]],b=PF[l[1]];g.strokeStyle="rgba(170,190,255,.13)";g.beginPath();g.moveTo(a[0],a[1]);g.lineTo(b[0],b[1]);g.stroke()});
+    g.globalCompositeOperation="lighter";
+    var PB=B.map(function(p){return proj(p,ca,sa)});
+    g.lineWidth=.8*DP;
+    BL.forEach(function(l){var p=PB[l[0]],q=PB[l[1]],al=.06+.16*((p[2]+q[2])/2+1.2)/2.4;g.strokeStyle="rgba(124,196,255,"+al.toFixed(3)+")";g.beginPath();g.moveTo(p[0],p[1]);g.lineTo(q[0],q[1]);g.stroke()});
+    PB.forEach(function(p){var al=.18+.72*Math.max(0,Math.min(1,(p[2]+1.1)/2.2));g.fillStyle="rgba(150,210,255,"+al.toFixed(3)+")";g.beginPath();g.arc(p[0],p[1],1.15*DP*p[3],0,6.283);g.fill()});
+    PF.forEach(function(p,n){
+      var r=F[n][4]*DP*p[3], c=F[n][3];
+      var gr=g.createRadialGradient(p[0],p[1],0,p[0],p[1],r*2.4);gr.addColorStop(0,c+"cc");gr.addColorStop(.4,c+"55");gr.addColorStop(1,c+"00");
+      g.fillStyle=gr;g.beginPath();g.arc(p[0],p[1],r*2.4,0,6.283);g.fill();
+      g.fillStyle="#ffffff";g.globalAlpha=.85;g.beginPath();g.arc(p[0],p[1],Math.max(.8*DP,r*.45),0,6.283);g.fill();g.globalAlpha=1;
+    });
+    g.globalCompositeOperation="source-over";
+    if(run&&!still){ang+=.0035;raf=requestAnimationFrame(frame)}
+  }
+  if("IntersectionObserver" in window){new IntersectionObserver(function(e){var vis=e[0].isIntersecting;if(vis&&!run){run=true;frame()}else if(!vis){run=false;cancelAnimationFrame(raf)}}).observe(cv)}
+  frame();
+})();
+</script>
+
+</body>
+</html>
