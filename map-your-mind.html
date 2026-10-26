@@ -346,10 +346,10 @@ footer a{color:var(--dim)}
         <h2 id="about-h" tabindex="-1">A little about you</h2>
         <p class="qhint">Optional and anonymous. It helps us with our research!</p>
         <div class="form">
-          <div class="field"><label for="f-age">Age</label><select id="f-age"><option value="">Prefer not to say</option><option>Under 18</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55–64</option><option>65+</option></select></div>
-          <div class="field"><label for="f-country">Country</label><select id="f-country"><option value="">Prefer not to say</option></select></div>
-          <div class="field"><label for="f-gender">Gender</label><select id="f-gender"><option value="">Prefer not to say</option><option>Woman</option><option>Man</option><option>Another way</option></select></div>
-          <div class="field"><label for="f-field">Field of work</label><select id="f-field"><option value="">Prefer not to say</option><option>Arts and design</option><option>Science and research</option><option>Technology and engineering</option><option>Health and medicine</option><option>Education</option><option>Business and finance</option><option>Trades and hands-on work</option><option>Student</option><option>Other</option></select></div>
+          <div class="field"><label for="f-age">Age</label><select id="f-age"><option value="" selected disabled>Choose</option><option>Under 18</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55–64</option><option>65+</option><option>Prefer not to say</option></select></div>
+          <div class="field"><label for="f-country">Country</label><select id="f-country"><option value="" selected disabled>Choose</option></select></div>
+          <div class="field"><label for="f-gender">Gender</label><select id="f-gender"><option value="" selected disabled>Choose</option><option>Woman</option><option>Man</option><option>Another way</option><option>Prefer not to say</option></select></div>
+          <div class="field"><label for="f-field">Field of work</label><select id="f-field"><option value="" selected disabled>Choose</option><option>Arts and design</option><option>Science and research</option><option>Technology and engineering</option><option>Health and medicine</option><option>Education</option><option>Business and finance</option><option>Trades and hands-on work</option><option>Student</option><option>Other</option><option>Prefer not to say</option></select></div>
           <fieldset class="care" id="f-care"><legend>Be honest, it won't change your map: how did you answer?</legend>
             <label><input type="radio" name="care" value="careful">Carefully: I really tried each one</label>
             <label><input type="radio" name="care" value="mostly">Mostly carefully</label>
@@ -486,7 +486,7 @@ footer a{color:var(--dim)}
     {s:1,ic:"note",t:"Play a song in your head. Now turn the volume up and down.",h:"",
      o:[["I hear it as if it were on the radio, and I can turn the volume up and down as much as I like",{mu:100}],["I hear it as if it were on the radio, but the volume is fixed",{mu:75}],["I hear the whole song, but silently, as if on mute",{mu:50}],["I hear only part of it, one instrument or the vocals, and silently",{mu:25}],["I can't hear music in my mind",{mu:0},["deafmusic"]]]},
     {s:1,ic:"sax",t:"Play a song you like that has both instruments and vocals. Now try to add a saxophone.",h:"",
-     o:[["I hear it all clearly, as if on the radio: instruments and singer together, and I can add the saxophone",{mu:100}],["I hear the instruments in harmony, but not the singer at the same time; it's one or the other. I can add the saxophone",{mu:70}],["I hear the instruments in harmony, but not the singer at the same time. I can't add the saxophone",{mu:55}],["I hear only a melody, a single track: either the singer or one instrument",{mu:30},["melody"]],["I can't hear anything. What are you talking about?",{mu:0},["deafmusic"]]]},
+     o:[["I hear it all clearly, as if on the radio: instruments and singer together, and I can add the saxophone",{mu:100}],["I hear the instruments in harmony, but not the singer at the same time; it's one or the other. I can add the saxophone",{mu:70}],["I hear the instruments in harmony, but not the singer at the same time. I can't add the saxophone",{mu:55}],["I hear only a melody, a single track: either the singer or one instrument. I can't add the saxophone",{mu:30},["melody"]],["I can't hear anything. What are you talking about?",{mu:0},["deafmusic"]]]},
     {s:1,ic:"voice",t:"Think of someone close to you and hear them speak in your mind.",h:"",
      o:[["I hear them as if they were next to me, in their own voice",{vo:100}],["I hear their voice, but silently, as if muted",{vo:70}],["I get their intonation and way of speaking, but the voice is mine or a generic one",{vo:45}],["I hear someone speaking, but it doesn't sound like them",{vo:25}],["I can't hear anyone speak at all",{vo:0}]]},
     {s:1,ic:"cup",t:"Imagine holding a cup of fresh coffee. Can you smell it?",h:"",
@@ -913,6 +913,7 @@ footer a{color:var(--dim)}
   /* ---------- wiring ---------- */
   var COUNTRIES="Argentina,Australia,Austria,Belgium,Brazil,Canada,Chile,China,Colombia,Czechia,Denmark,Egypt,Finland,France,Germany,Greece,Hungary,India,Indonesia,Ireland,Israel,Italy,Japan,Mexico,Netherlands,New Zealand,Nigeria,Norway,Philippines,Poland,Portugal,Romania,Russia,Saudi Arabia,Singapore,South Africa,South Korea,Spain,Sweden,Switzerland,Taiwan,Thailand,Turkey,Ukraine,United Arab Emirates,United Kingdom,United States,Vietnam,Other".split(",");
   COUNTRIES.forEach(function(c){var o=document.createElement("option");o.textContent=c;$("f-country").appendChild(o)});
+  (function(){var o=document.createElement("option");o.textContent="Prefer not to say";$("f-country").appendChild(o)})();
 
   function restart(){
     $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent="";
