@@ -987,18 +987,25 @@ nav a::after{transform-origin:right}
 
   /* ---------- living field (same as home) ---------- */
   var c=$("field"),x=c.getContext("2d"),W,H,DP,pts=[],mx=0,my=0;
-  function size(){DP=Math.min(window.devicePixelRatio||1,2);W=c.width=innerWidth*DP;H=c.height=innerHeight*DP}
+  // drawn at standard resolution (soft dots don't need Retina) to keep the GPU cool
+  function size(){DP=1;W=c.width=innerWidth;H=c.height=innerHeight}
   size(); addEventListener("resize",size);
   addEventListener("pointermove",function(e){mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
   var N=innerWidth<700?220:440;
   for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
   var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function frame(){
-    t+=1; x.clearRect(0,0,W,H);
+  // ~30 frames a second, and paused once the reader scrolls past the first screen
+  var last=0, run=true;
+  addEventListener("scroll",function(){var on=scrollY<innerHeight*.9; if(on&&!run&&!fieldStill){run=true;requestAnimationFrame(frame)} run=on},{passive:true});
+  function frame(now){
+    if(!run) return;
+    if(now&&now-last<32){requestAnimationFrame(frame);return}
+    last=now||0;
+    t+=2; x.clearRect(0,0,W,H);
     var R0=Math.min(W,H)*.38, cx=W*.5+mx*40*DP, cy=H*.5+my*30*DP;
     x.globalCompositeOperation="lighter";
     for(var i=0;i<pts.length;i++){
-      var p=pts[i]; p.a+=p.s*(p.g?1.6:1);
+      var p=pts[i]; p.a+=2*p.s*(p.g?1.6:1);
       var tilt=p.g?0.9:-0.5, wob=Math.sin(t*.004+p.b*3)*.08;
       var sx=Math.sin(p.b+wob)*Math.cos(p.a), sy=Math.cos(p.b+wob), sz=Math.sin(p.b+wob)*Math.sin(p.a);
       var y2=sy*Math.cos(tilt)-sz*Math.sin(tilt), z2=sy*Math.sin(tilt)+sz*Math.cos(tilt);
