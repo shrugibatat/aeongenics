@@ -511,11 +511,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-line);paddin
   var N=innerWidth<700?260:520;
   for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
   // ~30 frames a second, and paused once the reader scrolls past the first screen
-  var t=0, last=0, run=true;
-  function wake(){var on=scrollY<innerHeight*.9; if(on&&!run&&!still){run=true;requestAnimationFrame(frame)} run=on}
-  addEventListener("scroll",wake,{passive:true}); addEventListener("hashchange",function(){setTimeout(wake,50)});
+  var t=0, last=0, run=true, loop=true;
+  // also rests after 20 seconds with no movement, so a forgotten tab costs nothing
+  var idle=0;
+  function wake(){var on=scrollY<innerHeight*.9; if(on&&!loop&&!still){loop=true;run=true;requestAnimationFrame(frame)} run=on; clearTimeout(idle); idle=setTimeout(function(){run=false},20000)}
+  ["scroll","pointermove","touchstart","keydown"].forEach(function(e){addEventListener(e,wake,{passive:true})}); addEventListener("hashchange",function(){setTimeout(wake,50)}); wake();
   function frame(now){
-    if(!run) return;
+    if(!run){loop=false;return}
     if(now&&now-last<32){requestAnimationFrame(frame);return}
     last=now||0;
     t+=2; x.clearRect(0,0,W,H);

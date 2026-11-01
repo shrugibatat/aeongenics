@@ -995,10 +995,13 @@ nav a::after{transform-origin:right}
   for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
   var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // ~30 frames a second, and paused once the reader scrolls past the first screen
-  var last=0, run=true;
-  addEventListener("scroll",function(){var on=scrollY<innerHeight*.9; if(on&&!run&&!fieldStill){run=true;requestAnimationFrame(frame)} run=on},{passive:true});
+  var last=0, run=true, loop=true;
+  // also rests after 20 seconds with no movement, so a forgotten tab costs nothing
+  var idle=0;
+  function wake(){var on=scrollY<innerHeight*.9; if(on&&!loop&&!fieldStill){loop=true;run=true;requestAnimationFrame(frame)} run=on; clearTimeout(idle); idle=setTimeout(function(){run=false},20000)}
+  ["scroll","pointermove","touchstart","keydown"].forEach(function(e){addEventListener(e,wake,{passive:true})}); wake();
   function frame(now){
-    if(!run) return;
+    if(!run){loop=false;return}
     if(now&&now-last<32){requestAnimationFrame(frame);return}
     last=now||0;
     t+=2; x.clearRect(0,0,W,H);
