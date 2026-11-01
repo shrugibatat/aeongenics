@@ -190,6 +190,8 @@ footer a{color:var(--dim)}
 .field select option{background:#0b1020}
 .consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink);border:1px dashed rgba(124,196,255,.35);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px;cursor:pointer}
 .consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ice);flex:none}
+.consent.off{opacity:.4;cursor:not-allowed}
+.consent-note{font-size:13.5px;color:var(--dim);margin:6px 2px 0}
 .care{display:grid;gap:8px;border:0;margin:0;padding:0}
 .care legend{font-size:15px;color:var(--ink);margin-bottom:6px;padding:0}
 .care label{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--dim);border:1px solid var(--glass-line);border-radius:10px;padding:10px 12px;cursor:pointer}
@@ -249,6 +251,9 @@ footer a{color:var(--dim)}
 .mlrow input{flex:1 1 220px;font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 16px}
 .mlrow input:focus{outline:2px solid var(--ice);outline-offset:2px}
 #ml-msg{font-size:13px;min-height:1.2em}
+#ml-msg.sent{font:600 clamp(16px,1.9vw,18px) var(--body);letter-spacing:0;color:#f2f9ff!important;background:rgba(124,196,255,.16);border:1px solid rgba(124,196,255,.7);border-radius:14px;padding:16px 18px;margin-top:6px;box-shadow:0 0 28px rgba(124,196,255,.5);animation:sentglow 1.6s ease-in-out 4}
+@keyframes sentglow{50%{box-shadow:0 0 46px rgba(124,196,255,.85)}}
+@media (prefers-reduced-motion:reduce){#ml-msg.sent{animation:none}}
 .ecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ecard{gap:10px;align-content:start}
 
@@ -297,7 +302,7 @@ footer a{color:var(--dim)}
         <span class="eyebrow">Test your mind · about 8 minutes · 20 questions</span>
         <h1 id="intro-h">Map Your <span class="grad">Mind</span></h1>
         <canvas id="mindviz" class="mindviz" aria-hidden="true"></canvas>
-        <p class="lede">Close your eyes and picture a friend's face. Some people see it as vividly as real life. Some see nothing at all and simply know what that friend looks like. Both are normal, and almost nobody realizes how different the people around them are, even in their own family. Let's find out where you land.</p>
+        <p class="lede">Close your eyes and picture a friend's face. Some people see it as vividly as real life. Some see nothing at all and simply sense what that friend looks like. Both are normal, and almost nobody realizes how different the people around them are, even in their own family. Let's find out where you land.</p>
         <div class="chips" aria-label="Four sections">
           <div class="chip"><i style="color:var(--amber)">01 · Mind's eye</i><span>Faces, scenes, an apple you can spin</span></div>
           <div class="chip"><i style="color:var(--violet)">02 · Other inner senses</i><span>Music, voices, coffee, a hammer, a feeling</span></div>
@@ -307,7 +312,7 @@ footer a{color:var(--dim)}
         <p class="pre-note">Close your eyes for each question if it helps. There are no right answers: every mind on this map is a normal mind, just a different one.</p>
         <div class="privacy">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          <span>No tracking, and your answers stay anonymous. If you ask for your results by email, your address is used only to send them. At the end you can also choose to add your anonymous answers to our research.</span>
+          <span>No tracking, and your answers stay anonymous. If you ask for your results by email, we send them to your address and add it to Aeon's mailing list (you can unsubscribe any time). At the end you can also choose to add your anonymous answers to our research.</span>
         </div>
         <div class="row">
           <button class="btn" id="start" type="button">Start mapping</button>
@@ -355,7 +360,8 @@ footer a{color:var(--dim)}
             <label><input type="radio" name="care" value="mostly">Mostly carefully</label>
             <label><input type="radio" name="care" value="clicked">I clicked through to see the result</label>
           </fieldset>
-          <label class="consent"><input type="checkbox" id="f-consent"><span>I understand that my answers will be used anonymously in Aeongenics research.</span></label>
+          <label class="consent off" id="f-consent-box"><input type="checkbox" id="f-consent" disabled><span>I understand that my answers will be used anonymously in Aeongenics research.</span></label>
+          <p class="consent-note" id="f-consent-note" hidden>Thanks for being honest. Quick answers aren't added to the research.</p>
         </div>
         <div class="qnav">
           <button class="btn ghost" id="about-back" type="button">← Back</button>
@@ -371,6 +377,7 @@ footer a{color:var(--dim)}
           <span class="eyebrow">Your map is ready</span>
           <h1 id="res-h">Your mind <span class="grad">at a glance</span></h1>
           <p class="lede" id="rtag"></p>
+          <button class="btn ghost" type="button" id="ml-jump">✉ Email me my results</button>
         </div>
 
         <div class="glass predict">
@@ -410,7 +417,7 @@ footer a{color:var(--dim)}
             <input type="email" id="ml-email" placeholder="Your email" autocomplete="email" aria-label="Your email" required>
             <button class="btn" type="submit" id="ml-go">Send it to me</button>
           </form>
-          <label class="consent" style="padding:10px 12px"><input type="checkbox" id="ml-upd"><span>Also send me occasional Aeongenics updates</span></label>
+          <label class="consent" style="padding:10px 12px"><input type="checkbox" id="ml-upd" checked><span>I'd like the occasional personal update from Aeon</span></label>
           <p class="meta" id="ml-msg" role="status"></p>
         </div>
 
@@ -489,7 +496,7 @@ footer a{color:var(--dim)}
      o:[["I hear it all clearly, as if on the radio: instruments and singer together, and I can add the saxophone",{mu:100}],["I hear the instruments in harmony, but not the singer at the same time; it's one or the other. I can add the saxophone",{mu:70}],["I hear the instruments in harmony, but not the singer at the same time. I can't add the saxophone",{mu:55}],["I hear only a melody, a single track: either the singer or one instrument. I can't add the saxophone",{mu:30},["melody"]],["I can't hear anything. What are you talking about?",{mu:0},["deafmusic"]]]},
     {s:1,ic:"voice",t:"Think of someone close to you and hear them speak in your mind.",h:"",
      o:[["I hear them as if they were next to me, in their own voice",{vo:100}],["I hear their voice, but silently, as if muted",{vo:70}],["I get their intonation and way of speaking, but the voice is mine or a generic one",{vo:45}],["I hear someone speaking, but it doesn't sound like them",{vo:25}],["I can't hear anyone speak at all",{vo:0}]]},
-    {s:1,ic:"cup",t:"Imagine holding a cup of fresh coffee. Can you smell it?",h:"",
+    {s:1,ic:"cup",t:"Imagine holding a cup of fresh coffee. Can you smell it in your imagination?",h:"",
      o:[["As if it were in my hands, and I can change the aroma or make it stronger or weaker",{sm:100}],["Yes, a strong coffee smell, but I find it hard to change it",{sm:70}],["A faint whisper of it",{sm:35}],["I can't smell it at all in my mind",{sm:0}]]},
     {s:1,ic:"lemon",t:"Now imagine biting into a slice of lemon.",h:"",
      o:[["I taste it as if I'd really bitten it; the flavor is still in my mouth",{ta:100}],["I taste it distinctly in my mind, but it isn't the same as eating it",{ta:70}],["A faint whisper of the taste",{ta:35}],["I can't taste it at all in my mind",{ta:0}]]},
@@ -831,10 +838,23 @@ footer a{color:var(--dim)}
     document.querySelectorAll(".sl-tag").forEach(function(t){var v=Math.max(2,Math.min(98,+t.dataset.v));t.style.left=v+"%";t.style.transform=v<15?"translateX(-14px)":(v>85?"translateX(calc(-100% + 14px))":"translateX(-50%)")});
   }
 
+  /* top-of-results shortcut to the email box */
+  $("ml-jump").addEventListener("click",function(){$("mailbox").scrollIntoView({behavior:"smooth",block:"center"});setTimeout(function(){$("ml-email").focus({preventScroll:true})},500)});
+
+  /* research consent opens only for careful answers; "clicked through" is never saved */
+  function careGate(){
+    var c=document.querySelector('input[name="care"]:checked'), ok=!!c&&c.value!=="clicked";
+    $("f-consent").disabled=!ok; if(!ok)$("f-consent").checked=false;
+    $("f-consent-box").classList.toggle("off",!ok);
+    $("f-consent-note").hidden=!(c&&c.value==="clicked");
+  }
+  document.querySelectorAll('input[name="care"]').forEach(function(i){i.addEventListener("change",careGate)});
+
   /* ---------- save (only with consent) ---------- */
   function save(r){
     if(!$("f-consent").checked)return;
     var care=document.querySelector('input[name="care"]:checked');
+    if(!care||care.value==="clicked")return;
     var given=ans.filter(function(a){return a!==null});
     var q={care:care?care.value:"",total:startT?Math.round((Date.now()-startT)/1000):null,secs:secs.map(function(m){return Math.round(m/100)/10}),
       timer:timerUsed,straight:given.length>0&&given.every(function(a){return a===given[0]}),checks:notes(r).length};
@@ -894,7 +914,7 @@ footer a{color:var(--dim)}
   var ML_URL="https://assets.mailerlite.com/jsonp/1251629/forms/201882067352422366/subscribe";
   $("mlform").addEventListener("submit",function(e){
     e.preventDefault();
-    var em=$("ml-email").value.trim(), msg=$("ml-msg");
+    var em=$("ml-email").value.trim(), msg=$("ml-msg"); msg.classList.remove("sent");
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Please enter a valid email address.";msg.style.color="#ffb45c";return}
     if(!last)return;
     var fd=new FormData();
@@ -905,7 +925,7 @@ footer a{color:var(--dim)}
     fd.append("ml-submit","1"); fd.append("anticsrf","true");
     $("ml-go").disabled=true; msg.style.color=""; msg.textContent="Sending…";
     fetch(ML_URL,{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
-      if(j&&j.success){msg.style.color="#7cc4ff";msg.textContent="Sent! Check your inbox in a minute (and the spam folder, just in case).";$("mlform").hidden=true}
+      if(j&&j.success){msg.style.color="";msg.classList.add("sent");msg.textContent="✓ "+"Sent! Check your inbox in a minute (and the spam folder, just in case).";$("mlform").hidden=true}
       else{msg.style.color="#ffb45c";msg.textContent="That didn't go through. Please check the address and try again.";$("ml-go").disabled=false}
     }).catch(function(){msg.style.color="#ffb45c";msg.textContent="Couldn't reach the mail service. Please try again in a moment.";$("ml-go").disabled=false});
   });
@@ -916,9 +936,9 @@ footer a{color:var(--dim)}
   (function(){var o=document.createElement("option");o.textContent="Prefer not to say";$("f-country").appendChild(o)})();
 
   function restart(){
-    $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent="";
+    $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent=""; $("ml-msg").classList.remove("sent");
     ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); secs=secs.map(function(){return 0}); qT0=0; timerUsed=false; startT=Date.now(); cur=0;
-    document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); render();
+    document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); careGate(); render();
     $("stage").classList.remove("wide");
     swap(visible(),$("s-q"),1,function(){window.scrollTo(0,0);focusTitle()});
   }
@@ -973,15 +993,15 @@ footer a{color:var(--dim)}
   for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
   var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // ~30 frames a second, and paused once the reader scrolls past the first screen
-  var last=0, run=true, loop=true;
+  var lastF=0, run=true, loop=true; /* not "last": that name holds the results above */
   // also rests after 20 seconds with no movement, so a forgotten tab costs nothing
   var idle=0;
   function wake(){var on=scrollY<innerHeight*.9; if(on&&!loop&&!fieldStill){loop=true;run=true;requestAnimationFrame(frame)} run=on; clearTimeout(idle); idle=setTimeout(function(){run=false},20000)}
   ["scroll","pointermove","touchstart","keydown"].forEach(function(e){addEventListener(e,wake,{passive:true})}); wake();
   function frame(now){
     if(!run){loop=false;return}
-    if(now&&now-last<32){requestAnimationFrame(frame);return}
-    last=now||0;
+    if(now&&now-lastF<32){requestAnimationFrame(frame);return}
+    lastF=now||0;
     t+=2; x.clearRect(0,0,W,H);
     var R0=Math.min(W,H)*.38, cx=W*.5+mx*40*DP, cy=H*.5+my*30*DP;
     x.globalCompositeOperation="lighter";

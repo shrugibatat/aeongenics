@@ -191,6 +191,8 @@ footer a{color:var(--dim)}
 .field select option{background:#0b1020}
 .consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink);border:1px dashed rgba(124,196,255,.35);background:rgba(124,196,255,.05);border-radius:12px;padding:12px 14px;cursor:pointer}
 .consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ice);flex:none}
+.consent.off{opacity:.4;cursor:not-allowed}
+.consent-note{font-size:13.5px;color:var(--dim);margin:6px 2px 0}
 .care{display:grid;gap:8px;border:0;margin:0;padding:0}
 .care legend{font-size:15px;color:var(--ink);margin-bottom:6px;padding:0}
 .care label{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--dim);border:1px solid var(--glass-line);border-radius:10px;padding:10px 12px;cursor:pointer}
@@ -250,6 +252,9 @@ footer a{color:var(--dim)}
 .mlrow input{flex:1 1 220px;font:15px var(--body);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--glass-line);border-radius:999px;padding:12px 16px}
 .mlrow input:focus{outline:2px solid var(--ice);outline-offset:2px}
 #ml-msg{font-size:13px;min-height:1.2em}
+#ml-msg.sent{font:600 clamp(16px,1.9vw,18px) var(--body);letter-spacing:0;color:#f2f9ff!important;background:rgba(124,196,255,.16);border:1px solid rgba(124,196,255,.7);border-radius:14px;padding:16px 18px;margin-top:6px;box-shadow:0 0 28px rgba(124,196,255,.5);animation:sentglow 1.6s ease-in-out 4}
+@keyframes sentglow{50%{box-shadow:0 0 46px rgba(124,196,255,.85)}}
+@media (prefers-reduced-motion:reduce){#ml-msg.sent{animation:none}}
 .ecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ecard{gap:10px;align-content:start}
 
@@ -318,7 +323,7 @@ nav a::after{transform-origin:right}
         <span class="eyebrow">בדקו את המוח שלכם · כ־8 דקות · 20 שאלות</span>
         <h1 id="intro-h">מפת <span class="grad">המוח</span> שלכם</h1>
         <canvas id="mindviz" class="mindviz" aria-hidden="true"></canvas>
-        <p class="lede">עצמו עיניים ודמיינו את הפנים של חבר. יש מי שרואים אותן חיות כמו במציאות. יש מי שלא רואים כלום ופשוט יודעים איך החבר נראה. שני המצבים נורמליים, וכמעט אף אחד לא יודע עד כמה האנשים סביבו שונים, אפילו בתוך המשפחה. בואו נגלה איפה אתם על המפה.</p>
+        <p class="lede">עצמו עיניים ודמיינו את הפנים של חבר. יש מי שרואים אותן חיות כמו במציאות. יש מי שלא רואים כלום ופשוט חשים איך החבר נראה. שני המצבים נורמליים, וכמעט אף אחד לא יודע עד כמה האנשים סביבו שונים, אפילו בתוך המשפחה. בואו נגלה איפה אתם על המפה.</p>
         <div class="chips" aria-label="ארבעה חלקים">
           <div class="chip"><i style="color:var(--amber)">01 · עין הדמיון</i><span>פנים, נופים, תפוח שאפשר לסובב</span></div>
           <div class="chip"><i style="color:var(--violet)">02 · חושים פנימיים אחרים</i><span>מוזיקה, קולות, קפה, פטיש, רגש</span></div>
@@ -328,7 +333,7 @@ nav a::after{transform-origin:right}
         <p class="pre-note">אפשר לעצום עיניים בכל שאלה, אם זה עוזר. אין תשובות נכונות: כל מוח על המפה הזו הוא מוח נורמלי, פשוט שונה.</p>
         <div class="privacy">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ice)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          <span>בלי מעקב, והתשובות שלכם נשארות אנונימיות. אם תבקשו את התוצאות במייל, הכתובת משמשת רק כדי לשלוח אותן. בסוף אפשר גם לבחור לצרף את התשובות האנונימיות שלכם למחקר שלנו.</span>
+          <span>בלי מעקב, והתשובות שלכם נשארות אנונימיות. אם תבקשו את התוצאות במייל, נשלח אותן לכתובת שלכם ונצרף אותה לרשימת התפוצה של ארז (אפשר להסיר את עצמכם בכל עת). בסוף אפשר גם לבחור לצרף את התשובות האנונימיות שלכם למחקר שלנו.</span>
         </div>
         <div class="row">
           <button class="btn" id="start" type="button">מתחילים במיפוי</button>
@@ -376,7 +381,8 @@ nav a::after{transform-origin:right}
             <label><input type="radio" name="care" value="mostly">ברוב השאלות, בקפידה</label>
             <label><input type="radio" name="care" value="clicked">לחצתי מהר כדי לראות את התוצאה</label>
           </fieldset>
-          <label class="consent"><input type="checkbox" id="f-consent"><span>ידוע לי שהתשובות שלי ישמשו באופן אנונימי במחקר של Aeongenics.</span></label>
+          <label class="consent off" id="f-consent-box"><input type="checkbox" id="f-consent" disabled><span>ידוע לי שהתשובות שלי ישמשו באופן אנונימי במחקר של Aeongenics.</span></label>
+          <p class="consent-note" id="f-consent-note" hidden>תודה על הכנות. תשובות מהירות לא נכנסות למחקר.</p>
         </div>
         <div class="qnav">
           <button class="btn ghost" id="about-back" type="button">→ חזרה</button>
@@ -392,6 +398,7 @@ nav a::after{transform-origin:right}
           <span class="eyebrow">המפה שלכם מוכנה</span>
           <h1 id="res-h">המוח שלכם <span class="grad">במבט אחד</span></h1>
           <p class="lede" id="rtag"></p>
+          <button class="btn ghost" type="button" id="ml-jump">✉ שלחו לי את התוצאות במייל</button>
         </div>
 
         <div class="glass predict">
@@ -431,7 +438,7 @@ nav a::after{transform-origin:right}
             <input type="email" id="ml-email" placeholder="האימייל שלכם" autocomplete="email" aria-label="האימייל שלכם" required dir="ltr">
             <button class="btn" type="submit" id="ml-go">שלחו לי</button>
           </form>
-          <label class="consent" style="padding:10px 12px"><input type="checkbox" id="ml-upd"><span>שלחו לי גם עדכונים מ־Aeongenics מדי פעם</span></label>
+          <label class="consent" style="padding:10px 12px"><input type="checkbox" id="ml-upd" checked><span>אשמח לקבל מדי פעם עדכונים אישיים מארז</span></label>
           <p class="meta" id="ml-msg" role="status"></p>
         </div>
 
@@ -510,7 +517,7 @@ nav a::after{transform-origin:right}
      o:[["הכול נשמע ברור, כאילו מהרדיו: כלים וזמר יחד, ואפשר להוסיף את הסקסופון",{mu:100}],["הכלים נשמעים בהרמוניה, אבל לא יחד עם הזמר; או זה או זה. אפשר להוסיף את הסקסופון",{mu:70}],["הכלים נשמעים בהרמוניה, אבל לא יחד עם הזמר. אי אפשר להוסיף את הסקסופון",{mu:55}],["רק מנגינה, ערוץ אחד: הזמר או כלי אחד. אי אפשר להוסיף את הסקסופון",{mu:30},["melody"]],["לא נשמע כלום. על מה אתם מדברים?",{mu:0},["deafmusic"]]]},
     {s:1,ic:"voice",t:"חשבו על מישהו קרוב אליכם ושמעו אותו מדבר בראש.",h:"",
      o:[["כאילו האדם לידי, בקול שלו",{vo:100}],["הקול שלו נשמע, אבל בשקט, כמו בהשתקה",{vo:70}],["האינטונציה וצורת הדיבור שלו מגיעות, אבל הקול הוא שלי או קול כללי",{vo:45}],["מישהו מדבר, אבל זה לא נשמע כמוהו",{vo:25}],["אי אפשר לשמוע אף אחד מדבר בראש",{vo:0}]]},
-    {s:1,ic:"cup",t:"דמיינו שאתם מחזיקים כוס קפה טרי. אפשר להריח אותו?",h:"",
+    {s:1,ic:"cup",t:"דמיינו שאתם מחזיקים כוס קפה טרי. אתם יכולים להריח אותו בדמיון?",h:"",
      o:[["כאילו הכוס בידיים, ואפשר לשנות את הניחוח או לחזק ולהחליש אותו",{sm:100}],["כן, ריח קפה חזק, אבל קשה לשנות אותו",{sm:70}],["לחישה קלושה שלו",{sm:35}],["אין שום ריח בדמיון",{sm:0}]]},
     {s:1,ic:"lemon",t:"עכשיו דמיינו שאתם נוגסים בפרוסת לימון.",h:"",
      o:[["הטעם כאילו נגסתי באמת; הוא עדיין בפה",{ta:100}],["הטעם ברור בדמיון, אבל זה לא כמו לאכול",{ta:70}],["לחישה קלושה של הטעם",{ta:35}],["אין שום טעם בדמיון",{ta:0}]]},
@@ -852,10 +859,23 @@ nav a::after{transform-origin:right}
     document.querySelectorAll(".sl-tag").forEach(function(t){var v=Math.max(2,Math.min(98,+t.dataset.v));t.style.right=v+"%";t.style.transform=v<15?"translateX(14px)":(v>85?"translateX(calc(100% - 14px))":"translateX(50%)")});
   }
 
+  /* top-of-results shortcut to the email box */
+  $("ml-jump").addEventListener("click",function(){$("mailbox").scrollIntoView({behavior:"smooth",block:"center"});setTimeout(function(){$("ml-email").focus({preventScroll:true})},500)});
+
+  /* research consent opens only for careful answers; "clicked through" is never saved */
+  function careGate(){
+    var c=document.querySelector('input[name="care"]:checked'), ok=!!c&&c.value!=="clicked";
+    $("f-consent").disabled=!ok; if(!ok)$("f-consent").checked=false;
+    $("f-consent-box").classList.toggle("off",!ok);
+    $("f-consent-note").hidden=!(c&&c.value==="clicked");
+  }
+  document.querySelectorAll('input[name="care"]').forEach(function(i){i.addEventListener("change",careGate)});
+
   /* ---------- save (only with consent) ---------- */
   function save(r){
     if(!$("f-consent").checked)return;
     var care=document.querySelector('input[name="care"]:checked');
+    if(!care||care.value==="clicked")return;
     var given=ans.filter(function(a){return a!==null});
     var q={care:care?care.value:"",total:startT?Math.round((Date.now()-startT)/1000):null,secs:secs.map(function(m){return Math.round(m/100)/10}),
       timer:timerUsed,straight:given.length>0&&given.every(function(a){return a===given[0]}),checks:notes(r).length};
@@ -916,7 +936,7 @@ nav a::after{transform-origin:right}
   var ML_URL="https://assets.mailerlite.com/jsonp/1251629/forms/201882067352422366/subscribe";
   $("mlform").addEventListener("submit",function(e){
     e.preventDefault();
-    var em=$("ml-email").value.trim(), msg=$("ml-msg");
+    var em=$("ml-email").value.trim(), msg=$("ml-msg"); msg.classList.remove("sent");
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="נא להזין כתובת אימייל תקינה.";msg.style.color="#ffb45c";return}
     if(!last)return;
     var fd=new FormData();
@@ -927,7 +947,7 @@ nav a::after{transform-origin:right}
     fd.append("ml-submit","1"); fd.append("anticsrf","true");
     $("ml-go").disabled=true; msg.style.color=""; msg.textContent="שולחים…";
     fetch(ML_URL,{method:"POST",body:fd}).then(function(r){return r.json()}).then(function(j){
-      if(j&&j.success){msg.style.color="#7cc4ff";msg.textContent="נשלח! בדקו את תיבת הדואר בעוד דקה (וגם את תיקיית הספאם, ליתר ביטחון).";$("mlform").hidden=true}
+      if(j&&j.success){msg.style.color="";msg.classList.add("sent");msg.textContent="✓ "+"נשלח! בדקו את תיבת הדואר בעוד דקה (וגם את תיקיית הספאם, ליתר ביטחון).";$("mlform").hidden=true}
       else{msg.style.color="#ffb45c";msg.textContent="זה לא עבר. בדקו את הכתובת ונסו שוב.";$("ml-go").disabled=false}
     }).catch(function(){msg.style.color="#ffb45c";msg.textContent="אין חיבור לשירות הדואר כרגע. נסו שוב בעוד רגע.";$("ml-go").disabled=false});
   });
@@ -938,9 +958,9 @@ nav a::after{transform-origin:right}
   (function(){var o=document.createElement("option");o.textContent="מעדיפים לא לומר";o.value="Prefer not to say";$("f-country").appendChild(o)})();
 
   function restart(){
-    $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent="";
+    $("mlform").hidden=false; $("ml-go").disabled=false; $("ml-msg").textContent=""; $("ml-msg").classList.remove("sent");
     ans=ans.map(function(){return null}); pre=pre.map(function(){return false}); secs=secs.map(function(){return 0}); qT0=0; timerUsed=false; startT=Date.now(); cur=0;
-    document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); render();
+    document.querySelectorAll('input[name="care"]').forEach(function(i){i.checked=false}); careGate(); render();
     $("stage").classList.remove("wide");
     swap(visible(),$("s-q"),1,function(){window.scrollTo(0,0);focusTitle()});
   }
@@ -995,15 +1015,15 @@ nav a::after{transform-origin:right}
   for(var i=0;i<N;i++){pts.push({g:i%2,a:Math.random()*Math.PI*2,b:Math.acos(2*Math.random()-1),s:.0006+Math.random()*.0016,r:.85+Math.random()*.3})}
   var t=0, fieldStill=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // ~30 frames a second, and paused once the reader scrolls past the first screen
-  var last=0, run=true, loop=true;
+  var lastF=0, run=true, loop=true; /* not "last": that name holds the results above */
   // also rests after 20 seconds with no movement, so a forgotten tab costs nothing
   var idle=0;
   function wake(){var on=scrollY<innerHeight*.9; if(on&&!loop&&!fieldStill){loop=true;run=true;requestAnimationFrame(frame)} run=on; clearTimeout(idle); idle=setTimeout(function(){run=false},20000)}
   ["scroll","pointermove","touchstart","keydown"].forEach(function(e){addEventListener(e,wake,{passive:true})}); wake();
   function frame(now){
     if(!run){loop=false;return}
-    if(now&&now-last<32){requestAnimationFrame(frame);return}
-    last=now||0;
+    if(now&&now-lastF<32){requestAnimationFrame(frame);return}
+    lastF=now||0;
     t+=2; x.clearRect(0,0,W,H);
     var R0=Math.min(W,H)*.38, cx=W*.5+mx*40*DP, cy=H*.5+my*30*DP;
     x.globalCompositeOperation="lighter";
