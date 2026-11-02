@@ -285,6 +285,7 @@ nav a::after{transform-origin:right}
 .ehead .elvl{margin-left:0;margin-right:auto}
 .lists ul,.deep ul{padding-left:0;padding-right:18px}
 .radar{direction:ltr}
+.radar text{font-family:"Heebo",sans-serif;font-size:13px;font-weight:600;letter-spacing:0;fill:var(--ink);direction:rtl;unicode-bidi:embed}
 .sl-k{left:auto;right:0;margin:-10px -10px 0 0;transition:right 1.4s cubic-bezier(.2,.7,.2,1)}
 .sl-tag{left:auto;right:0;transition:right 1.4s cubic-bezier(.2,.7,.2,1)}
 .screen.out-left{transform:translateX(40px)}
@@ -848,7 +849,7 @@ nav a::after{transform-origin:right}
       h+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a2)*R).toFixed(1)+'" y2="'+(cy+Math.sin(a2)*R).toFixed(1)+'" stroke="rgba(170,200,255,.12)"/>';
       pp.push((cx+Math.cos(a2)*R*v).toFixed(1)+","+(cy+Math.sin(a2)*R*v).toFixed(1));
       var lx=cx+Math.cos(a2)*(R+20), ly=cy+Math.sin(a2)*(R+20)+3;
-      h+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="'+(Math.abs(Math.cos(a2))<.2?"middle":(Math.cos(a2)>0?"start":"end"))+'">'+ax[j][0].toUpperCase()+'</text>';
+      h+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" direction="rtl" text-anchor="'+(Math.abs(Math.cos(a2))<.2?"middle":(Math.cos(a2)>0?"end":"start"))+'">'+ax[j][0]+'</text>';
     }
     h+='<defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset="1" stop-color="#a98bff"/></linearGradient></defs>';
     h+='<polygon points="'+pp.join(" ")+'" fill="url(#rg)" fill-opacity=".28" stroke="url(#rg)" stroke-width="2"/>';
