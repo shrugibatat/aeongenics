@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Solve for Human · עותק קוראים מוקדם</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Heebo:wght@400;500;700&display=swap">
+<style>
+:root{--void:#05070d;--glass:rgba(150,180,255,.06);--glass-line:rgba(170,200,255,.16);--ink:#eef2ff;--dim:#9aa6c4;--faint:#5f6a88;--amber:#ffb45c;--ice:#7cc4ff;--violet:#a98bff;
+--display:"Unbounded","Heebo","Arial Black",system-ui,sans-serif;--body:"Heebo","Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--void)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 50% at 85% 5%,rgba(124,196,255,.14),transparent 70%),radial-gradient(50% 45% at 5% 95%,rgba(255,180,92,.11),transparent 70%)}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:36px 16px 72px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
+.mark{width:24px;height:24px;border-radius:50%;background:conic-gradient(from 200deg,var(--amber),var(--violet),var(--ice),var(--amber));box-shadow:0 0 18px rgba(124,196,255,.45);position:relative}
+.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--void)}
+.logo b{font:500 14px var(--display);letter-spacing:.08em;text-transform:uppercase}
+.lang{color:var(--dim);text-decoration:none;font-size:14px;border:1px solid var(--glass-line);border-radius:999px;padding:5px 14px}
+.lang:hover{color:var(--ink);border-color:var(--ice)}
+.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:40px;align-items:center;margin-bottom:44px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ice)}
+[lang=he] .eyebrow{letter-spacing:.04em;font-family:var(--body);font-size:14px}
+h1{font:500 clamp(34px,6vw,62px)/1.05 var(--display);margin:10px 0 8px;letter-spacing:-.01em}
+.grad{background:linear-gradient(100deg,var(--amber) 0%,#ffd9a8 30%,var(--ice) 70%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(16px,2vw,19px);color:var(--ink);opacity:.85;margin:0 0 16px}
+.lede{color:var(--dim);font-size:17px;max-width:56ch;margin:0}
+.cover{position:relative;justify-self:center;width:min(100%,220px)}
+.cover img{width:100%;height:auto;display:block;border-radius:6px;transform:perspective(900px) rotateY(-12deg);box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 60px rgba(124,196,255,.18)}
+[dir=rtl] .cover img{transform:perspective(900px) rotateY(12deg)}
+.cover::before{content:"";position:absolute;inset:10% -10%;background:radial-gradient(closest-side,rgba(255,180,92,.25),transparent);filter:blur(30px);z-index:-1}
+.step{font:500 13px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
+[lang=he] .meta{font-family:var(--body);font-size:13px}
+[lang=he] .step{letter-spacing:.02em;font-family:var(--body);font-size:15px}
+.step b{color:var(--amber);font-weight:500}
+.glass{background:var(--glass);border:1px solid var(--glass-line);border-radius:18px;padding:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.promise{display:flex;gap:16px;align-items:flex-start;cursor:pointer;margin-bottom:36px;transition:border-color .3s,box-shadow .3s}
+.promise:hover{border-color:rgba(124,196,255,.4)}
+.promise.on{border-color:rgba(255,180,92,.55);box-shadow:0 0 30px rgba(255,180,92,.12)}
+.promise input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;margin:2px 0 0;border-radius:8px;border:1.5px solid var(--dim);background:transparent;cursor:pointer;display:grid;place-content:center;transition:all .2s}
+.promise input:checked{background:linear-gradient(135deg,var(--amber),var(--ice));border-color:transparent}
+.promise input:checked::after{content:"";width:7px;height:13px;border:solid var(--void);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.promise span{font-size:16px;line-height:1.65}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{position:relative;overflow:hidden;display:grid;gap:10px;align-content:start;transition:transform .3s,border-color .3s,opacity .4s,filter .4s}
+.card.locked{opacity:.45;filter:saturate(.4)}
+.card:not(.locked):hover{transform:translateY(-3px);border-color:rgba(124,196,255,.45)}
+.glow{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(60px);opacity:.28;inset-inline-end:-70px;top:-70px;pointer-events:none}
+.ico svg{width:120px;height:90px}
+h3{font:500 19px var(--display);margin:0}
+.dim{color:var(--dim);margin:0}
+.meta{font:12px var(--mono);color:var(--faint);letter-spacing:.05em}
+.btn{justify-self:start;margin-top:6px;font:600 14px var(--body);letter-spacing:.03em;padding:12px 22px;border-radius:999px;text-decoration:none;color:var(--void);background:linear-gradient(100deg,var(--amber),var(--ice));transition:box-shadow .3s,transform .3s}
+.btn:hover{box-shadow:0 0 28px rgba(124,196,255,.45);transform:translateY(-1px)}
+.btn[aria-disabled=true]{pointer-events:none}
+.btn.soon{background:transparent;color:var(--dim);border:1px dashed var(--glass-line)}
+.hint{color:var(--faint);font-size:14px;margin:14px 0 0;text-align:center;transition:opacity .3s}
+.note{margin-top:44px;padding-top:16px;border-top:1px solid var(--glass-line);color:var(--faint);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a:focus-visible,input:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
+@media (max-width:700px){.hero{grid-template-columns:1fr;gap:28px}.cover{width:170px;order:-1}}
+</style>
+</head>
+<body>
+<div class="veil"></div>
+<main>
+<div class="top"><a class="logo" href="https://aeongenics.com/"><span class="mark"></span><b>Aeongenics</b></a><a class="lang" href="solve-for-human-arc-225459.html" hreflang="en">English</a></div>
+<section class="hero">
+<div>
+<div class="eyebrow">עותק קוראים מוקדם</div>
+<h1 dir="ltr" lang="en"><span class="grad">Solve for Human</span></h1>
+<p class="sub" dir="ltr" lang="en">What Makes Us Conscious, and Why AI Isn’t (Yet)</p>
+<p class="lede">תודה שאתם קוראים עותק מוקדם של הספר. הספר כתוב באנגלית ומגיע בשתי גרסאות עימוד: בחרו את זו שמתאימה למסך שעליו אתם קוראים.</p>
+</div>
+<div class="cover"><img src="../cover.jpg" alt="Solve for Human, book cover" width="600" height="900"></div>
+</section>
+<p class="step"><b>01</b> · קודם, הבטחה אחת</p>
+<label class="glass promise" id="promise"><input type="checkbox" id="ok" aria-labelledby="oktext"><span id="oktext">אני מבין/ה שזהו עותק קוראים מוקדם: לא מוגה, לא סופי ולא מיועד להפצה. הוא לקריאתי האישית בלבד. לא אעביר, אשתף, אפרסם או אצטט ממנו ללא אישור המחבר.</span></label>
+<p class="step"><b>02</b> · ואז, בחרו גרסה</p>
+<div class="cards">
+<div class="glass card locked"><span class="glow" style="background:#ffb45c"></span><div class="ico"><svg viewBox="0 0 120 90" aria-hidden="true"><defs><linearGradient id="ghe1" x1="0" x2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset="1" stop-color="#7cc4ff"/></linearGradient></defs><rect x="42" y="8" width="36" height="74" rx="4" fill="rgba(150,180,255,.08)" stroke="url(#ghe1)" stroke-width="2"/><g stroke="#9aa6c4" stroke-width="2" stroke-linecap="round" opacity=".7"><line x1="49" y1="22" x2="71" y2="22"/><line x1="49" y1="31" x2="71" y2="31"/><line x1="49" y1="40" x2="67" y2="40"/><line x1="49" y1="49" x2="71" y2="49"/><line x1="49" y1="58" x2="64" y2="58"/></g></svg></div><h3>עמוד בודד</h3><p class="dim">עמוד אחד בכל פעם. הכי נוח בטלפון, בטאבלט או בקורא ספרים.</p><div class="meta">358 עמודים · PDF</div><span class="btn dl soon" aria-disabled="true">הקישור יעלה בקרוב</span></div>
+<div class="glass card locked"><span class="glow" style="background:#7cc4ff"></span><div class="ico"><svg viewBox="0 0 120 90" aria-hidden="true"><defs><linearGradient id="ghe2" x1="0" x2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset="1" stop-color="#7cc4ff"/></linearGradient></defs><path d="M60 14 C48 8 30 8 18 12 V80 C30 76 48 76 60 82 C72 76 90 76 102 80 V12 C90 8 72 8 60 14 Z" fill="rgba(150,180,255,.08)" stroke="url(#ghe2)" stroke-width="2" stroke-linejoin="round"/><line x1="60" y1="14" x2="60" y2="82" stroke="url(#ghe2)" stroke-width="2"/><g stroke="#9aa6c4" stroke-width="2" stroke-linecap="round" opacity=".7"><line x1="27" y1="26" x2="51" y2="26"/><line x1="27" y1="35" x2="51" y2="35"/><line x1="27" y1="44" x2="47" y2="44"/><line x1="27" y1="53" x2="51" y2="53"/><line x1="69" y1="26" x2="93" y2="26"/><line x1="69" y1="35" x2="93" y2="35"/><line x1="69" y1="44" x2="89" y2="44"/><line x1="69" y1="53" x2="93" y2="53"/></g></svg></div><h3>שני עמודים</h3><p class="dim">שני עמודים זה לצד זה, כמו ספר פתוח. הכי נוח במסך מחשב.</p><div class="meta">358 עמודים · PDF</div><span class="btn dl soon" aria-disabled="true">הקישור יעלה בקרוב</span></div>
+</div>
+<p class="hint" id="hint">סמנו את התיבה למעלה כדי לפתוח את ההורדה</p>
+<div class="note"><span>עותק לא סופי. מספרי עמודים ופרטים קטנים עוד עשויים להשתנות לפני ההוצאה לאור.</span><span>ארז בטאט</span></div>
+</main>
+<script>
+(function(){
+  var ok=document.getElementById('ok'),pr=document.getElementById('promise'),hint=document.getElementById('hint');
+  function sync(){
+    var on=ok.checked; pr.classList.toggle('on',on); hint.style.opacity=on?0:1;
+    document.querySelectorAll('.card').forEach(function(c){c.classList.toggle('locked',!on);});
+    document.querySelectorAll('a.dl').forEach(function(a){
+      if(on){a.setAttribute('href',a.dataset.href);a.removeAttribute('aria-disabled');a.removeAttribute('tabindex');}
+      else{a.removeAttribute('href');a.setAttribute('aria-disabled','true');a.setAttribute('tabindex','-1');}
+    });
+  }
+  ok.addEventListener('change',sync); sync();
+})();
+</script>
+</body>
+</html>
